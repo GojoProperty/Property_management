@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,11 +29,32 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        session()->forget('url.intended');
+      
+        if ($user->role === 'admin'){
+            return redirect()->route('admin.dashboard');
+         }elseif ($user->role === 'agent'){
+            return redirect()->route('agent.dashboard');
+         }else{
+            return redirect()->route('dashboard');
+         }
+            
+          /* $url = '';
+        if ($request->user()->role === 'admin'){
+            $url = 'admin.dashboard';
+        }elseif ($request->user()->role === 'agent'){
+            $url = 'agent.dashboard';
+        }else {
+            $url = '/dashboard';
+        }
+        return redirect()->intended($url); */
+        
     }
 
-    /**
-     * Destroy an authenticated session.
+    /*
+     * Destroy an authenticated session. 
      */
     public function destroy(Request $request): RedirectResponse
     {
