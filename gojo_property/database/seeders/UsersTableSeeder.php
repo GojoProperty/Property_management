@@ -18,31 +18,39 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             //admin
             [
-                'name'=>'Admin',
-                'username'=>'admin',
-                'email'=>'agent@gmail.com',
-                'password'=>Hash::make('111'),
-                'role'=>'agent',
-                'status'=>'active',
+                'name' => 'Admin',
+                'username' => 'admin',
+                'email' => 'admin111@gmail.com',
+                'password' => Hash::make('111'),
+                'role' => 'admin',
+                'status' => 'active',
+            ],
+            [
+                'name' => 'Hermela',
+                'username' => 'hermi',
+                'email' => 'hermiadmin@gmail.com',
+                'password' => Hash::make('111'),
+                'role' => 'admin',
+                'status' => 'active',
             ],
             //agent
             [
-                'name'=>'agent',
-                'username'=>'admin',
-                'email'=>'admin@gmail.com',
-                'password'=>Hash::make('111'),
-                'role'=>'admin',
-                'status'=>'active',
+                'name' => 'agent',
+                'username' => 'agent',
+                'email' => 'agent111@gmail.com',
+                'password' => Hash::make('111'),
+                'role' => 'agent',
+                'status' => 'active',
 
             ],
             //customer
             [
-                'name'=>'Customer',
-                'username'=>'customer',
-                'email'=>'customer@gmail.com',
-                'password'=>Hash::make('111'),
-                'role'=>'customer',
-                'status'=>'active',
+                'name' => 'Customer',
+                'username' => 'customer',
+                'email' => 'customer111@gmail.com',
+                'password' => Hash::make('111'),
+                'role' => 'customer',
+                'status' => 'active',
 
             ],
         ]);
