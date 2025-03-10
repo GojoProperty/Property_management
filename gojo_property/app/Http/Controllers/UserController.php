@@ -10,3 +10,4 @@ public function Index(){
     return view('frontend.index');
 }
 }
+ 
