@@ -135,14 +135,15 @@
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Property Type </label>
                                                 <input type="text" name="property_size" class="form-control">
-                                                {{-- <select name="ptype_id" class="form-select" id="exampleFormControlSelect1">
+                                                <select name="ptype_id" class="form-select"
+                                                    id="exampleFormControlSelect1">
                                                     <option selected="" disabled="">Select Type</option>
                                                     @foreach ($propertytype as $ptype)
                                                         <option value="{{ $ptype->id }}">{{ $ptype->type_name }}
                                                         </option>
                                                     @endforeach
-                                                </select> --}}
-                                                {{-- will be displlayed after dare created propertytype table --}}
+                                                </select>
+                                                {{-- will be displlayed after dare created propertytype table
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
