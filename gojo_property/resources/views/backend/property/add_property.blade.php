@@ -134,7 +134,6 @@
                                         <div class="col-sm-4">
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Property Type </label>
-                                                <input type="text" name="property_size" class="form-control">
                                                 <select name="ptype_id" class="form-select"
                                                     id="exampleFormControlSelect1">
                                                     <option selected="" disabled="">Select Type</option>
