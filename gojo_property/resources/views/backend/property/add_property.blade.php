@@ -1,6 +1,5 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <div class="page-content">
         <div class="row profile-body">
             <div class="col-md-12 col-xl-12 middle-wrapper">
@@ -20,8 +19,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Property Status</label>
-                                            <select name="property_status" class="form-select"
-                                                id="exampleFormControlSelect1">
+                                            <select name="property_status" class="form-select" id="propStatus">
                                                 <option selected="" disabled="">Select Status</option>
                                                 <option value="rent">For Rent</option>
                                                 <option value="buy">For Buy</option>
@@ -132,7 +130,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <div class="form-group mb-3">
+                                            <div class="mb-3">
                                                 <label class="form-label">Property Type </label>
                                                 <select name="ptype_id" class="form-select"
                                                     id="exampleFormControlSelect1">
@@ -142,110 +140,119 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
-                                                {{-- will be displlayed after dare created propertytype table
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group mb-3">
-                                                <label class="form-label">Property Amenities </label>
-                                                <select
-                                                    class="js-example-basic-multiple form-select select2-hidden-accessible"
-                                                    multiple="" data-width="100%" data-select2-id="4" tabindex="-1"
-                                                    aria-hidden="true">
-                                                    <option value="TX" data-select2-id="16">Texas</option>
-                                                    <option value="WY" data-select2-id="17">Wyoming</option>
-                                                    <option value="NY" data-select2-id="18">New York</option>
-                                                    <option value="FL" data-select2-id="19">Florida</option>
-                                                    <option value="KN" data-select2-id="20">Kansas</option>
-                                                    <option value="HW" data-select2-id="21">Hawaii</option>
-                                                </select>
-                                                {{-- <select name="amenities_id[]"
-                                                    class="js-example-basic-multiple form-select" multiple="multiple"
-                                                    data-width="100%">
-                                                    @foreach ($amenities as $ameni)
-                                                        <option value="{{ $ameni->id }}">{{ $ameni->amenitis_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select> --}}
-                                                {{-- will be displayed once amneties table created by dare  --}}
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label"> Agent </label>
-                                                <select name="agent_id" class="form-select"
-                                                    id="exampleFormControlSelect1">
-                                                    <option selected="" disabled="">Select Agent</option>
-                                                    @foreach ($activeAgent as $agent)
-                                                        <option value="{{ $agent->id }}">{{ $agent->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                <div class="mb-3" data-select2-id="25">
+                                                    <label class="form-label" for="amenities_id">Property
+                                                        Amenities</label>
+                                                    {{-- 
+                                                    <select
+                                                        class="js-example-basic-multiple form-select select2-hidden-accessible"
+                                                        multiple="" data-width="100%" data-select2-id="4"
+                                                        tabindex="-1" aria-hidden="true">
+                                                        <option value="TX" data-select2-id="18">Texas</option>
+                                                        <option value="WY" data-select2-id="19">Wyoming</option>
+                                                        <option value="NY" data-select2-id="20">New York</option>
+                                                        <option value="FL" data-select2-id="21">Florida</option>
+                                                        <option value="KN" data-select2-id="22">Kansas</option>
+                                                        <option value="HW" data-select2-id="23">Hawaii</option>
+                                                    </select>
+                                                </div> --}}
 
-                                    <div class="col-sm-12">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Short Description</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Long Description</label>
-                                            <textarea class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="form-group mb-3">
-                                        <div class="form-check form-check-inline">
-                                            <input type="checkbox" name="featured" value="1"
-                                                class="form-check-input" id="checkInline1">
-                                            <label class="form-check-label" for="checkInline1">
-                                                Features Property
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input type="checkbox" name="hot" value="1"
-                                                class="form-check-input" id="checkInline">
-                                            <label class="form-check-label" for="checkInline">
-                                                Hot Property
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="row add_item">
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label for="facility_name" class="form-label">Facilities </label>
-                                                <select name="facility_name[]" id="facility_name" class="form-control">
-                                                    <option value="">Select Facility</option>
-                                                    <option value="Hospital">Hospital</option>
-                                                    <option value="SuperMarket">Super Market</option>
-                                                    <option value="School">School</option>
-                                                    <option value="Entertainment">Entertainment</option>
-                                                    <option value="Pharmacy">Pharmacy</option>
-                                                    <option value="Airport">Airport</option>
-                                                    <option value="Railways">Railways</option>
-                                                    <option value="Bus Stop">Bus Stop</option>
-                                                    <option value="Beach">Beach</option>
-                                                    <option value="Mall">Mall</option>
-                                                    <option value="Bank">Bank</option>
-                                                </select>
+                                                    <select id="amenities_id" name="amenities_id[]"
+                                                        class="js-example-basic-multiple form-select select2-hidden-accessible"
+                                                        multiple="" data-width="100%" tabindex="-1"
+                                                        aria-hidden="true">
+                                                        @foreach ($amenities as $ameni)
+                                                            <option value="{{ $ameni->id }}"
+                                                                @if (in_array($ameni->id, old('id', []))) selected @endif>
+                                                                {{ $ameni->amenities_name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label"> Agent </label>
+                                                    <select name="agent_id" class="form-select" id="agent_id">
+                                                        <option selected="" disabled="">Select Agent</option>
+                                                        @foreach ($activeAgent as $agent)
+                                                            <option value="{{ $agent->id }}">{{ $agent->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label for="distance" class="form-label"> Distance </label>
-                                                <input type="text" name="distance[]" id="distance"
-                                                    class="form-control" placeholder="Distance (Km)">
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Short Description</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group col-md-4" style="padding-top: 30px;">
-                                            <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add
-                                                More..</a>
+                                        <div class="col-sm-12">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Long Description</label>
+                                                <textarea class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-auto">Save Changes </button>
+                                        <hr>
+                                        <div class="form-group mb-3">
+                                            <div class="form-check form-check-inline">
+                                                <input type="checkbox" name="featured" value="1"
+                                                    class="form-check-input" id="checkInline1">
+                                                <label class="form-check-label" for="checkInline1">
+                                                    Features Property
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input type="checkbox" name="hot" value="1"
+                                                    class="form-check-input" id="checkInline">
+                                                <label class="form-check-label" for="checkInline">
+                                                    Hot Property
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row add_item">
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="facility_name" class="form-label">Facilities </label>
+                                                    <select name="facility_name[]" id="facility_name"
+                                                        class="form-control">
+                                                        <option value="">Select Facility</option>
+                                                        <option value="Hospital">Hospital</option>
+                                                        <option value="SuperMarket">Super Market</option>
+                                                        <option value="School">School</option>
+                                                        <option value="Entertainment">Entertainment</option>
+                                                        <option value="Pharmacy">Pharmacy</option>
+                                                        <option value="Airport">Airport</option>
+                                                        <option value="Railways">Railways</option>
+                                                        <option value="Bus Stop">Bus Stop</option>
+                                                        <option value="Beach">Beach</option>
+                                                        <option value="Mall">Mall</option>
+                                                        <option value="Bank">Bank</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="distance" class="form-label"> Distance </label>
+                                                    <input type="text" name="distance[]" id="distance"
+                                                        class="form-control" placeholder="Distance (Km)">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4" style="padding-top: 30px;">
+                                                <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
+                                                    Add
+                                                    More..</a>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-auto">Save Changes </button>
                             </form>
                         </div>
                     </div>
@@ -309,24 +316,23 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#myForm').validate({
-                    rules: {
-                        property_name: {
-                            required: true,
-                        },
-                        property_status: {
-                            required: true,
-                        },
-                        lowest_price: {
-                            required: true,
-                        },
-                        max_price: {
-                            required: true,
-                        },
-                        ptype_id: {
-                            required: true,
-                        },
+                rules: {
+                    property_name: {
+                        required: true,
                     },
-                }
+                    property_status: {
+                        required: true,
+                    },
+                    lowest_price: {
+                        required: true,
+                    },
+                    max_price: {
+                        required: true,
+                    },
+                    ptype_id: {
+                        required: true,
+                    },
+                },
                 messages: {
                     property_name: {
                         required: 'Please Enter Property Name',
@@ -343,19 +349,22 @@
                     ptype_id: {
                         required: 'Please Select Property Type',
                     },
-                    errorElement: 'span',
-                    errorPlacement: function(error, element) {
-                        error.addClass('invalid-feedback');
-                        element.closest('.form-group').append(error);
-                    },
-                    highlight: function(element, errorClass, validClass) {
-                        $(element).addClass('is-invalid');
-                    },
-                    unhighlight: function(element, errorClass, validClass) {
-                        $(element).removeClass('is-invalid');
-                    },
-                });
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+            });
         });
+    </script>
+
     </script>
     <script type="text/javascript">
         function mainThamUrl(input) {
@@ -396,6 +405,15 @@
                 } else {
                     alert("Your browser doesn't support File API!"); //if File API is absent
                 }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({
+                placeholder: "Select Amenities",
+                allowClear: true,
+                width: '100%'
             });
         });
     </script>
