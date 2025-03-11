@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PropertyType;
+use App\Models\Amenities;
+
 
 class PropertyTypeController extends Controller
 {
@@ -75,4 +77,71 @@ class PropertyTypeController extends Controller
 
         return redirect()->back()->with($notification);
     }
+    public function AllAmenitie()
+    {
+
+        $amenities = Amenities::latest()->get();
+        return view('backend.amenities.all_amenities', compact('amenities'));
+    }
+
+    public function AddAmenitie()
+    {
+        return view('backend.amenities.add_amenities');
+    }
+    public function StoreAmenitie(Request $request)
+    {
+        $request->validate([
+            'amenities_name' => 'required|max:255'
+        ]);
+
+        Amenities::create([
+            'amenities_name' => $request->amenities_name,
+        ]);
+
+        return redirect()->route('all.amenitie')->with([
+            'message' => 'Amenities Created Successfully',
+            'alert-type' => 'success'
+        ]);
+    }
+
+
+    public function EditAmenitie($id)
+    {
+
+        $amenities = Amenities::findOrFail($id);
+        return view('backend.amenities.edit_amenities', compact('amenities'));
+    }
+
+
+    public function UpdateAmenitie(Request $request)
+    {
+
+        $ame_id = $request->id;
+
+        Amenities::findOrFail($ame_id)->update([
+
+            'amenitis_name' => $request->amenitis_name,
+        ]);
+
+        $notification = array(
+            'message' => 'Amenities Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.amenitie')->with($notification);
+    }
+
+
+    public function DeleteAmenitie($id)
+    {
+
+        Amenities::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Amenities Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // End Method 
 }
