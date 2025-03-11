@@ -46,23 +46,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(PropertyTypeController::class)->group(function () {
         Route::get('/all/type', 'AllType')->name('all.type');
         Route::get('/add/type', 'AddType')->name('add.type');
-<<<<<<< Updated upstream
-        Route::post('/store/type', 'StoreType')->name('store.type');
-        Route::post('/store/type', 'StoreType')->name('store.type');
-        Route::get('/edit/type/{id}', 'EditType')->name('edit.type');
-        Route::post('/update/type', 'UpdateType')->name('update.type');
-        Route::post('/update/type', 'UpdateType')->name('update.type');
-        Route::get('/delete/type/{id}', 'DeleteType')->name('delete.type');
-    });
-});
-//property
-Route::controller(PropertyController::class)->group(function () {
-
-    Route::get('/all/property', 'getAllProperty')->name('all.property');
-    Route::get('/add/property', 'addProperty')->name('add.property');
-});
-Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login');
-=======
         //Route::post('/store/type', 'StoreType')->name('store.type');
         Route::post('/store/type', 'StoreType')->name('store.type');
         Route::get('/edit/type/{id}', 'EditType')->name('edit.type');
@@ -71,4 +54,3 @@ Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.
         Route::get('/delete/type/{id}', 'DeleteType')->name('delete.type');
     });
 });
->>>>>>> Stashed changes
