@@ -53,8 +53,12 @@ public function UserProfile(){
           $request->session()->invalidate();
   
           $request->session()->regenerateToken();
-  
-          return redirect('/login');
+          $notification = array(
+            'message' => 'User Logout Successfully',
+            'alert-type' => 'success'
+        ); 
+        return redirect('/login')->with($notification);
+ 
       }
       public function UserChangePassword(){
  
@@ -77,8 +81,7 @@ public function UserProfile(){
         return back()->with($notification);
         }
 
-        User::whereId(auth()->user()->id)->update([
-            'password' => Hash::make($request->new_password)
+        User::whereId(Auth::user()->id)->update(['password' => Hash::make($request->new_password)
 
         ]);
 

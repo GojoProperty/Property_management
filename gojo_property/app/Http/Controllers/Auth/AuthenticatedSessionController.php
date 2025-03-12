@@ -26,12 +26,23 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
-        $request->session()->regenerate();
+ 
+         $id = Auth::user()->id;
+         $adminData = User::find($id);
+         $username = $adminData->name;
+ 
+         $request->session()->regenerate();
+ 
+         $notification = array(
+             'message' => 'User '.$username.' Login Successfully',
+             'alert-type' => 'info'
+         ); 
+  
+        /*  return redirect('/login')->with($notification);
 
         $user = Auth::user();
 
-        session()->forget('url.intended');
+        session()->forget('url.intended')->with($notification);
       
         if ($user->role === 'admin'){
             return redirect()->route('admin.dashboard');
@@ -39,9 +50,9 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('agent.dashboard');
          }else{
             return redirect()->route('dashboard');
-         }
+         }*/
             
-          /* $url = '';
+           $url = '';
         if ($request->user()->role === 'admin'){
             $url = 'admin.dashboard';
         }elseif ($request->user()->role === 'agent'){
@@ -49,7 +60,7 @@ class AuthenticatedSessionController extends Controller
         }else {
             $url = '/dashboard';
         }
-        return redirect()->intended($url); */
+        return redirect()->intended($url)->with($notification);
         
     }
 
