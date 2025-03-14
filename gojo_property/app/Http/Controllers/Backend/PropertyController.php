@@ -12,10 +12,10 @@ use App\Models\PropertyType;
 use App\Models\User;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
-use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
+$imgmanager = new ImageManager(new Driver());
 
 class PropertyController extends Controller
 {
@@ -23,7 +23,7 @@ class PropertyController extends Controller
     {
         $property = Property::latest()->get();
         return view('backend.property.all_property', compact('property'));
-    } // End Method
+    }
 
     public function addProperty()
     {
@@ -31,14 +31,13 @@ class PropertyController extends Controller
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
         return view('backend.property.add_property', compact('propertytype', 'amenities', 'activeAgent'));
-    } // End Method 
+    }
 
     public function StoreProperty(Request $request)
     {
 
         $amen = $request->amenities_id;
         $amenites = implode(",", $amen);
-        // dd($amenites);
         $pcode = IdGenerator::generate(['table' => 'properties', 'field' => 'property_code', 'length' => 5, 'prefix' => 'PC']);
         $image = $request->file('property_thambnail');
         $imgmanager = new ImageManager(new Driver());
@@ -67,7 +66,7 @@ class PropertyController extends Controller
             'address' => $request->address,
             'city' => $request->city,
             'state' => $request->state,
-            'postal_code' => $request->postal_code,
+            //'postal_code' => $request->postal_code,
 
             'neighborhood' => $request->neighborhood,
             'latitude' => $request->latitude,
@@ -79,5 +78,45 @@ class PropertyController extends Controller
             'property_thambnail' => $save_url,
             'created_at' => Carbon::now(),
         ]);
-    } // End Method 
+
+        /// Multiple Image Upload From Here ////
+
+        $images = $request->file('multi_img');
+        if (!is_array($images)) {
+            $images = [$images]; // Ensure it's an array
+        }
+        foreach ($images as $img) {
+
+            $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            $imgmanager->read($img)->resize(770, 520)->save('upload/property/multi-image/' . $make_name);
+            $uploadPath = 'upload/property/multi-image/' . $make_name;
+
+            MultiImage::insert([
+
+                'property_id' => $property_id,
+                'photo_name' => $uploadPath,
+                'created_at' => Carbon::now(),
+
+            ]);
+        }
+        /// Facilities Add From Here 
+
+        $facilities = Count($request->facility_name);
+
+        if ($facilities != NULL) {
+            for ($i = 0; $i < $facilities; $i++) {
+                $fcount = new Facility();
+                $fcount->property_id = $property_id;
+                $fcount->facility_name = $request->facility_name[$i];
+                $fcount->distance = $request->distance[$i];
+                $fcount->save();
+            }
+        }
+        $notification = array(
+            'message' => 'Property Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.property')->with($notification);
+    }
 }

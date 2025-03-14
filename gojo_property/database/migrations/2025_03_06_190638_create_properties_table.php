@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('ptype_id');
             $table->string('amenities_id');
             $table->string('property_name');
-            $table->string('property_slug');
+            // $table->string('property_slug');
             $table->string('property_code');
             $table->string('property_status');
             $table->string('lowest_price')->nullable();
