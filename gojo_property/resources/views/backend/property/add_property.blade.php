@@ -1,5 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <div class="page-content">
         <div class="row profile-body">
             <div class="col-md-12 col-xl-12 middle-wrapper">
@@ -147,20 +148,6 @@
                                                 <div class="mb-3" data-select2-id="25">
                                                     <label class="form-label" for="amenities_id">Property
                                                         Amenities</label>
-                                                    {{-- 
-                                                    <select
-                                                        class="js-example-basic-multiple form-select select2-hidden-accessible"
-                                                        multiple="" data-width="100%" data-select2-id="4"
-                                                        tabindex="-1" aria-hidden="true">
-                                                        <option value="TX" data-select2-id="18">Texas</option>
-                                                        <option value="WY" data-select2-id="19">Wyoming</option>
-                                                        <option value="NY" data-select2-id="20">New York</option>
-                                                        <option value="FL" data-select2-id="21">Florida</option>
-                                                        <option value="KN" data-select2-id="22">Kansas</option>
-                                                        <option value="HW" data-select2-id="23">Hawaii</option>
-                                                    </select>
-                                                </div> --}}
-
                                                     <select id="amenities_id" name="amenities_id[]"
                                                         class="js-example-basic-multiple form-select select2-hidden-accessible"
                                                         multiple="" data-width="100%" tabindex="-1"
@@ -173,7 +160,6 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group mb-3">
@@ -188,71 +174,71 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-sm-12">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Short Description</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Long Description</label>
-                                                <textarea class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
-                                            </div>
-                                        </div>
-                                        <hr>
+                                    </div>
+                                    <div class="col-sm-12">
                                         <div class="form-group mb-3">
-                                            <div class="form-check form-check-inline">
-                                                <input type="checkbox" name="featured" value="1"
-                                                    class="form-check-input" id="checkInline1">
-                                                <label class="form-check-label" for="checkInline1">
-                                                    Features Property
-                                                </label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input type="checkbox" name="hot" value="1"
-                                                    class="form-check-input" id="checkInline">
-                                                <label class="form-check-label" for="checkInline">
-                                                    Hot Property
-                                                </label>
+                                            <label class="form-label">Short Description</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Long Description</label>
+                                            <textarea class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" name="featured" value="1"
+                                                class="form-check-input" id="checkInline1">
+                                            <label class="form-check-label" for="checkInline1">
+                                                Features Property
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" name="hot" value="1"
+                                                class="form-check-input" id="checkInline">
+                                            <label class="form-check-label" for="checkInline">
+                                                Hot Property
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row add_item">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="facility_name" class="form-label">Facilities </label>
+                                                <select name="facility_name[]" id="facility_name" class="form-control">
+                                                    <option value="">Select Facility</option>
+                                                    <option value="Hospital">Hospital</option>
+                                                    <option value="SuperMarket">Super Market</option>
+                                                    <option value="School">School</option>
+                                                    <option value="Entertainment">Entertainment</option>
+                                                    <option value="Pharmacy">Pharmacy</option>
+                                                    <option value="Airport">Airport</option>
+                                                    <option value="Railways">Railways</option>
+                                                    <option value="Bus Stop">Bus Stop</option>
+                                                    <option value="Beach">Beach</option>
+                                                    <option value="Mall">Mall</option>
+                                                    <option value="Bank">Bank</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="row add_item">
-                                            <div class="col-md-4">
-                                                <div class="mb-3">
-                                                    <label for="facility_name" class="form-label">Facilities </label>
-                                                    <select name="facility_name[]" id="facility_name"
-                                                        class="form-control">
-                                                        <option value="">Select Facility</option>
-                                                        <option value="Hospital">Hospital</option>
-                                                        <option value="SuperMarket">Super Market</option>
-                                                        <option value="School">School</option>
-                                                        <option value="Entertainment">Entertainment</option>
-                                                        <option value="Pharmacy">Pharmacy</option>
-                                                        <option value="Airport">Airport</option>
-                                                        <option value="Railways">Railways</option>
-                                                        <option value="Bus Stop">Bus Stop</option>
-                                                        <option value="Beach">Beach</option>
-                                                        <option value="Mall">Mall</option>
-                                                        <option value="Bank">Bank</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="mb-3">
-                                                    <label for="distance" class="form-label"> Distance </label>
-                                                    <input type="text" name="distance[]" id="distance"
-                                                        class="form-control" placeholder="Distance (Km)">
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-4" style="padding-top: 30px;">
-                                                <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
-                                                    Add
-                                                    More..</a>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="distance" class="form-label"> Distance </label>
+                                                <input type="text" name="distance[]" id="distance"
+                                                    class="form-control" placeholder="Distance (Km)">
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary w-auto">Save Changes </button>
+                                        <div class="form-group col-md-4" style="padding-top: 30px;">
+                                            <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
+                                                Add
+                                                More..</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-auto">Save Changes </button>
                             </form>
                         </div>
                     </div>
@@ -262,36 +248,33 @@
     </div>
     <div style="visibility: hidden">
         <div class="whole_extra_item_add" id="whole_extra_item_add">
-            <div class="whole_extra_item_delete" id="whole_extra_item_delete">
-                <div class="container mt-2">
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="facility_name">Facilities</label>
-                            <select name="facility_name[]" id="facility_name" class="form-control">
-                                <option value="">Select Facility</option>
-                                <option value="Hospital">Hospital</option>
-                                <option value="SuperMarket">Super Market</option>
-                                <option value="School">School</option>
-                                <option value="Entertainment">Entertainment</option>
-                                <option value="Pharmacy">Pharmacy</option>
-                                <option value="Airport">Airport</option>
-                                <option value="Railways">Railways</option>
-                                <option value="Bus Stop">Bus Stop</option>
-                                <option value="Beach">Beach</option>
-                                <option value="Mall">Mall</option>
-                                <option value="Bank">Bank</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="distance">Distance</label>
-                            <input type="text" name="distance[]" id="distance" class="form-control"
-                                placeholder="Distance (Km)">
-                        </div>
-                        <div class="form-group col-md-4" style="padding-top: 20px">
-                            <span class="btn btn-success btn-sm addeventmore"><i class="fa fa-plus-circle">Add</i></span>
-                            <span class="btn btn-danger btn-sm removeeventmore"><i
-                                    class="fa fa-minus-circle">Remove</i></span>
-                        </div>
+            <div class="whole_extra_item_delete">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="facility_name">Facilities</label>
+                        <select name="facility_name[]" class="form-control">
+                            <option value="">Select Facility</option>
+                            <option value="Hospital">Hospital</option>
+                            <option value="SuperMarket">Super Market</option>
+                            <option value="School">School</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Pharmacy">Pharmacy</option>
+                            <option value="Airport">Airport</option>
+                            <option value="Railways">Railways</option>
+                            <option value="Bus Stop">Bus Stop</option>
+                            <option value="Beach">Beach</option>
+                            <option value="Mall">Mall</option>
+                            <option value="Bank">Bank</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="distance">Distance</label>
+                        <input type="text" name="distance[]" class="form-control" placeholder="Distance (Km)">
+                    </div>
+                    <div class="form-group col-md-4" style="padding-top: 20px">
+                        <span class="btn btn-success btn-sm addeventmore"><i class="fa fa-plus-circle"></i> Add</span>
+                        <span class="btn btn-danger btn-sm removeeventmore"><i class="fa fa-minus-circle"></i>
+                            Remove</span>
                     </div>
                 </div>
             </div>
@@ -300,15 +283,13 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            var counter = 0;
             $(document).on("click", ".addeventmore", function() {
                 var whole_extra_item_add = $("#whole_extra_item_add").html();
-                $(this).closest(".add_item").append(whole_extra_item_add);
-                counter++;
+                $(".add_item").append(whole_extra_item_add); // Append inside the correct container
             });
-            $(document).on("click", ".removeeventmore", function(event) {
-                $(this).closest("#whole_extra_item_delete").remove();
-                counter -= 1
+
+            $(document).on("click", ".removeeventmore", function() {
+                $(this).closest(".whole_extra_item_delete").remove(); // Remove the clicked row
             });
         });
     </script>

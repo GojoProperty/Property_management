@@ -60,7 +60,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(PropertyController::class)->group(function () {
         Route::get('/all/property', 'getAllProperty')->name('all.property');
         Route::get('/add/property', 'addProperty')->name('add.property');
-        Route::post('/add/property', 'storeProperty')->name('store.property');
+        //Route::post('/add/property', 'storeProperty')->name('store.property');
     });
 });
 
