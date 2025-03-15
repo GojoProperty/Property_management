@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\RedirectIfAuthenticated;
+
 
 
 Route::get('/', [UserController::class, 'Index']);
@@ -35,5 +37,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:agent'])->group(function () {
     Route::get('/agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
 }); //agent page
+
+Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login');
+Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register'); 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
