@@ -155,8 +155,6 @@ class PropertyController extends Controller
             'long_descp' => $request->long_descp,
             'bedrooms' => $request->bedrooms,
             'bathrooms' => $request->bathrooms,
-            'garage' => $request->garage,
-            'garage_size' => $request->garage_size,
 
             'property_size' => $request->property_size,
             'property_video' => $request->property_video,
