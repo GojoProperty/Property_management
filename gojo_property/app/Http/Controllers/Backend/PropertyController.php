@@ -37,6 +37,7 @@ class PropertyController extends Controller
     {
 
         $amen = $request->amenities_id;
+        $amen = $amen ?? []; // If $amen is null, assign an empty array
         $amenites = implode(",", $amen);
         $pcode = IdGenerator::generate(['table' => 'properties', 'field' => 'property_code', 'length' => 5, 'prefix' => 'PC']);
         $image = $request->file('property_thambnail');
@@ -79,7 +80,7 @@ class PropertyController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        /// Multiple Image Upload From Here ////
+        /// Multiple Image Upload 
 
         $images = $request->file('multi_img');
         if (!is_array($images)) {
@@ -99,7 +100,7 @@ class PropertyController extends Controller
 
             ]);
         }
-        /// Facilities Add From Here 
+        /// Facilities Add  
 
         $facilities = Count($request->facility_name);
 
@@ -119,14 +120,66 @@ class PropertyController extends Controller
 
         return redirect()->route('all.property')->with($notification);
     }
-    public function editProperty($id)
+    public function editProperty($id) //to keep the data that is gonna be edited
     {
 
         $property = Property::findOrFail($id);
+        $type = $property->amenities_id;
+        $property_amin = explode(',', $type);
         $propertytype = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.edit_property', compact('property', 'propertytype', 'amenities', 'activeAgent'));
+        return view('backend.property.edit_property', compact('property', 'propertytype', 'amenities', 'activeAgent', 'property_amin'));
+    }
+    public function UpdateProperty(Request $request)
+    {
+
+        $amen = $request->amenities_id;
+        $amen = $amen ?? []; // If $amen is null, assign an empty array
+        $amenites = implode(",", $amen);
+
+        $property_id = $request->id;
+
+        Property::findOrFail($property_id)->update([
+
+            'ptype_id' => $request->ptype_id,
+            'amenities_id' => $amenites,
+            'property_name' => $request->property_name,
+            'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)),
+            'property_status' => $request->property_status,
+
+            'lowest_price' => $request->lowest_price,
+            'max_price' => $request->max_price,
+            'short_descp' => $request->short_descp,
+            'long_descp' => $request->long_descp,
+            'bedrooms' => $request->bedrooms,
+            'bathrooms' => $request->bathrooms,
+            'garage' => $request->garage,
+            'garage_size' => $request->garage_size,
+
+            'property_size' => $request->property_size,
+            'property_video' => $request->property_video,
+            'address' => $request->address,
+            'city' => $request->city,
+            'state' => $request->state,
+            'postal_code' => $request->postal_code,
+
+            'neighborhood' => $request->neighborhood,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'featured' => $request->featured,
+            'hot' => $request->hot,
+            'agent_id' => $request->agent_id,
+            'updated_at' => Carbon::now(),
+
+        ]);
+
+        $notification = array(
+            'message' => 'Property Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.property')->with($notification);
     }
 }

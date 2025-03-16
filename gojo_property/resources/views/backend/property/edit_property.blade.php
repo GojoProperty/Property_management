@@ -10,9 +10,10 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Edit Property </h6>
-                            <form method="post" action="{{ route('store.property') }}" id="myForm"
+                            <form method="post" action="{{ route('update.property') }}" id="myForm"
                                 enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="id" value="{{ $property->id }}">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
@@ -27,11 +28,15 @@
                                             <select name="property_status" class="form-select"
                                                 id="exampleFormControlSelect1">
                                                 <option selected="" disabled="">Select Status</option>
-                                                <option value="rent">For Rent</option>
-                                                <option value="buy">For Buy</option>
+                                                <option value="rent"
+                                                    {{ $property->property_status == 'rent' ? 'selected' : '' }}>For Rent
+                                                </option>
+                                                <option value="buy"
+                                                    {{ $property->property_status == 'buy' ? 'selected' : '' }}>For Buy
+                                                </option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div><!-- Col -->
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Lowest Price </label>
@@ -136,7 +141,9 @@
                                             <select name="ptype_id" class="form-select" id="exampleFormControlSelect1">
                                                 <option selected="" disabled="">Select Type</option>
                                                 @foreach ($propertytype as $ptype)
-                                                    <option value="{{ $ptype->id }}">{{ $ptype->type_name }}</option>
+                                                    <option value="{{ $ptype->id }}"
+                                                        {{ $ptype->id == $property->ptype_id ? 'selected' : '' }}>
+                                                        {{ $ptype->type_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -146,10 +153,10 @@
                                             <label class="form-label" for="amenities_id">Property Amenities </label>
                                             <select name="amenities_id[]" class="js-example-basic-multiple form-select"
                                                 multiple="multiple" data-width="100%">
-
                                                 @foreach ($amenities as $ameni)
-                                                    <option value="{{ $ameni->id }}">{{ $ameni->amenities_name }}
-                                                    </option>
+                                                    <option value="{{ $ameni->id }}"
+                                                        {{ in_array($ameni->id, $property_amin) ? 'selected' : '' }}>
+                                                        {{ $ameni->amenities_name }}</option>
                                                 @endforeach
 
                                             </select>
@@ -161,7 +168,9 @@
                                             <select name="agent_id" class="form-select" id="exampleFormControlSelect1">
                                                 <option selected="" disabled="">Select Agent</option>
                                                 @foreach ($activeAgent as $agent)
-                                                    <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                                                    <option value="{{ $agent->id }}"
+                                                        {{ $agent->id == $property->agent_id ? 'selected' : '' }}>
+                                                        {{ $agent->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -182,15 +191,15 @@
                                 <hr>
                                 <div class="mb-3">
                                     <div class="form-check form-check-inline">
-                                        <input type="checkbox" name="featured" value="1" class="form-check-input"
-                                            id="checkInline1">
-                                        <label class="form-check-label" for="checkInline1">
-                                            Features Property
-                                        </label>
+                                        <<input type="checkbox" name="featured" value="1" class="form-check-input"
+                                            id="checkInline1" {{ $property->featured == '1' ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="checkInline1">
+                                                Features Property
+                                            </label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input type="checkbox" name="hot" value="1" class="form-check-input"
-                                            id="checkInline">
+                                            id="checkInline" {{ $property->hot == '1' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="checkInline">
                                             Hot Property
                                         </label>
@@ -207,6 +216,7 @@
 
     <!--javascript or jquery codes -->
 
+    {{-- to validate the form inputs are entered  --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('#myForm').validate({
@@ -258,7 +268,7 @@
             });
         });
     </script>
-
+    {{-- to acccept image for main thumbnail  --}}
     <script type="text/javascript">
         function mainThamUrl(input) {
             if (input.files && input.files[0]) {
@@ -271,27 +281,27 @@
         }
     </script>
 
+    {{-- to accept multiple images for a property --}}
     <script>
         $(document).ready(function() {
-            $('#multiImg').on('change', function() { //on file input change
+            $('#multiImg').on('change', function() {
                 if (window.File && window.FileReader && window.FileList && window
-                    .Blob) //check File API supported browser
-                {
-                    var data = $(this)[0].files; //this file data
-                    $.each(data, function(index, file) { //loop though each file
+                    .Blob) {
+                    var data = $(this)[0].files;
+                    $.each(data, function(index, file) {
                         if (/(\.|\/)(gif|jpe?g|png|webp)$/i.test(file
-                                .type)) { //check supported file type
-                            var fRead = new FileReader(); //new filereader
-                            fRead.onload = (function(file) { //trigger function on successful read
+                                .type)) {
+                            var fRead = new FileReader();
+                            fRead.onload = (function(file) {
                                 return function(e) {
                                     var img = $('<img/>').addClass('thumb').attr('src',
                                             e.target.result).width(100)
-                                        .height(80); //create image element 
+                                        .height(80);
                                     $('#preview_img').append(
-                                        img); //append image to output element
+                                        img);
                                 };
                             })(file);
-                            fRead.readAsDataURL(file); //URL representing the file's data.
+                            fRead.readAsDataURL(file);
                         }
                     });
 

@@ -41,7 +41,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Main Thambnail </label>
-                                            <input type="file" name="property_thambnail " class="form-control"
+                                            <input type="file" name="property_thambnail" class="form-control"
                                                 onChange="mainThamUrl(this)">
                                             <img src="" id="mainThmb">
                                         </div>
@@ -177,13 +177,13 @@
                                     <div class="col-sm-12">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Short Description</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" name="short_descp" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Long Description</label>
-                                            <textarea class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
+                                            <textarea class="form-control" name="long_descp" id="tinymceExample" name="tinymce" rows="10"></textarea>
                                         </div>
                                     </div>
                                     <hr>
