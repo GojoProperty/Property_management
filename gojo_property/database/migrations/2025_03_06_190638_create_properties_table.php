@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('ptype_id');
             $table->string('amenities_id');
             $table->string('property_name');
-            // $table->string('property_slug');
+            $table->string('property_slug');
             $table->string('property_code');
             $table->string('property_status');
             $table->string('lowest_price')->nullable();
@@ -26,14 +26,11 @@ return new class extends Migration
             $table->text('long_descp')->nullable();
             $table->string('bedrooms')->nullable();
             $table->string('bathrooms')->nullable();
-            // $table->string('garage')->nullable();
-            // $table->string('garage_size')->nullable();
             $table->string('property_size')->nullable();
             $table->string('property_video')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            // $table->string('postal_code')->nullable();
             $table->string('neighborhood')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();

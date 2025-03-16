@@ -1,5 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <div class="page-content">
         <div class="row profile-body">
             <div class="col-md-12 col-xl-12 middle-wrapper">
@@ -7,7 +8,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Add Property </h6>
-                            <form method="post" action="" id="myForm" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('store.property') }}" id="myForm"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -50,7 +52,7 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">Multiple Image </label>
                                             <input type="file" name="multi_img[]" class="form-control" id="multiImg"
-                                                multiple="">
+                                                multiple="multiple">
                                             <div class="row" id="preview_img"> </div>
                                         </div>
                                     </div>
@@ -236,8 +238,8 @@
                                                 More..</a>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-auto">Save Changes </button>
                                 </div>
+                                <button type="submit" class="btn btn-primary w-auto">Save Changes </button>
                             </form>
                         </div>
                     </div>
@@ -282,6 +284,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('multiImg').addEventListener('change', function() {
+            console.log('Selected Files:', this.files);
+            console.log('Number of Files Selected:', this.files.length);
+        });
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
