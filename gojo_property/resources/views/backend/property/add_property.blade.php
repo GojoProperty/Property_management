@@ -285,6 +285,7 @@
         </div>
     </div>
 
+    <!--javascript or jquery codes -->
     <script>
         document.getElementById('multiImg').addEventListener('change', function() {
             console.log('Selected Files:', this.files);
