@@ -306,6 +306,7 @@ class PropertyController extends Controller
 
         return redirect()->back()->with($notification);
     } // End Method 
+
     public function deleteProperty($id)
     {
         $property = Property::findOrFail($id);
@@ -346,7 +347,7 @@ class PropertyController extends Controller
         return view('backend.property.details_property', compact('property', 'propertytype', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
     } // End Method 
 
-    public function InactiveProperty(Request $request)
+    public function inactiveProperty(Request $request)
     {
         $pid = $request->id;
         Property::findOrFail($pid)->update([
@@ -359,7 +360,7 @@ class PropertyController extends Controller
         return redirect()->route('all.property')->with($notification);
     } // End Method 
 
-    public function ActiveProperty(Request $request)
+    public function activeProperty(Request $request)
     {
         $pid = $request->id;
         Property::findOrFail($pid)->update([
