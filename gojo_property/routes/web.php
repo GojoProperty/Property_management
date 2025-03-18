@@ -46,7 +46,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/type', 'UpdateType')->name('update.type');
         Route::get('/delete/type/{id}', 'DeleteType')->name('delete.type');
 
-        //property ameneties functionality
+        //property ameneties functionality routes
         Route::get('/all/amenitie', 'AllAmenitie')->name('all.amenitie');
         Route::get('/add/amenitie', 'AddAmenitie')->name('add.amenitie');
         Route::post('/store/type', 'StoreType')->name('store.type');
@@ -59,12 +59,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/amenitie/{id}', 'DeleteAmenitie')->name('delete.amenitie');
     });
 
-
-    // Property Routes (Moved inside admin middleware)
+    // Property functionalities Routes 
     Route::controller(PropertyController::class)->group(function () {
         Route::get('/all/property', 'getAllProperty')->name('all.property');
         Route::get('/add/property', 'addProperty')->name('add.property');
-        //Route::post('/add/property', 'storeProperty')->name('store.property');
+        Route::post('/store/property', 'storeProperty')->name('store.property');
     });
 });
 
