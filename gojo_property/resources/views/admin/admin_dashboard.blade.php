@@ -1,13 +1,5 @@
 <!DOCTYPE html>
-<!--
-Template Name: NobleUI - HTML Bootstrap 5 Admin Dashboard Template
-Author: NobleUI
-Website: https://www.nobleui.com
-Portfolio: https://themeforest.net/user/nobleui/portfolio
-Contact: nobleui123@gmail.com
-Purchase: https://1.envato.market/nobleui_admin
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
+
 <html lang="en">
 
 <head>
@@ -19,7 +11,7 @@ License: For each use you must have a valid license purchased only from above li
     <meta name="keywords"
         content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-    <title>Admin Dashboard - Gojo Property</title>
+    <title>Admin Panel - Real Estate </title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,8 +19,14 @@ License: For each use you must have a valid license purchased only from above li
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- End fonts -->
 
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
+    <!-- End plugin css for this page -->
+
     <!-- core:css -->
     <link rel="stylesheet" href="{{ asset('backend/assets/vendors/core/core.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/jquery-tags-input/jquery.tagsinput.min.css') }}">
     <!-- endinject -->
 
     <!-- Plugin css for this page -->
@@ -45,33 +43,18 @@ License: For each use you must have a valid license purchased only from above li
     <!-- End layout styles -->
 
     <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png') }}" />
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+
+
 </head>
 
 <body>
     <div class="main-wrapper">
 
         <!-- partial:partials/_sidebar.html -->
-
         @include('admin.body.sidebar')
-
-        {{-- <nav class="settings-sidebar">
-            <div class="sidebar-body">
-                <a href="#" class="settings-sidebar-toggler">
-                    <i data-feather="settings"></i>
-                </a>
-                <div class="theme-wrapper">
-                    <h6 class="text-muted mb-2">Light Theme:</h6>
-                    <a class="theme-item" href="../demo1/dashboard.html">
-                        <img src="../assets/images/screenshots/light.jpg" alt="light theme">
-                    </a>
-                    <h6 class="text-muted mb-2">Dark Theme:</h6>
-                    <a class="theme-item active" href="../demo2/dashboard.html">
-                        <img src="../assets/images/screenshots/dark.jpg" alt="light theme">
-                    </a>
-                </div>
-            </div>
-        </nav> --}}
 
         <!-- partial -->
 
@@ -80,8 +63,6 @@ License: For each use you must have a valid license purchased only from above li
             <!-- partial:partials/_navbar.html -->
             @include('admin.body.header')
             <!-- partial -->
-
-            {{-- Welcome --}}
 
             @yield('admin')
 
@@ -109,6 +90,7 @@ License: For each use you must have a valid license purchased only from above li
     <!-- Custom js for this page -->
     <script src="{{ asset('backend/assets/js/dashboard-dark.js') }}"></script>
     <!-- End custom js for this page -->
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>
@@ -134,6 +116,31 @@ License: For each use you must have a valid license purchased only from above li
         @endif
     </script>
 
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('backend/assets/js/code/code.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/code/validate.min.js') }}"></script>
 
-</html>
+    <!-- Start datatables -->
+    <script src="{{ asset('backend/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/data-table.js') }}"></script>
+    <!-- End datatables -->
+    <!-- Input Tags -->
+    <script src="{{ asset('backend/assets/vendors/inputmask/jquery.inputmask.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendors/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('backend/assets/vendors/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
+
+    <script src="{{ asset('backend/assets/js/inputmask.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/select2.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/typeahead.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/tags-input.js') }}"></script>
+    <!-- tinymce -->
+    <script src="{{ asset('backend/assets/vendors/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/tinymce.js') }}"></script>
+    <!-- tinymce -->
+
+    <!-- Input Tags -->
+
+</body>
