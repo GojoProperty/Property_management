@@ -42,20 +42,30 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
-                                            <label class="form-label">Main Thambnail </label>
-                                            <input type="file" name="property_thambnail" class="form-control"
-                                                onChange="mainThamUrl(this)">
+                                            <label class="form-label">Main Thumbnail</label>
+                                            <div class="custom-file-wrapper">
+                                                <input type="file" name="property_thambnail" id="property_thambnail"
+                                                    class="custom-file-input" onchange="mainThamUrl(this)">
+                                                <label for="property_thambnail" class="custom-file-label">Choose
+                                                    File</label>
+                                                <span id="file-name">No file chosen</span>
+                                            </div>
                                             <img src="" id="mainThmb">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
-                                            <label class="form-label">Multiple Image </label>
-                                            <input type="file" name="multi_img[]" class="form-control" id="multiImg"
-                                                multiple="multiple">
-                                            <div class="row" id="preview_img"> </div>
+                                            <label class="form-label">Multiple Images</label>
+                                            <div class="custom-file-wrapper">
+                                                <input type="file" name="multi_img[]" id="multiImg"
+                                                    class="custom-file-input" multiple>
+                                                <label for="multiImg" class="custom-file-label">Choose Files</label>
+                                                <span id="multi-file-names">No files chosen</span>
+                                            </div>
+                                            <div class="row" id="preview_img"></div>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -162,17 +172,18 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group mb-3">
-                                                    <label class="form-label"> Agent </label>
-                                                    <select name="agent_id" class="form-select" id="agent_id">
-                                                        <option selected="" disabled="">Select Agent</option>
-                                                        @foreach ($activeAgent as $agent)
-                                                            <option value="{{ $agent->id }}">{{ $agent->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label"> Agent </label>
+                                                <select name="agent_id" class="form-select" id="agent_id">
+                                                    <option selected="" disabled="">Select Agent</option>
+                                                    @foreach ($activeAgent as $agent)
+                                                        <option value="{{ $agent->id }}">{{ $agent->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -185,7 +196,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Long Description</label>
-                                            <textarea class="form-control" name="long_descp" id="tinymceExample" name="tinymce" rows="10"></textarea>
+                                            <textarea class="form-control" name="long_descp" {{-- id="tinymceExample" --}} name="tinymce" rows="10"></textarea>
                                         </div>
                                     </div>
                                     <hr>
@@ -292,7 +303,15 @@
             console.log('Number of Files Selected:', this.files.length);
         });
     </script>
+    {{-- to display customized css fo type='file' --}}
+    <script>
+        document.getElementById("property_thambnail").addEventListener("change", function() {
+            var fileName = this.files[0] ? this.files[0].name : "No file chosen";
+            document.getElementById("file-name").textContent = fileName;
+        });
+    </script>
 
+    {{-- to display more add facility  --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $(document).on("click", ".addeventmore", function() {
@@ -306,6 +325,10 @@
         });
     </script>
 
+
+
+
+    {{-- to validate the inputs --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('#myForm').validate({
@@ -358,7 +381,7 @@
         });
     </script>
 
-    </script>
+
     <script type="text/javascript">
         function mainThamUrl(input) {
             if (input.files && input.files[0]) {
@@ -370,6 +393,7 @@
             }
         }
     </script>
+
     <script>
         $(document).ready(function() {
             $('#multiImg').on('change', function() { //on file input change
