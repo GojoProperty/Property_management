@@ -2,11 +2,11 @@
 @section('admin')
     <div class="page-content">
 
-        <nav class="page-breadcrumb">
-            <ol class="breadcrumb">
-                <a href="{{ route('add.property') }}" class="btn btn-inverse-info"> Add Property </a>
-            </ol>
-        </nav>
+
+        <ol class="breadcrumb">
+            <a href="{{ route('add.property') }}" class="btn btn-inverse-info"> Add Property </a>
+        </ol>
+
 
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">

@@ -1,0 +1,263 @@
+/* Change the background & text color of the page wrapper */
+.main-wrapper .page-wrapper {
+    background: #F8F9FA  !important; 
+    color: #333333!important; 
+}
+
+/* customize the navbar*/
+.navbar {
+    background-color:#4CAF50 !important ;
+}
+.navbar a {
+    color: #FFFFFF !important;
+}
+.navbar a:hover{
+    color: #42BA32 !important;
+}
+.input-group-text{
+    background-color: #42BA32  !important;
+}
+#navbarForm {
+    color: #333333;
+}
+/* Customize the breadcrumb */
+.breadcrumb{
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #EEEEEE !important; 
+    color: #333333 !important;
+    font-size: 20rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+.breadcrumb a {
+    color:#4CAF50 !important ;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #bcd1be;
+}
+
+
+/* Card Styling */
+.card {
+    background-color: #ffffff !important; 
+    color: #333333 !important;
+    border: 2px solid #4CAF50 !important; 
+    border-radius: 12px !important;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2) !important;
+    padding: 1.5rem !important;
+}
+.card-body{
+    color: #333333 !important;
+}
+/* Table Styling */
+.card table {
+    background-color: #f2f2f2 !important; 
+    border-radius: 8px;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Table Head */
+.card thead {
+    background-color: #E0E0E0 !important; 
+    color: #000000 !important; 
+    font-weight: bold;
+}
+
+/* Table Rows */
+.card tbody tr {
+    background-color: #f8f9fa !important; 
+    transition: background 0.3s;
+}
+
+/* Alternating row colors */
+.card tbody tr:nth-child(odd) {
+    background-color: #ececec !important;
+}
+
+/* Hover effect */
+.card tbody tr:hover {
+    background-color: #d9d9d9 !important; 
+}
+
+/* Table Borders */
+.card th, .card td {
+    padding: 12px;
+    border-bottom: 1px solid #4CAF50 !important; 
+}
+
+/* Pagination Styling */
+.dataTables_paginate .page-link {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    border: none;
+}
+
+.dataTables_paginate .page-item.active .page-link {
+    background-color: #388E3C !important; 
+    color: white !important;
+}
+
+/* Search & Dropdown */
+.dataTables_filter input, .dataTables_length select {
+    border: 1px solid #4CAF50 !important;
+    border-radius: 5px;
+    padding: 5px;
+    background-color:  #4CAF50 !important;
+}
+
+/* Buttons (Edit & Delete) */
+.btn-inverse-warning {
+    background-color: #FFC107 !important; 
+    color: black !important;
+}
+
+.btn-inverse-danger {
+    background-color: #F44336!important; 
+    color: white !important;
+}
+
+/* Button Variants */
+.card .btn-inverse-info {
+    background-color:#4CAF50 !important;
+    color: #ffffff !important;
+}
+
+.card .btn-inverse-warning {
+    background-color: #FFC107 !important;
+    color: #ffffff !important;
+}
+
+.card .btn-inverse-danger {
+    background-color:#F44336 !important;
+    color: #ffffff !important;
+}
+
+/* Button Hover */
+.card .btn:hover {
+    opacity: 0.8 !important;
+}
+
+/* Image Styling */
+.card .table img {
+    border-radius: 5px !important;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+
+/* Sidebar styling */
+
+/*the sidebar toogler three-hyphen icon*/
+.sidebar-toggler {
+    color: #4CAF50 !important; 
+}
+.sidebar-toggler svg {
+    stroke: #4CAF50 !important;
+    transition: stroke 0.3s ease-in-out; 
+}
+.sidebar-toggler:hover svg {
+    stroke: #388E3C !important;
+}
+/* sidebar header styling*/
+.sidebar .sidebar-header{
+    background-color:#4CAF50 !important;
+    color: #E8F5E9 !important; 
+}
+.sidebar .sidebar-header .sidebar-brand span {
+    color: #3A3A3A;
+    font-weight: bold;
+    
+}
+/* sidebar body styling*/
+.sidebar .sidebar-body {
+    background-color:#4CAF50 !important;
+    color: #E8F5E9 !important; 
+    font-weight: 500;
+    padding: 10px 15px;
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar Links */
+.sidebar a {
+    color: #E8F5E9 !important; 
+    font-weight: 500;
+    padding: 10px 15px;
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar Links - Hover & Active */
+.sidebar a:hover, 
+.sidebar a.active {
+    background-color: #388E3C !important; 
+    color: #FFFFFF !important; 
+    border-radius: 5px;
+}
+
+/* Sidebar Icons */
+.sidebar a i {
+    color: #FFFFFF !important; 
+    margin-right: 8px;
+}
+
+/* Sidebar Active Item */
+.sidebar a.active {
+    font-weight: bold;
+}
+
+
+/*customize footer*/
+footer{
+    background-color:  #4CAF50 !important; 
+}
+footer a{
+    color: #E8F5E9!important;
+    font-weight: bold;
+}
+.text-muted{
+    color: #E8F5E9!important;
+}
+
+/* Customize buttons */
+.btn-primary {
+    background-color:#4CAF50 !important; 
+    border-color: #00ADB5 !important;
+    color: white !important;
+}
+.btn-primary:hover {
+    background-color:  #388E3C !important; 
+}
+
+/* Change the background and text color of the entire body */
+body {
+    background-color: #121212 !important; 
+    color: #E0E0E0 !important; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* Remove shadows from all elements */
+*, *::before, *::after {
+    box-shadow: none !important;
+    box-sizing: border-box;
+}
+
+/* Adjust text styles globally */
+h1, h2, h3, h4, h5, h6 {
+    color: #FFFFFF !important;
+}
+
+/* Override Bootstrap color variables */
+:root {
+    --bs-body-bg:  #F8F9FA  !important;
+    --bs-body-color:  #333333 !important;
+    --bs-link-color: #00ADB5 !important;
+    --bs-primary: #00ADB5 !important;
+    --bs-secondary: #393E46 !important;
+    --bs-dark: #222831 !important;
+   
+}
