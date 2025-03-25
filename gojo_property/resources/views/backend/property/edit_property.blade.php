@@ -153,8 +153,8 @@
                                             <select name="amenities_id[]" class="js-example-basic-multiple form-select"
                                                 multiple="multiple" data-width="100%">
                                                 @foreach ($amenities as $ameni)
-                                                    <option value="{{ $ameni->id }}"
-                                                        {{ in_array($ameni->id, $property_amin) ? 'selected' : '' }}>
+                                                    <option value="{{ $ameni->amenitis_name }}"
+                                                        {{ in_array($ameni->amenitis_name, $property_amin) ? 'selected' : '' }}>
                                                         {{ $ameni->amenities_name }}</option>
                                                 @endforeach
 
@@ -167,9 +167,7 @@
                                             <select name="agent_id" class="form-select" id="exampleFormControlSelect1">
                                                 <option selected="" disabled="">Select Agent</option>
                                                 @foreach ($activeAgent as $agent)
-                                                    <option value="{{ $agent->id }}"
-                                                        {{ $agent->id == $property->agent_id ? 'selected' : '' }}>
-                                                        {{ $agent->name }}</option>
+                                                <option value="{{ $ameni->amenitis_name }}" {{ (in_array($ameni->amenitis_name,$property_amin)) ? 'selected' : '' }} >{{ $ameni->amenitis_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

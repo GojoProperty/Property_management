@@ -143,21 +143,18 @@ class PropertyController extends Controller
             'property_name' => $request->property_name,
             'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)),
             'property_status' => $request->property_status,
-
             'lowest_price' => $request->lowest_price,
             'max_price' => $request->max_price,
             'short_descp' => $request->short_descp,
             'long_descp' => $request->long_descp,
             'bedrooms' => $request->bedrooms,
             'bathrooms' => $request->bathrooms,
-
             'property_size' => $request->property_size,
             'property_video' => $request->property_video,
             'address' => $request->address,
             'city' => $request->city,
             'state' => $request->state,
             //'postal_code' => $request->postal_code,
-
             'neighborhood' => $request->neighborhood,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
