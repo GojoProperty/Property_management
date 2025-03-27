@@ -100,8 +100,19 @@
                  <input type="text" name="bathrooms"  class="form-control" >
              </div>
          </div><!-- Col -->
-       
-        
+         <div class="col-sm-3">
+             <div class="mb-3">
+                 <label class="form-label">Garage</label>
+                  <input type="text" name="garage"  class="form-control" >
+             </div>
+         </div><!-- Col -->
+ 
+           <div class="col-sm-3">
+             <div class="mb-3">
+                 <label class="form-label">Garage Size</label>
+                  <input type="text" name="garage_size"  class="form-control" >
+             </div>
+         </div><!-- Col --> 
  
      </div><!-- Row -->
  
@@ -201,7 +212,7 @@
                         multiple="" data-width="100%" tabindex="-1"
                         aria-hidden="true">
                         @foreach ($amenities as $ameni)
-                        <option value="{{ $ameni->amenities_name }}">{{ $ameni->amenities_name }}</option>
+                        <option value="{{ $ameni->amenitis_name }}">{{ $ameni->amenitis_name }}</option>
                         @endforeach
                     </select>
              </div>

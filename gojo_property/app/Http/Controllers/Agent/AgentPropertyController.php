@@ -345,7 +345,7 @@
         $property = Property::findOrFail($id);
 
         $type = $property->amenities_id;
-        $property_amin= explode(',', $type);
+        $property_amin = explode(',', $type);
 
         $multiImage = MultiImage::where('property_id', $id)->get();
 
