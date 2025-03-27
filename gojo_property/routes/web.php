@@ -134,8 +134,19 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
    Route::post('/agent/update/property/facilities', 'AgentUpdatePropertyFacilities')->name('agent.update.property.facilities');
    Route::get('/agent/details/property/{id}', 'AgentDetailsProperty')->name('agent.details.property'); 
  
-   Route::get('/agent/delete/property/{id}', 'AgentDeleteProperty')->name('agent.delete.property'); 
+   Route::get('/agent/delete/property/{id}', 'AgentDeleteProperty')->name('agent.delete.property');  
+});
+// Agent Buy Package Route from admin 
+   Route::controller(AgentPropertyController::class)->group(function(){
+ 
+   Route::get('/buy/package', 'BuyPackage')->name('buy.package');
+   Route::get('/buy/business/plan', 'BuyBusinessPlan')->name('buy.business.plan');
+   Route::post('/store/business/plan', 'StoreBusinessPlan')->name('store.business.plan');
+   Route::get('/buy/professional/plan', 'BuyProfessionalPlan')->name('buy.professional.plan');
+   Route::post('/store/professional/plan', 'StoreProfessionalPlan')->name('store.professional.plan');
 
 });
+
+
 
 }); // End Group Agent Middleware

@@ -75,20 +75,7 @@
                  <label class="form-label">Bathrooms</label>
                  <input type="text" name="bathrooms"  class="form-control" value="{{ $property->bathrooms }}" >
              </div>
-         </div><!-- Col -->
-         <div class="col-sm-3">
-             <div class="mb-3">
-                 <label class="form-label">Garage</label>
-                  <input type="text" name="garage"  class="form-control" value="{{ $property->garage }}" >
-             </div>
-         </div><!-- Col -->
- 
-           <div class="col-sm-3">
-             <div class="mb-3">
-                 <label class="form-label">Garage Size</label>
-                  <input type="text" name="garage_size"  class="form-control"value="{{ $property->garage_size }}"  >
-             </div>
-         </div><!-- Col --> 
+        
  
      </div><!-- Row -->
  
@@ -186,9 +173,9 @@
       <select name="amenities_id[]" class="js-example-basic-multiple form-select" multiple="multiple" data-width="100%">
  
             @foreach ($amenities as $ameni)
-                <option value="{{ $ameni->amenitis_name }}"
-                    {{ in_array($ameni->amenitis_name, $property_amin) ? 'selected' : '' }}>
-                    {{ $ameni->amenities_name }}</option>
+            <option value="{{ $ameni->amenities_name }}" 
+                {{ in_array($ameni->amenities_name, $property_amin) ? 'selected' : '' }}> 
+                {{ $ameni->amenities_name }}</option>
             @endforeach
 
              </select>
