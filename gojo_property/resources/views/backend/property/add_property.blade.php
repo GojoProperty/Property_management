@@ -164,7 +164,7 @@
                                                         multiple="" data-width="100%" tabindex="-1"
                                                         aria-hidden="true">
                                                         @foreach ($amenities as $ameni)
-                                                        <option value="{{ $ameni->amenitis_name }}">{{ $ameni->amenitis_name }}</option>
+                                                        <option value="{{ $ameni->amenities_name }}">{{ $ameni->amenities_name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

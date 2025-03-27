@@ -166,8 +166,8 @@
                                             <label class="form-label"> Agent </label>
                                             <select name="agent_id" class="form-select" id="exampleFormControlSelect1">
                                                 <option selected="" disabled="">Select Agent</option>
-                                                @foreach ($activeAgent as $agent)
-                                                <option value="{{ $ameni->amenitis_name }}" {{ (in_array($ameni->amenitis_name,$property_amin)) ? 'selected' : '' }} >{{ $ameni->amenitis_name }}</option>
+                                                @foreach($activeAgent as $agent)
+                                                    <option value="{{ $agent->id }}" {{ $agent->id == $property->agent_id ? 'selected' : '' }}>{{ $agent->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
