@@ -84,7 +84,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/inactive/property', 'inactiveProperty')->name('inactive.property');
         Route::post('/active/property', 'activeProperty')->name('active.property');
     });
-});
+
 
 // Agent routes
 Route::middleware(['auth', 'role:agent'])->group(function () {
@@ -151,3 +151,4 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
 
 
 }); // End Group Agent Middleware
+}); 
