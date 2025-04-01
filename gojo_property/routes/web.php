@@ -80,4 +80,4 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
 });
 
 // Admin login route
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
