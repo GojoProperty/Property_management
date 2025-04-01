@@ -1,6 +1,10 @@
 @extends('agent.agent_dashboard')
  @section('agent')
+<<<<<<< Updated upstream
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+=======
+ script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+>>>>>>> Stashed changes
     <div class="page-content">
         <div class="row profile-body">
             <div class="col-md-12 col-xl-12 middle-wrapper">
@@ -8,7 +12,11 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Add Property </h6>
+<<<<<<< Updated upstream
                             <form method="post" action="{{ route('agent.store.property') }}" id="myForm"
+=======
+                            <form method="post" action="{{ route('store.property') }}" id="myForm"
+>>>>>>> Stashed changes
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
@@ -42,6 +50,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
+<<<<<<< Updated upstream
                                             <label class="form-label">Main Thumbnail</label>
                                             <div class="custom-file-wrapper">
                                                 <input type="file" name="property_thambnail" id="property_thambnail"
@@ -50,11 +59,17 @@
                                                     File</label>
                                                 <span id="file-name">No file chosen</span>
                                             </div>
+=======
+                                            <label class="form-label">Main Thambnail </label>
+                                            <input type="file" name="property_thambnail" class="form-control"
+                                                onChange="mainThamUrl(this)">
+>>>>>>> Stashed changes
                                             <img src="" id="mainThmb">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
+<<<<<<< Updated upstream
                                             <label class="form-label">Multiple Images</label>
                                             <div class="custom-file-wrapper">
                                                 <input type="file" name="multi_img[]" id="multiImg"
@@ -66,6 +81,14 @@
                                         </div>
                                     </div>
 
+=======
+                                            <label class="form-label">Multiple Image </label>
+                                            <input type="file" name="multi_img[]" class="form-control" id="multiImg"
+                                                multiple="multiple">
+                                            <div class="row" id="preview_img"> </div>
+                                        </div>
+                                    </div>
+>>>>>>> Stashed changes
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -169,9 +192,14 @@
                                                     </select>
                                                 </div>
                                             </div>
+<<<<<<< Updated upstream
 
                                         </div>
                                     
+=======
+                                           
+                                        </div>
+>>>>>>> Stashed changes
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group mb-3">
@@ -182,7 +210,11 @@
                                     <div class="col-sm-12">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Long Description</label>
+<<<<<<< Updated upstream
                                             <textarea class="form-control" name="long_descp" {{-- id="tinymceExample" --}} name="tinymce" rows="10"></textarea>
+=======
+                                            <textarea class="form-control" name="long_descp" id="tinymceExample" name="tinymce" rows="10"></textarea>
+>>>>>>> Stashed changes
                                         </div>
                                     </div>
                                     <hr>
@@ -289,6 +321,7 @@
             console.log('Number of Files Selected:', this.files.length);
         });
     </script>
+<<<<<<< Updated upstream
     {{-- to display customized css fo type='file' --}}
     <script>
         document.getElementById("property_thambnail").addEventListener("change", function() {
@@ -298,6 +331,9 @@
     </script>
 
     {{-- to display more add facility  --}}
+=======
+
+>>>>>>> Stashed changes
     <script type="text/javascript">
         $(document).ready(function() {
             $(document).on("click", ".addeventmore", function() {
@@ -311,10 +347,13 @@
         });
     </script>
 
+<<<<<<< Updated upstream
 
 
 
     {{-- to validate the inputs --}}
+=======
+>>>>>>> Stashed changes
     <script type="text/javascript">
         $(document).ready(function() {
             $('#myForm').validate({
@@ -367,6 +406,10 @@
         });
     </script>
 
+<<<<<<< Updated upstream
+=======
+    </script>
+>>>>>>> Stashed changes
     <script type="text/javascript">
         function mainThamUrl(input) {
             if (input.files && input.files[0]) {
