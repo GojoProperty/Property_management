@@ -367,7 +367,6 @@
         });
     </script>
 
-
     <script type="text/javascript">
         function mainThamUrl(input) {
             if (input.files && input.files[0]) {
@@ -379,7 +378,6 @@
             }
         }
     </script>
-
     <script>
         $(document).ready(function() {
             $('#multiImg').on('change', function() { //on file input change
