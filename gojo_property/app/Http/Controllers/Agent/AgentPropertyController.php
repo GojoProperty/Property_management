@@ -51,7 +51,12 @@
      } // End Method 
  
      public function AgentStoreProperty(Request $request)
-     {
+     {    
+        $id = Auth::user()->id;
+        $uid = User::findOrFail($id);
+        $nid = $uid->credit;
+
+
          $amenities = implode(",", $request->amenities_id ?? []);
          $pcode = IdGenerator::generate([
              'table' => 'properties',
@@ -123,6 +128,10 @@
              }
          }
  
+          User::where('id',$id)->update([
+            'credit' => DB::raw('1+'.$nid),
+          ]);
+
          return redirect()->route('agent.all.property')->with([
              'message' => 'Property Inserted Successfully',
              'alert-type' => 'success'
