@@ -34,6 +34,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Property Type Routes
     Route::controller(PropertyTypeController::class)->group(function () {
+
         // property type functionality
         Route::get('/all/type', 'AllType')->name('all.type');
         Route::get('/add/type', 'AddType')->name('add.type');
