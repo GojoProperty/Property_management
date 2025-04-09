@@ -26,20 +26,28 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
-        $request->session()->regenerate();
-
-        $user = Auth::user();
-
-        session()->forget('url.intended');
-
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        } elseif ($user->role === 'agent') {
-            return redirect()->route('agent.dashboard');
-        } else {
-            return redirect()->route('dashboard');
+ 
+         $id = Auth::user()->id;
+         $adminData = User::find($id);
+         $username = $adminData->name;
+ 
+         $request->session()->regenerate();
+ 
+         $notification = array(
+             'message' => 'User '.$username.' Login Successfully',
+             'alert-type' => 'info'
+         ); 
+   session()->forget('url.intended');            
+           $url = '';
+        if ($request->user()->role === 'admin'){
+            $url = 'admin.dashboard';
+        }elseif ($request->user()->role === 'agent'){
+            $url = 'agent.dashboard';
+        }else {
+            $url = '/dashboard';
         }
+        return redirect()->intended($url)->with($notification);
+        
     }
 
     /*
