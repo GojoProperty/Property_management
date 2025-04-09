@@ -164,10 +164,7 @@
                                                         multiple="" data-width="100%" tabindex="-1"
                                                         aria-hidden="true">
                                                         @foreach ($amenities as $ameni)
-                                                            <option value="{{ $ameni->id }}"
-                                                                @if (in_array($ameni->id, old('id', []))) selected @endif>
-                                                                {{ $ameni->amenities_name }}
-                                                            </option>
+                                                        <option value="{{ $ameni->amenities_name }}">{{ $ameni->amenities_name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

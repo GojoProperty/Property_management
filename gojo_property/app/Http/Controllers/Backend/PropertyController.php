@@ -143,21 +143,18 @@ class PropertyController extends Controller
             'property_name' => $request->property_name,
             'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)),
             'property_status' => $request->property_status,
-
             'lowest_price' => $request->lowest_price,
             'max_price' => $request->max_price,
             'short_descp' => $request->short_descp,
             'long_descp' => $request->long_descp,
             'bedrooms' => $request->bedrooms,
             'bathrooms' => $request->bathrooms,
-
             'property_size' => $request->property_size,
             'property_video' => $request->property_video,
             'address' => $request->address,
             'city' => $request->city,
             'state' => $request->state,
             //'postal_code' => $request->postal_code,
-
             'neighborhood' => $request->neighborhood,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
@@ -336,7 +333,7 @@ class PropertyController extends Controller
         $property = Property::findOrFail($id);
 
         $type = $property->amenities_id;
-        $property_ami = explode(',', $type);
+        $property_amin = explode(',', $type);
 
         $multiImage = MultiImage::where('property_id', $id)->get();
 
@@ -344,7 +341,7 @@ class PropertyController extends Controller
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.details_property', compact('property', 'propertytype', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
+        return view('backend.property.details_property', compact('property', 'propertytype', 'amenities', 'activeAgent', 'property_amin', 'multiImage', 'facilities'));
     } // End Method 
 
     public function inactiveProperty(Request $request)

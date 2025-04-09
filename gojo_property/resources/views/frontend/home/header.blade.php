@@ -1,4 +1,5 @@
 <header class="main-header">
+
     <div class="header-top">
         <div class="top-inner clearfix">
             <div class="left-column pull-left">
@@ -16,6 +17,7 @@
                     <li><a href="index.html"><i class="fab fa-google-plus-g"></i></a></li>
                     <li><a href="index.html"><i class="fab fa-vimeo-v"></i></a></li>
                 </ul>
+
                 @auth
           <div class="sign-box">
                  <a href="{{ route('dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
@@ -29,6 +31,7 @@
             </div>
         </div>
     </div>
+
 <div class="header-lower">
 <div class="outer-box">
 <div class="main-box">
@@ -36,6 +39,7 @@
 <figure class="logo"><a href="index.html"><img src="{{ asset('frontend/assets/images/logo.png') }}" alt=""></a></figure>
 </div>
 <div class="menu-area clearfix">
+
 <div class="mobile-nav-toggler">
 <i class="icon-bar"></i>
 <i class="icon-bar"></i>
