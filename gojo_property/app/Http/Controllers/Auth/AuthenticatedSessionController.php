@@ -37,21 +37,7 @@ class AuthenticatedSessionController extends Controller
              'message' => 'User '.$username.' Login Successfully',
              'alert-type' => 'info'
          ); 
-  
-        /*  return redirect('/login')->with($notification);
-
-        $user = Auth::user();
-
-        session()->forget('url.intended')->with($notification);
-      
-        if ($user->role === 'admin'){
-            return redirect()->route('admin.dashboard');
-         }elseif ($user->role === 'agent'){
-            return redirect()->route('agent.dashboard');
-         }else{
-            return redirect()->route('dashboard');
-         }*/
-            
+   session()->forget('url.intended');            
            $url = '';
         if ($request->user()->role === 'admin'){
             $url = 'admin.dashboard';
