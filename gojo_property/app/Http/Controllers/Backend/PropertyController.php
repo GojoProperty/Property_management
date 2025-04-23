@@ -85,7 +85,7 @@ class PropertyController extends Controller
             'property_thambnail' => $save_url,
         ]);
 
-        // **Upload multiple images and attach to property**
+        // Upload multiple images and attach to property
         if ($request->hasFile('multi_img')) {
             foreach ($request->file('multi_img') as $img) {
                 //dd($request->file('multi_img'));

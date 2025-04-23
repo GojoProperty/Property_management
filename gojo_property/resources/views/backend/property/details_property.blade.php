@@ -51,7 +51,7 @@
                                     <tr>
                                         <td>Main Image </td>
                                         <td>
-                                            <img src="{{ asset($property->property_thambnail) }}"
+                                            <img src="{{ asset($property->property_thambnail) }}" alt = "property-image"
                                                 style="width:100px; height:70px;">
                                         </td>
                                     </tr>
