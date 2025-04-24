@@ -18,8 +18,8 @@ class PropertySeeder extends Seeder
             'amenities_id' => '1,2,3', // comma-separated list if stored like this
             'property_name' => 'Elegant Villa',
             'property_slug' => 'elegant-villa',
-            'property_code' => 'PROP123',
-            'property_status' => 'For Sale',
+            'property_code' => 'PC002',
+            'property_status' => 'For buy',
             'lowest_price' => '500000',
             'max_price' => '600000',
             'property_thambnail' => 'upload/property/thambnail/download.jpg',
@@ -37,7 +37,7 @@ class PropertySeeder extends Seeder
             'longitude' => '38.7400',
             'featured' => '1',
             'hot' => '1',
-            'agent_id' => 1,
+            'agent_id' => '3',
             'status' => '1',
         ]);
         Property::create([
@@ -45,7 +45,7 @@ class PropertySeeder extends Seeder
             'amenities_id' => '2,4,6',
             'property_name' => 'Modern Apartment',
             'property_slug' => 'modern-apartment',
-            'property_code' => 'APT101',
+            'property_code' => 'PC003',
             'property_status' => 'For Rent',
             'lowest_price' => '1500',
             'max_price' => '1800',
@@ -64,7 +64,7 @@ class PropertySeeder extends Seeder
             'longitude' => '38.7630',
             'featured' => '0',
             'hot' => '1',
-            'agent_id' => 2,
+            'agent_id' => '6',
             'status' => '1',
         ]);
 
@@ -73,7 +73,7 @@ class PropertySeeder extends Seeder
             'amenities_id' => '1,3,5',
             'property_name' => 'Downtown Office Space',
             'property_slug' => 'downtown-office-space',
-            'property_code' => 'OFF456',
+            'property_code' => 'PC004',
             'property_status' => 'For Rent',
             'lowest_price' => '3000',
             'max_price' => '3500',
@@ -101,8 +101,8 @@ class PropertySeeder extends Seeder
             'amenities_id' => '',
             'property_name' => 'Spacious Land Plot',
             'property_slug' => 'spacious-land-plot',
-            'property_code' => 'LAND789',
-            'property_status' => 'For Sale',
+            'property_code' => 'PC005',
+            'property_status' => 'For buy',
             'lowest_price' => '200000',
             'max_price' => '220000',
             'property_thambnail' => 'land.jpg',
