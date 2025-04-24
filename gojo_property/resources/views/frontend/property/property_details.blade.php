@@ -39,9 +39,6 @@
                                         alt=""></figure>
                                 <h6>{{ $property->user->name }}</h6>
                             @endif
-
-
-
                         </div>
                         <ul class="rating clearfix pull-left">
                             <li><i class="icon-39"></i></li>
@@ -428,6 +425,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
             <div class="feature-block-one wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
                 <div class="inner-box">
@@ -471,12 +469,8 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-        </div>
     </section>
     <!-- property-details end -->
-
 
     <!-- subscribe-section -->
     <section class="subscribe-section bg-color-3">
