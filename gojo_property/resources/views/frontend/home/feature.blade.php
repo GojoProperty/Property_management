@@ -43,30 +43,37 @@
                                             {{ $item->property_status }}</a></div>
                                 </div>
                                 <div class="title-text">
-                                    <h4><a href="property-details.html">{{ $item->property_name }}</a></h4>
+                                    <h4>
+                                        <a
+                                            href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{ $item->property_name }}</a>
+                                    </h4>
                                 </div>
                                 <div class="price-box clearfix">
                                     <div class="price-info pull-left">
                                         <h6>Start From</h6>
-                                        <h4>{{ $item->lowest_price }}</h4>
+                                        <div class="price-box clearfix">
+                                            <div class="price-info pull-left">
+                                                <h6>Start From</h6>
+                                                <h4>{{ $item->lowest_price }}</h4>
+                                            </div>
+                                            <ul class="other-option pull-right clearfix">
+                                                <li><a href="property-details.html"><i class="icon-12"></i></a></li>
+                                                <li><a href="property-details.html"><i class="icon-13"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <p>{{ $item->short_descp }}</p>
+                                        <ul class="more-details clearfix">
+                                            <li><i class="icon-14"></i>{{ $item->bedrooms }}</li>
+                                            <li><i class="icon-15"></i>{{ $item->bathrooms }}</li>
+                                            <li><i class="icon-16"></i>{{ $item->property_size }}</li>
+                                        </ul>
+                                        <div class="btn-box"><a
+                                                href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                                class="theme-btn btn-two">See Details</a></div>
                                     </div>
-                                    <ul class="other-option pull-right clearfix">
-                                        <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                                        <li><a href="property-details.html"><i class="icon-13"></i></a></li>
-                                    </ul>
                                 </div>
-                                <p>{{ $item->short_descp }}</p>
-                                <ul class="more-details clearfix">
-                                    <li><i class="icon-14"></i>{{ $item->bedrooms }}</li>
-                                    <li><i class="icon-15"></i>{{ $item->bathrooms }}</li>
-                                    <li><i class="icon-16"></i>{{ $item->property_size }}</li>
-                                </ul>
-                                <div class="btn-box"><a href="property-details.html" class="theme-btn btn-two">See
-                                        Details</a></div>
                             </div>
                         </div>
-                    </div>
-                </div>
             @endforeach
         </div>
         <div class="more-btn centred"><a href="property-list.html" class="theme-btn btn-one">View All Listing</a>
