@@ -30,6 +30,15 @@
     <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/assets/css/responsive.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+    <!-- jQuery (required) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ptTimeSelect CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/neo22s/jquery.ptTimeSelect/jquery.ptTimeSelect.css">
+
+    <!-- leaflet CSS for the google map embeded --->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 
@@ -90,9 +99,31 @@
     <script src="{{ asset('frontend/assets/js/jQuery.style.switcher.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/jquery-ui.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/nav-tool.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>
-    <script src="{{ asset('frontend/assets/js/gmaps.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/map-helper.js') }}"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lat = {{ $property->latitude ?? 9.03 }};
+            const lng = {{ $property->longitude ?? 38.74 }};
+
+            const map = L.map('map').setView([lat, lng], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            L.marker([lat, lng]).addTo(map)
+                .bindPopup("{{ $property->property_name }}")
+                .openPopup();
+        });
+    </script>
+    <!-- ptTimeSelect JS -->
+    <script src="https://cdn.jsdelivr.net/gh/neo22s/jquery.ptTimeSelect/jquery.ptTimeSelect.js"></script>
+
+    <!-- Your custom JS (make sure this comes AFTER the plugin) -->
+    <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
+
     <!-- main-js -->
     <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
