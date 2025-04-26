@@ -10,33 +10,39 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function AdminDashboard()
+    public function adminDashboard()
     {
         return view('admin.adminIndex');
     } // End method
 
-    public function AdminLogout(Request $request): RedirectResponse
+    public function adminLogout(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        $notification = array(
+            'message' => 'Admin Logout Successfully',
+            'alert-type' => 'success'
+        ); 
 
-        return redirect('/admin/login');
+        return redirect('/admin/login')->with($notification);
+
+    
     }
 
-    public function AdminLogin()
+    public function adminLogin()
     {
         return view('admin.admin_login');
     }
 
-    public function AdminProfile()
+    public function adminProfile()
     {
         $id = Auth::id(); // More optimized way to get the authenticated user ID
         $profileData = User::findOrFail($id); // Ensures an error is thrown if user is not found
         return view('admin.admin_profile_view', compact('profileData'));
     }
 
-    public function AdminProfileStore(Request $request)
+    public function adminProfileStore(Request $request)
     {
         $id = Auth::id();
         $data = User::findOrFail($id);
@@ -68,14 +74,14 @@ class AdminController extends Controller
         ]);
     }
 
-    public function AdminChangePass()
+    public function adminChangePassword()
     {
         $id = Auth::id();
         $profileData = User::findOrFail($id);
         return view('admin.admin_change_pass', compact('profileData'));
     }
 
-    public function AdminUpdatePassword(Request $request)
+    public function adminUpdatePassword(Request $request)
     {
         // Validate input
         $request->validate([
