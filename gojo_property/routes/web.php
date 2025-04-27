@@ -144,9 +144,9 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
 
 // Frontend Property Details Routes  
 Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
-
 // Wishlist Add Route 
 Route::post('/add-to-wishList/{property_id}', [WishlistController::class, 'AddToWishList']);
-
 // Compare Add Route 
 Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
+// Send Message from Property Details Page 
+Route::post('/property/message', [IndexController::class, 'PropertyMessage'])->name('property.message');
