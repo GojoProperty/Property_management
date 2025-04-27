@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(CompareController::class)->group(function () {
         Route::get('/user/compare', 'UserCompare')->name('user.compare');
         Route::get('/get-compare-property', 'GetCompareProperty');
+        Route::get('/compare-remove/{id}', 'CompareRemove');
     });
 });
 

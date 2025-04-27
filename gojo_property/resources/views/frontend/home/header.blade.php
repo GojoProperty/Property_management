@@ -4,7 +4,7 @@
         <div class="top-inner clearfix">
             <div class="left-column pull-left">
                 <ul class="info clearfix">
-                    <li><i class="far fa-map-marker-alt"></i>Discover St, New York, NY 10012, USA</li>
+                    <li><i class="far fa-map-marker-alt"></i>Ethiopia, Hawassa</li>
                     <li><i class="far fa-clock"></i>Mon - Sat 9.00 - 18.00</li>
                     <li><i class="far fa-phone"></i><a href="tel:2512353256">+251-235-3256</a></li>
                 </ul>
@@ -37,6 +37,8 @@
             <div class="main-box">
                 <div class="logo-box">
                     {{-- <figure class="logo"><a href="index.html"><img src="{{ asset('frontend/assets/images/logo.png') }}" alt=""></a></figure> --}}
+                    <figure class="logo"><a href="{{ url('/') }}"><img
+                                src="{{ asset('frontend/assets/images/logo.png') }}" alt=""></a></figure>
                 </div>
                 <div class="menu-area clearfix">
 
