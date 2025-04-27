@@ -25,7 +25,8 @@
         <div class="auto-container">
             <div class="table-outer">
                 <table class="properties-table">
-                    </tbody id= "compare">
+                    <tbody id= "compare">
+                    </tbody>
                 </table>
             </div>
         </div>
