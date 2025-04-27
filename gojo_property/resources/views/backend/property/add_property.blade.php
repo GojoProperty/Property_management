@@ -68,13 +68,13 @@
 
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="form-group mb-3">
                                             <label class="form-label">BedRooms</label>
                                             <input type="text" name="bedrooms" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Bathrooms</label>
                                             <input type="text" name="bathrooms" class="form-control">
@@ -82,24 +82,22 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Address</label>
                                             <input type="text" name="address" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group mb-3">
                                             <label class="form-label">City</label>
                                             <input type="text" name="city" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <div class="col-sm-3">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">State</label>
-                                                <input type="text" name="state" class="form-control">
-                                            </div>
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">State</label>
+                                            <input type="text" name="state" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">

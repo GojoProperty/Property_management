@@ -52,14 +52,14 @@
                                     </div><!-- Col -->
                                 </div><!-- Row -->
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label">BedRooms</label>
                                             <input type="text" name="bedrooms" class="form-control"
                                                 value="{{ $property->bedrooms }}">
                                         </div>
                                     </div><!-- Col -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label">Bathrooms</label>
                                             <input type="text" name="bathrooms" class="form-control"
@@ -68,21 +68,21 @@
                                     </div><!-- Col -->
                                 </div><!-- Row -->
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="mb-3">
                                             <label class="form-label">Address</label>
                                             <input type="text" name="address" class="form-control"
                                                 value="{{ $property->address }}">
                                         </div>
                                     </div><!-- Col -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="mb-3">
                                             <label class="form-label">City</label>
                                             <input type="text" name="city" class="form-control"
                                                 value="{{ $property->city }}">
                                         </div>
                                     </div><!-- Col -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="mb-3">
                                             <label class="form-label">State</label>
                                             <input type="text" name="state" class="form-control"
@@ -231,7 +231,6 @@
                                     <div class="form-group col-md-6">
                                         <input type="file" name="property_thambnail" class="form-control"
                                             onchange="mainThamUrl(this)">
-
                                         <img src="" id="mainThmb">
                                     </div>
                                     <div class="form-group col-md-6">
