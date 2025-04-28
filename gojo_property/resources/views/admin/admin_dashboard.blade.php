@@ -140,7 +140,7 @@
     <script src="{{ asset('backend/assets/vendors/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/tinymce.js') }}"></script>
     <!-- tinymce -->
-
-    <!-- Input Tags -->
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 </body>
+</html> 

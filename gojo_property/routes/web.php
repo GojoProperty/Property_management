@@ -89,7 +89,18 @@ Route::controller(PropertyController::class)->group(function () {
     Route::post('/active/property', 'activeProperty')->name('active.property');
 });
 
+// Agent All Route from admin 
+Route::controller(AdminController::class)->group(function(){
+ 
+    Route::get('/all/agent', 'AllAgent')->name('all.agent'); 
+    Route::get('/add/agent', 'AddAgent')->name('add.agent');
+    Route::post('/store/agent', 'StoreAgent')->name('store.agent');
+    Route::get('/edit/agent/{id}', 'EditAgent')->name('edit.agent');
+    Route::post('/update/agent', 'UpdateAgent')->name('update.agent');
+    Route::get('/delete/agent/{id}', 'DeleteAgent')->name('delete.agent');
+    Route::get('/changeStatus', 'changeStatus');
 
+});
 // Agent routes
 /// Agent Group Middleware 
 
