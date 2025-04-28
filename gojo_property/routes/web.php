@@ -87,6 +87,9 @@ Route::controller(PropertyController::class)->group(function () {
     Route::get('/details/property/{id}', 'DetailsProperty')->name('details.property');
     Route::post('/inactive/property', 'inactiveProperty')->name('inactive.property');
     Route::post('/active/property', 'activeProperty')->name('active.property');
+    Route::get('/admin/package/history', 'AdminPackageHistory')->name('admin.package.history');
+    Route::get('/package/invoice/{id}', 'PackageInvoice')->name('package.invoice');
+ 
 });
 
 // Agent All Route from admin 
