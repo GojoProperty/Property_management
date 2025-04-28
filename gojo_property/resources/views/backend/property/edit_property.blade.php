@@ -229,8 +229,13 @@
                                 <input type="hidden" name="old_img" value="{{ $property->property_thambnail }}">
                                 <div class="row mb-3">
                                     <div class="form-group col-md-6">
-                                        <input type="file" name="property_thambnail" class="form-control"
-                                            onchange="mainThamUrl(this)">
+                                        <div class="custom-file-wrapper">
+                                            <input type="file" name="property_thambnail" id="property_thambnail"
+                                                class="custom-file-input" onchange="mainThamUrl(this)">
+                                            <label for="property_thambnail" class="custom-file-label">Choose
+                                                File</label>
+                                            <span id="file-name">No file chosen</span>
+                                        </div>
                                         <img src="" id="mainThmb">
                                     </div>
                                     <div class="form-group col-md-6">
@@ -280,10 +285,13 @@
                                                             class="thumbnail" style="width:50px; height:50px;">
                                                     </td>
                                                     <td>
-                                                        <input type="file" class="form-control"
-                                                            name="multi_img[{{ $img->id }}]">
-
-
+                                                        <div class="custom-file-wrapper">
+                                                            <input type="file" name="multi_img[]" id="multiImg"
+                                                                class="custom-file-input" multiple>
+                                                            <label for="multiImg" class="custom-file-label">Choose
+                                                                Files</label>
+                                                            <span id="multi-file-names">No files chosen</span>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <input type="submit" class="btn btn-primary px-4"
