@@ -26,30 +26,30 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
- 
-         $id = Auth::user()->id;
-         $adminData = User::find($id);
-         $username = $adminData->name;
- 
-         $request->session()->regenerate();
- 
-         $notification = array(
-             'message' => 'User '.$username.' Login Successfully',
-             'alert-type' => 'info'
-         ); 
-         session()->forget('url.intended');            
-         $url = '';
-         
-         if ($request->user()->role === 'admin') {
-             $url = route('admin.dashboard');
-         } elseif ($request->user()->role === 'agent') {
-             $url = route('agent.dashboard');
-         } else {
-             $url = '/dashboard';
-         }
-         
-         return redirect()->intended($url)->with($notification);
-         }
+
+        $id = Auth::user()->id;
+        $adminData = User::find($id);
+        $username = $adminData->name;
+
+        $request->session()->regenerate();
+
+        $notification = array(
+            'message' => 'User ' . $username . ' Login Successfully',
+            'alert-type' => 'info'
+        );
+        session()->forget('url.intended');
+        $url = '';
+
+        if ($request->user()->role === 'admin') {
+            $url = route('admin.dashboard');
+        } elseif ($request->user()->role === 'agent') {
+            $url = route('agent.dashboard');
+        } else {
+            $url = '/dashboard';
+        }
+
+        return redirect()->intended($url)->with($notification);
+    }
 
     /*
      * Destroy an authenticated session. 

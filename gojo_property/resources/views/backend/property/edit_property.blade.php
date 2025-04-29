@@ -52,14 +52,14 @@
                                     </div><!-- Col -->
                                 </div><!-- Row -->
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label">BedRooms</label>
                                             <input type="text" name="bedrooms" class="form-control"
                                                 value="{{ $property->bedrooms }}">
                                         </div>
                                     </div><!-- Col -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label">Bathrooms</label>
                                             <input type="text" name="bathrooms" class="form-control"
@@ -68,21 +68,21 @@
                                     </div><!-- Col -->
                                 </div><!-- Row -->
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="mb-3">
                                             <label class="form-label">Address</label>
                                             <input type="text" name="address" class="form-control"
                                                 value="{{ $property->address }}">
                                         </div>
                                     </div><!-- Col -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="mb-3">
                                             <label class="form-label">City</label>
                                             <input type="text" name="city" class="form-control"
                                                 value="{{ $property->city }}">
                                         </div>
                                     </div><!-- Col -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="mb-3">
                                             <label class="form-label">State</label>
                                             <input type="text" name="state" class="form-control"
@@ -153,8 +153,8 @@
                                             <select name="amenities_id[]" class="js-example-basic-multiple form-select"
                                                 multiple="multiple" data-width="100%">
                                                 @foreach ($amenities as $ameni)
-                                                <option value="{{ $ameni->amenities_name }}" 
-                                                        {{ in_array($ameni->amenities_name, $property_amin) ? 'selected' : '' }}> 
+                                                    <option value="{{ $ameni->amenities_name }}"
+                                                        {{ in_array($ameni->amenities_name, $property_amin) ? 'selected' : '' }}>
                                                         {{ $ameni->amenities_name }}</option>
                                                 @endforeach
 
@@ -166,8 +166,10 @@
                                             <label class="form-label"> Agent </label>
                                             <select name="agent_id" class="form-select" id="exampleFormControlSelect1">
                                                 <option selected="" disabled="">Select Agent</option>
-                                                @foreach($activeAgent as $agent)
-                                                    <option value="{{ $agent->id }}" {{ $agent->id == $property->agent_id ? 'selected' : '' }}>{{ $agent->name }}</option>
+                                                @foreach ($activeAgent as $agent)
+                                                    <option value="{{ $agent->id }}"
+                                                        {{ $agent->id == $property->agent_id ? 'selected' : '' }}>
+                                                        {{ $agent->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -227,9 +229,13 @@
                                 <input type="hidden" name="old_img" value="{{ $property->property_thambnail }}">
                                 <div class="row mb-3">
                                     <div class="form-group col-md-6">
-                                        <label class="form-label">Main Thambnail </label>
-                                        <input type="file" name="property_thambnail" class="form-control"
-                                            onChange="mainThamUrl(this)">
+                                        <div class="custom-file-wrapper">
+                                            <input type="file" name="property_thambnail" id="property_thambnail"
+                                                class="custom-file-input" onchange="mainThamUrl(this)">
+                                            <label for="property_thambnail" class="custom-file-label">Choose
+                                                File</label>
+                                            <span id="file-name">No file chosen</span>
+                                        </div>
                                         <img src="" id="mainThmb">
                                     </div>
                                     <div class="form-group col-md-6">
@@ -276,11 +282,16 @@
                                                     <td>{{ $key + 1 }}</td>
                                                     <td class="py-1">
                                                         <img src="{{ asset($img->photo_name) }}" alt="image"
-                                                            style="width:50px; height:50px;">
+                                                            class="thumbnail" style="width:50px; height:50px;">
                                                     </td>
                                                     <td>
-                                                        <input type="file" class="form-control"
-                                                            name="multi_img[{{ $img->id }}]">
+                                                        <div class="custom-file-wrapper">
+                                                            <input type="file" name="multi_img[]" id="multiImg"
+                                                                class="custom-file-input" multiple>
+                                                            <label for="multiImg" class="custom-file-label">Choose
+                                                                Files</label>
+                                                            <span id="multi-file-names">No files chosen</span>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <input type="submit" class="btn btn-primary px-4"
