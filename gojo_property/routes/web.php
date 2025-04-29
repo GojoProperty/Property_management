@@ -168,3 +168,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
         Route::get('/agent/package/invoice/{id}', 'AgentPackageInvoice')->name('agent.package.invoice');
     });
 });
+
+// Blog Details Route 
+Route::get('/blog/details/{slug}', [BlogController::class, 'BlogDetails']);
+ 
