@@ -21,7 +21,7 @@
                 @auth
                     <div class="sign-box">
                         @php
-                            $role = Auth::user()->role; // assuming 'role' field contains values like 'admin', 'agent', or 'user'
+                            $role = Auth::user()->role;
                         @endphp
 
                         @if ($role === 'admin')
