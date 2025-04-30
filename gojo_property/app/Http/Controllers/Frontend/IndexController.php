@@ -64,8 +64,11 @@ class IndexController extends Controller
         $agent = User::findOrFail($id);
         $property = Property::where('agent_id',$id)->get();
         $featured = Property::where('featured','1')->limit(3)->get();
+        $rentproperty = Property::where('property_status','rent')->get();
+        $buyproperty = Property::where('property_status','buy')->get();
 
-        return view('frontend.agent.agent_details',compact('agent','property','featured'));
+
+        return view('frontend.agent.agent_details',compact('agent','property','featured','rentproperty','buyproperty'));
 
     }// End Method   
     public function AgentDetailsMessage(Request $request){
@@ -106,4 +109,31 @@ class IndexController extends Controller
         }
 
     }// End Method  
+
+    public function RentProperty(){
+ 
+        $property = Property::where('status','1')->where('property_status','rent')->get();
+
+        return view('frontend.property.rent_property',compact('property'));
+
+    }// End Method 
+
+    public function BuyProperty(){
+ 
+        $property = Property::where('status','1')->where('property_status','buy')->get();
+
+        return view('frontend.property.buy_property',compact('property'));
+
+    }// End Method 
+    public function PropertyType($id){
+ 
+        $property = Property::where('status','1')->where('ptype_id',$id)->get();
+
+        $pbread = PropertyType::where('id',$id)->first();
+
+        return view('frontend.property.property_type',compact('property','pbread'));
+
+    }// End Method   
+    
 }
+
