@@ -29,7 +29,7 @@
                         @elseif ($role === 'agent')
                             <a href="{{ route('agent.dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
                         @else
-                            <a href="{{ route('user.dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
+                            <a href="{{ route('dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
                         @endif
 
                         <a href="{{ route('user.logout') }}"><i class="fas fa-user"></i>Logout</a>
