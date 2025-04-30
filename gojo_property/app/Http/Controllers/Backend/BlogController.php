@@ -8,8 +8,11 @@ use App\Models\BlogCategory;
 use Carbon\Carbon;
 use App\Models\BlogPost; 
 use App\Models\User;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -109,6 +112,25 @@ class BlogController extends Controller
         $bcategory = BlogCategory::latest()->get();
         $dpost = BlogPost::latest()->limit(3)->get();
         return view('frontend.blog.blog_details',compact('blog','tags_all','bcategory','dpost'));    
+    }
+
+    public function BlogCatList($id){
+ 
+        $blog = BlogPost::where('blogcat_id',$id)->get();
+        $breadcat = BlogCategory::where('id',$id)->first();
+        $bcategory = BlogCategory::latest()->get();
+        $dpost = BlogPost::latest()->limit(3)->get();
+        return view('frontend.blog.blog_cat_list', compact('blog','breadcat','bcategory','dpost'));
+
+    }
+
+    public function BlogList(){
+ 
+        $blog = BlogPost::latest()->get(); 
+        $bcategory = BlogCategory::latest()->get();
+        $dpost = BlogPost::latest()->limit(3)->get();
+        return view('frontend.blog.blog_list', compact('blog','bcategory','dpost'));
+
     }
        
 }
