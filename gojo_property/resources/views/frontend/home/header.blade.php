@@ -20,7 +20,18 @@
 
                 @auth
                     <div class="sign-box">
-                        <a href="{{ route('dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
+                        @php
+                            $role = Auth::user()->role; // assuming 'role' field contains values like 'admin', 'agent', or 'user'
+                        @endphp
+
+                        @if ($role === 'admin')
+                            <a href="{{ route('admin.dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
+                        @elseif ($role === 'agent')
+                            <a href="{{ route('agent.dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
+                        @else
+                            <a href="{{ route('user.dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
+                        @endif
+
                         <a href="{{ route('user.logout') }}"><i class="fas fa-user"></i>Logout</a>
                     </div>
                 @else
@@ -28,6 +39,7 @@
                         <a href="{{ route('login') }}"><i class="fas fa-user"></i>Sign In</a>
                     </div>
                 @endauth
+
             </div>
         </div>
     </div>
