@@ -136,7 +136,7 @@
                                         @foreach ($facility as $item)
                                             <div class="box clearfix">
                                                 <div class="text pull-left">
-                                                    <h6>{{ $item->facility_name }} <span>({{ $item->distance }} km)</span>
+                                                    <h6>{{ $item->facility_name }} <span>({{ $item->distance }} )</span>
                                                     </h6>
                                                 </div>
                                                 <ul class="rating pull-right clearfix">
