@@ -13,6 +13,7 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Comment;
 
 class BlogController extends Controller
 {
@@ -130,6 +131,26 @@ class BlogController extends Controller
         $bcategory = BlogCategory::latest()->get();
         $dpost = BlogPost::latest()->limit(3)->get();
         return view('frontend.blog.blog_list', compact('blog','bcategory','dpost'));
+
+    }
+
+    public function StoreComment(Request $request){
+ 
+        $pid = $request->post_id;
+        Comment::insert([
+            'user_id' => Auth::user()->id,
+            'post_id' => $pid,
+            'parent_id' => null,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Comment Inserted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification); 
 
     }
        
