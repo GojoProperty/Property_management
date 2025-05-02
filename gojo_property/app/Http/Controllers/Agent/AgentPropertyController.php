@@ -479,8 +479,16 @@ class AgentPropertyController extends Controller
     public function AgentScheduleRequest()
     {
         $id = Auth::user()->id;
-        $usermsg = Schedule::where('agent_id', $id)->get();
+        $usermsg = Schedule::with(['user', 'property'])
+            ->where('agent_id', $id)
+            ->get();
+            dd($usermsg->toArray()); 
         return view('agent.schedule.schedule_request', compact('usermsg'));
     } // end method
-   
+    public function AgentDetailsSchedule($id)
+    {
+
+        $schedule = Schedule::findOrFail($id);
+        return view('agent.schedule.schedule_details', compact('schedule'));
+    } // End Method
 }

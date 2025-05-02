@@ -45,7 +45,7 @@
                                             </td>
                                             <td>
 
-                                                <a href="{{ route('agent.details.property', $item->id) }}"
+                                                <a href="{{ route('agent.details.schedule', $item->id) }}"
                                                     class="btn btn-inverse-info" title="Details"> <i data-feather="eye"></i>
                                                 </a>
 

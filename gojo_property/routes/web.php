@@ -133,6 +133,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
     //scedule request route
     Route::get('agent/schedule/request', [AgentPropertyController::class, 'AgentScheduleRequest'])
         ->name('agent.schedule.request');
+        Route::get('agent/details/schedule/{id}', ['AgentDetailsSchedule', 'AgentDetailsSchedule']);
 
     // Agent Buy Package Routes
     Route::controller(AgentPropertyController::class)->group(function () {
