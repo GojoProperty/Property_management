@@ -117,10 +117,7 @@
                                 <li><span>Address:</span> {{ $property->address }}</li>
                                 <li><span>State/county:</span> {{ $property->state }}</li>
                                 <li><span>Neighborhood:</span> {{ $property->neighborhood }}</li>
-<<<<<<< Updated upstream
-                                {{-- <li><span>Zip/Postal Code:</span> {{ $property->postal_code }}</li> --}}
-=======
->>>>>>> Stashed changes
+                            
                                 <li><span>City:</span> {{ $property->city }}</li>
                             </ul>
                             <div class="google-map-area">
@@ -355,23 +352,20 @@
                                         <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
                                     @endif
 
-                                    <div class="form-group">
-                                        <input type="text" name="msg_name" placeholder="Your name" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" name="msg_email" placeholder="Your Email" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="msg_phone" placeholder="Phone" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="message" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="form-group message-btn">
-                                        <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                    </div>
-                                </form>
-                            @endauth
+                                        
+                                        <div class="form-group message-btn">
+                                            <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                        </div>
+                                    </form>
+
+                                @endauth
+
+
+
+                            </div>
+
+
+
                         </div>
                     </div>
                     <div class="calculator-widget sidebar-widget">
