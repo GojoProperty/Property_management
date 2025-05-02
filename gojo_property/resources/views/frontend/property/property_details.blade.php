@@ -240,11 +240,6 @@
                                     </div>
                                 @endif
                             </div>
-<<<<<<< Updated upstream
-=======
-
-
-
                             <div class="form-inner">
                                 @auth
 
@@ -356,7 +351,8 @@
                     </div>
                 @else
                     @foreach ($relatedProperty as $item)
-                        <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
                             <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
                                 data-wow-duration="1500ms">
                                 <div class="inner-box">
