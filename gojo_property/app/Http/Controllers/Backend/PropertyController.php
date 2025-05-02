@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Storage;
 
 
 
-$imgmanager = new ImageManager(new Driver());
-
 class PropertyController extends Controller
 {
     public function getAllProperty()

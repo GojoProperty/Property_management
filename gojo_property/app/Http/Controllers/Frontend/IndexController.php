@@ -14,6 +14,7 @@ use App\Models\PackagePlan;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PropertyMessage;
 use Carbon\Carbon;
+use App\Models\Schedule; 
 
 class IndexController extends Controller
 {
@@ -58,5 +59,8 @@ class IndexController extends Controller
             );
             return redirect()->back()->with($notification);
         }
-    } // End Method 
+    } 
+    public function StoreSchedule(Request $request){
+ 
+    }
 }
