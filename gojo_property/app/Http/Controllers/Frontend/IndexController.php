@@ -61,6 +61,35 @@ class IndexController extends Controller
         }
     } 
     public function StoreSchedule(Request $request){
- 
+               $aid = $request->agent_id;
+               $pid = $request->property_id;
+
+          if(Auth::check()){ 
+               
+            Schedule::insert([
+                'user_id'=>Auth::user()->id,
+                'property_id'=>$pid,
+                'agent_id'=>$pid,
+                'tour_date'=>$request->tour_date,
+                'tour_time'=>$request->tour_time,
+                'message'=>$pid,
+                'created_at'=>Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'send request successfully',
+                'alert-type' => 'error'
+            );
+                return redirect()->back()->with($notification);
+
+          }else{  
+            $notification = array(
+                'message' => 'plz login your account first',
+                'alert-type' => 'success'
+            );
+            
+             return redirect()->back()->with($notification);
+
+          }
     }
 }

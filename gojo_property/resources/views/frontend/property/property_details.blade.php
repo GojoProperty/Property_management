@@ -30,7 +30,7 @@
                     <div class="author-info clearfix">
                         <div class="author-box pull-left">
                             @if ($property->agent_id == null)
-                                <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}" alt="">
+                                <figure class="author-thumb"><img src="{{ url('upload/heriadmin.jpg') }}" alt="">
                                 </figure>
                                 <h6>Admin</h6>
                             @else
@@ -67,7 +67,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="row clearfix">
                 <div class="col-lg-8 col-md-12 col-sm-12 content-side">
                     <div class="property-details-content">
@@ -94,44 +93,35 @@
                             <ul class="list clearfix">
                                 <li>Property ID: <span>{{ $property->property_code }}</span></li>
                                 <li>Rooms: <span>{{ $property->bedrooms }}</span></li>
-                                <li>Garage Size: <span>{{ $property->garage_size }} Sq Ft</span></li>
-
                                 <li>Property Type: <span>{{ $property->type->type_name }}</span></li>
                                 <li>Bathrooms: <span>{{ $property->bathrooms }}</span></li>
                                 <li>Property Status: <span>For {{ $property->property_status }}</span></li>
                                 <li>Property Size: <span>{{ $property->property_size }} Sq Ft</span></li>
-                                <li>Garage: <span>{{ $property->garage }}</span></li>
                             </ul>
                         </div>
                         <div class="amenities-box content-widget">
                             <div class="title-box">
                                 <h4>Amenities</h4>
                             </div>
-                            <ul class="list clearfix">
+                            <ul>
                                 @foreach ($property_amen as $amen)
                                     <li>{{ $amen }}</li>
                                 @endforeach
                             </ul>
                         </div>
-
                         <div class="location-box content-widget">
                             <div class="title-box">
                                 <h4>Location</h4>
                             </div>
                             <ul class="info clearfix">
                                 <li><span>Address:</span> {{ $property->address }}</li>
-                                <li><span>State/county:</span> {{ $property['pstate']['state_name'] }}</li>
+                                <li><span>State/county:</span> {{ $property->state }}</li>
                                 <li><span>Neighborhood:</span> {{ $property->neighborhood }}</li>
-                                <li><span>Zip/Postal Code:</span> {{ $property->postal_code }}</li>
+                                {{-- <li><span>Zip/Postal Code:</span> {{ $property->postal_code }}</li> --}}
                                 <li><span>City:</span> {{ $property->city }}</li>
                             </ul>
                             <div class="google-map-area">
-                                <div class="google-map" id="contact-google-map" data-map-lat="{{ $property->latitude }}"
-                                    data-map-lng="{{ $property->longitude }}"
-                                    data-icon-path="{{ asset('frontend/assets/images/icons/map-marker.png') }}"
-                                    data-map-title="Brooklyn, New York, United Kingdom" data-map-zoom="12"
-                                    data-markers='{"marker-1": [40.712776, -74.005974, "<h4>Branch Office</h4><p>77/99 New York</p>","{{ asset('frontend/assets/images/icons/map-marker.png') }}"]}'>
-                                </div>
+                                <div id="map" style="height: 400px; width: 100%; border-radius: 10px;"></div>
                             </div>
                         </div>
                         <div class="nearby-box content-widget">
@@ -139,17 +129,14 @@
                                 <h4>What’s Nearby?</h4>
                             </div>
                             <div class="inner-box">
-
-
                                 <div class="single-item">
                                     <div class="icon-box"><i class="fas fa-book-reader"></i></div>
                                     <div class="inner">
                                         <h5>Places:</h5>
-
                                         @foreach ($facility as $item)
                                             <div class="box clearfix">
                                                 <div class="text pull-left">
-                                                    <h6>{{ $item->facility_name }} <span>({{ $item->distance }} km)</span>
+                                                    <h6>{{ $item->facility_name }} <span>({{ $item->distance }} )</span>
                                                     </h6>
                                                 </div>
                                                 <ul class="rating pull-right clearfix">
@@ -163,33 +150,26 @@
                                         @endforeach
                                     </div>
                                 </div>
-
-
-
-
                             </div>
                         </div>
-                        <div class="statistics-box content-widget">
+                        <div class="statistics-box content-widget"><!--video -->
                             <div class="title-box">
                                 <h4>Property Video </h4>
                             </div>
                             <figure class="image-box">
-                                <iframe width="700" height="415" src="{{ $property->property_video }}"
+                                <iframe width="560" height="315" src=" {{ $property->property_video }}"
                                     title="YouTube video player" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen></iframe>
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </figure>
                         </div>
-
                         <div class="schedule-box content-widget">
                             <div class="title-box">
-                                <h4>Schedule A Tour</h4>
+                                <h4>Schedule Site Visit </h4>
                             </div>
                             <div class="form-inner">
                                 <form action="{{ route('store.schedule') }}" method="post">
                                     @csrf
-
-
                                     <div class="row clearfix">
 
                                         <input type="hidden" name="property_id" value="{{ $property->id }}">
@@ -230,22 +210,18 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
                     <div class="property-sidebar default-sidebar">
                         <div class="author-widget sidebar-widget">
                             <div class="author-box">
-
                                 @if ($property->agent_id == null)
-                                    <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}"
+                                    <figure class="author-thumb"><img src="{{ url('upload/heriadmin.jpg') }}"
                                             alt=""></figure>
                                     <div class="inner">
                                         <h4>Admin </h4>
                                         <ul class="info clearfix">
-                                            <li><i class="fas fa-map-marker-alt"></i>84 St. John Wood High Street,
-                                                St Johns Wood</li>
-                                            <li><i class="fas fa-phone"></i><a href="tel:03030571965">030 3057 1965</a>
+                                            <li><i class="fas fa-map-marker-alt"></i> Hawassa University</li>
+                                            <li><i class="fas fa-phone"></i><a href="tel:03030571965">+251-946948447</a>
                                             </li>
                                         </ul>
                                         <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
@@ -264,135 +240,123 @@
                                         <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
                                     </div>
                                 @endif
-
                             </div>
-
-
-
-                            <div class="form-inner">
-                                @auth
-
-                                    @php
-                                        $id = Auth::user()->id;
-                                        $userData = App\Models\User::find($id);
-                                    @endphp
-
-                                    <form action="{{ route('property.message') }}" method="post" class="default-form">
-                                        @csrf
-
-                                        <input type="hidden" name="property_id" value="{{ $property->id }}">
-
-                                        @if ($property->agent_id == null)
-                                            <input type="hidden" name="agent_id" value="">
-                                        @else
-                                            <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
-                                        @endif
-
-                                        <div class="form-group">
-                                            <input type="text" name="msg_name" placeholder="Your name"
-                                                value="{{ $userData->name }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" name="msg_email" placeholder="Your Email"
-                                                value="{{ $userData->email }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" name="msg_phone" placeholder="Phone"
-                                                value="{{ $userData->phone }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea name="message" placeholder="Message"></textarea>
-                                        </div>
-                                        <div class="form-group message-btn">
-                                            <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                        </div>
-                                    </form>
-                                @else
-                                    <form action="{{ route('property.message') }}" method="post" class="default-form">
-                                        @csrf
-
-                                        <input type="hidden" name="property_id" value="{{ $property->id }}">
-
-                                        @if ($property->agent_id == null)
-                                            <input type="hidden" name="agent_id" value="">
-                                        @else
-                                            <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
-                                        @endif
-
-                                        <div class="form-group">
-                                            <input type="text" name="msg_name" placeholder="Your name" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" name="msg_email" placeholder="Your Email" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" name="msg_phone" placeholder="Phone" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea name="message" placeholder="Message"></textarea>
-                                        </div>
-                                        <div class="form-group message-btn">
-                                            <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                        </div>
-                                    </form>
-
-                                @endauth
-
-
-
-                            </div>
-
-
-
                         </div>
+                        <div class="form-inner">
+                            @auth
+                                @php
+                                    $id = Auth::user()->id;
+                                    $userData = App\Models\User::find($id);
+                                @endphp
 
+                                <form action="{{ route('property.message') }}" method="post" class="default-form">
+                                    @csrf
 
-                        <div class="calculator-widget sidebar-widget">
-                            <div class="calculate-inner">
-                                <div class="widget-title">
-                                    <h4>Mortgage Calculator</h4>
-                                </div>
-                                <form method="post" action="mortgage-calculator.html" class="default-form">
+                                    <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                    @if ($property->agent_id == null)
+                                        <input type="hidden" name="agent_id" value="">
+                                    @else
+                                        <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
+                                    @endif
+
                                     <div class="form-group">
-                                        <i class="fas fa-dollar-sign"></i>
-                                        <input type="number" name="total_amount" placeholder="Total Amount">
+                                        <input type="text" name="msg_name" placeholder="Your name"
+                                            value="{{ $userData->name }}">
                                     </div>
                                     <div class="form-group">
-                                        <i class="fas fa-dollar-sign"></i>
-                                        <input type="number" name="down_payment" placeholder="Down Payment">
+                                        <input type="email" name="msg_email" placeholder="Your Email"
+                                            value="{{ $userData->email }}">
                                     </div>
                                     <div class="form-group">
-                                        <i class="fas fa-percent"></i>
-                                        <input type="number" name="interest_rate" placeholder="Interest Rate">
+                                        <input type="text" name="msg_phone" placeholder="Phone"
+                                            value="{{ $userData->phone }}">
                                     </div>
                                     <div class="form-group">
-                                        <i class="far fa-calendar-alt"></i>
-                                        <input type="number" name="loan" placeholder="Loan Terms(Years)">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="select-box">
-                                            <select class="wide">
-                                                <option data-display="Monthly">Monthly</option>
-                                                <option value="1">Yearly</option>
-                                            </select>
-                                        </div>
+                                        <textarea name="message" placeholder="Message"></textarea>
                                     </div>
                                     <div class="form-group message-btn">
-                                        <button type="submit" class="theme-btn btn-one">Calculate Now</button>
+                                        <button type="submit" class="theme-btn btn-one">Send Message</button>
                                     </div>
                                 </form>
+                            @else
+                                <form action="{{ route('property.message') }}" method="post" class="default-form">
+                                    @csrf
+                                    <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                    @if ($property->agent_id == null)
+                                        <input type="hidden" name="agent_id" value="">
+                                    @else
+                                        <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
+                                    @endif
+
+                                    <div class="form-group">
+                                        <input type="text" name="msg_name" placeholder="Your name" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="msg_email" placeholder="Your Email" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="msg_phone" placeholder="Phone" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="message" placeholder="Message"></textarea>
+                                    </div>
+                                    <div class="form-group message-btn">
+                                        <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                    </div>
+                                </form>
+                            @endauth
+                        </div>
+                    </div>
+                    <div class="calculator-widget sidebar-widget">
+                        <div class="calculate-inner">
+                            <div class="widget-title">
+                                <h4>Mortgage Calculator</h4>
                             </div>
+                            <form method="post" action="mortgage-calculator.html" class="default-form">
+                                <div class="form-group">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <input type="number" name="total_amount" placeholder="Total Amount">
+                                </div>
+                                <div class="form-group">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <input type="number" name="down_payment" placeholder="Down Payment">
+                                </div>
+                                <div class="form-group">
+                                    <i class="fas fa-percent"></i>
+                                    <input type="number" name="interest_rate" placeholder="Interest Rate">
+                                </div>
+                                <div class="form-group">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <input type="number" name="loan" placeholder="Loan Terms(Years)">
+                                </div>
+                                <div class="form-group">
+                                    <div class="select-box">
+                                        <select class="wide">
+                                            <option data-display="Monthly">Monthly</option>
+                                            <option value="1">Yearly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group message-btn">
+                                    <button type="submit" class="theme-btn btn-one">Calculate Now</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="similar-content">
-                <div class="title">
-                    <h4>Similar Properties</h4>
-                </div>
-                <div class="row clearfix">
-
+        </div>
+        <div class="similar-content">
+            <div class="title">
+                <h4>Similar Properties</h4>
+            </div>
+            <div class="row clearfix">
+                @if ($relatedProperty->isEmpty())
+                    <!-- Check if there are no similar properties -->
+                    <div class="col-12">
+                        <p>No similar type property is available for now.</p>
+                    </div>
+                @else
                     @foreach ($relatedProperty as $item)
                         <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
                             <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
@@ -409,7 +373,7 @@
                                             <div class="author pull-left">
                                                 @if ($item->agent_id == null)
                                                     <figure class="author-thumb"><img
-                                                            src="{{ url('upload/ariyan.jpg') }}" alt="">
+                                                            src="{{ url('upload/heriadmin.jpg') }}" alt="">
                                                     </figure>
                                                     <h6>Admin </h6>
                                                 @else
@@ -451,15 +415,11 @@
                             </div>
                         </div>
                     @endforeach
-
-
-
-                </div>
+                @endif
             </div>
         </div>
     </section>
     <!-- property-details end -->
-
 
     <!-- subscribe-section -->
     <section class="subscribe-section bg-color-3">
