@@ -7,7 +7,7 @@
   }
 
   .main-header .outer-box .btn-box{
-    display: none;
+    display: block !important;
   }
 
   .page-content .left-column, .page-content .right-column{
