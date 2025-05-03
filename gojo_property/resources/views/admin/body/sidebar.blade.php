@@ -1,6 +1,6 @@
 <nav class="sidebar">
     <div class="sidebar-header">
-        <a href="#" class="sidebar-brand">
+        <a href="{{ route('home') }}" class="sidebar-brand">
             Gojo<span>property</span>
         </a>
         <div class="sidebar-toggler not-active">
@@ -18,12 +18,7 @@
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link">
-                    <i class="link-icon" data-feather="box"></i>
-                    <span class="link-title">back to main page</span>
-                </a>
-            </li>
+
             <li class="nav-item nav-category">Gojo Property</li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"

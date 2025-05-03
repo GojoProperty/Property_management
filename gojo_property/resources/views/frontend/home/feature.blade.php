@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="price-box clearfix">
                                     <div class="price-info pull-left">
-                                        <h6>Start From</h6>
+
                                         <div class="price-box clearfix">
                                             <div class="price-info pull-left">
                                                 <h6>Start From</h6>
