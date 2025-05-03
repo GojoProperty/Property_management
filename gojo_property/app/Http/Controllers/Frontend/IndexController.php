@@ -14,7 +14,7 @@ use App\Models\PackagePlan;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PropertyMessage;
 use Carbon\Carbon;
-use App\Models\Schedule; 
+use App\Models\Schedule;
 
 class IndexController extends Controller
 {
@@ -59,37 +59,36 @@ class IndexController extends Controller
             );
             return redirect()->back()->with($notification);
         }
-    } 
-    public function StoreSchedule(Request $request){
-               $aid = $request->agent_id;
-               $pid = $request->property_id;
+    }
+    public function StoreSchedule(Request $request)
+    {
+        $aid = $request->agent_id;
+        $pid = $request->property_id;
 
-          if(Auth::check()){ 
-               
+        if (Auth::check()) {
+
             Schedule::insert([
-                'user_id'=>Auth::user()->id,
-                'property_id'=>$pid,
-                'agent_id'=>$pid,
-                'tour_date'=>$request->tour_date,
-                'tour_time'=>$request->tour_time,
-                'message'=>$pid,
-                'created_at'=>Carbon::now(),
+                'user_id' => Auth::user()->id,
+                'property_id' => $pid,
+                'agent_id' => $aid,
+                'tour_date' => $request->tour_date,
+                'tour_time' => $request->tour_time,
+                'message' => $pid,
+                'created_at' => Carbon::now(),
             ]);
 
             $notification = array(
                 'message' => 'send request successfully',
                 'alert-type' => 'error'
             );
-                return redirect()->back()->with($notification);
-
-          }else{  
+            return redirect()->back()->with($notification);
+        } else {
             $notification = array(
                 'message' => 'plz login your account first',
                 'alert-type' => 'success'
             );
-            
-             return redirect()->back()->with($notification);
 
-          }
+            return redirect()->back()->with($notification);
+        }
     }
 }

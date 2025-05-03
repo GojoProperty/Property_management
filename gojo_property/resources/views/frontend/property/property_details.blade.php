@@ -263,81 +263,81 @@
                                             <input type="text" name="msg_name" placeholder="Your name"
                                                 value="{{ $userData->name }}">
                                         </div>
-                                        
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea name="message" placeholder="Message"></textarea>
-                                        </div>
-                                        <div class="form-group message-btn">
-                                            <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                        </div>
-                                    </form>
-                                @else
-                                    <form action="{{ route('property.message') }}" method="post" class="default-form">
-                                        @csrf
 
-                                        <input type="hidden" name="property_id" value="{{ $property->id }}">
-
-                                        @if ($property->agent_id == null)
-                                            <input type="hidden" name="agent_id" value="">
-                                        @else
-                                            <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
-                                        @endif
-
-                                        
-                                        <div class="form-group message-btn">
-                                            <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                        </div>
-                                    </form>
-
-                                @endauth
-
-
-
-                            </div>
-
-
-
-                        </div>
-                    </div>
-                    <div class="calculator-widget sidebar-widget">
-                        <div class="calculate-inner">
-                            <div class="widget-title">
-                                <h4>Mortgage Calculator</h4>
-                            </div>
-                            <form method="post" action="mortgage-calculator.html" class="default-form">
-                                <div class="form-group">
-                                    <i class="fas fa-dollar-sign"></i>
-                                    <input type="number" name="total_amount" placeholder="Total Amount">
                                 </div>
                                 <div class="form-group">
-                                    <i class="fas fa-dollar-sign"></i>
-                                    <input type="number" name="down_payment" placeholder="Down Payment">
-                                </div>
-                                <div class="form-group">
-                                    <i class="fas fa-percent"></i>
-                                    <input type="number" name="interest_rate" placeholder="Interest Rate">
-                                </div>
-                                <div class="form-group">
-                                    <i class="far fa-calendar-alt"></i>
-                                    <input type="number" name="loan" placeholder="Loan Terms(Years)">
-                                </div>
-                                <div class="form-group">
-                                    <div class="select-box">
-                                        <select class="wide">
-                                            <option data-display="Monthly">Monthly</option>
-                                            <option value="1">Yearly</option>
-                                        </select>
-                                    </div>
+                                    <textarea name="message" placeholder="Message"></textarea>
                                 </div>
                                 <div class="form-group message-btn">
-                                    <button type="submit" class="theme-btn btn-one">Calculate Now</button>
+                                    <button type="submit" class="theme-btn btn-one">Send Message</button>
                                 </div>
-                            </form>
+                                </form>
+                            @else
+                                <form action="{{ route('property.message') }}" method="post" class="default-form">
+                                    @csrf
+
+                                    <input type="hidden" name="property_id" value="{{ $property->id }}">
+
+                                    @if ($property->agent_id == null)
+                                        <input type="hidden" name="agent_id" value="">
+                                    @else
+                                        <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
+                                    @endif
+
+
+                                    <div class="form-group message-btn">
+                                        <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                    </div>
+                                </form>
+
+                            @endauth
+
+
+
                         </div>
+
+
+
+                    </div>
+                </div>
+                <div class="calculator-widget sidebar-widget">
+                    <div class="calculate-inner">
+                        <div class="widget-title">
+                            <h4>Mortgage Calculator</h4>
+                        </div>
+                        <form method="post" action="mortgage-calculator.html" class="default-form">
+                            <div class="form-group">
+                                <i class="fas fa-dollar-sign"></i>
+                                <input type="number" name="total_amount" placeholder="Total Amount">
+                            </div>
+                            <div class="form-group">
+                                <i class="fas fa-dollar-sign"></i>
+                                <input type="number" name="down_payment" placeholder="Down Payment">
+                            </div>
+                            <div class="form-group">
+                                <i class="fas fa-percent"></i>
+                                <input type="number" name="interest_rate" placeholder="Interest Rate">
+                            </div>
+                            <div class="form-group">
+                                <i class="far fa-calendar-alt"></i>
+                                <input type="number" name="loan" placeholder="Loan Terms(Years)">
+                            </div>
+                            <div class="form-group">
+                                <div class="select-box">
+                                    <select class="wide">
+                                        <option data-display="Monthly">Monthly</option>
+                                        <option value="1">Yearly</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group message-btn">
+                                <button type="submit" class="theme-btn btn-one">Calculate Now</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <div class="similar-content">
             <div class="title">
@@ -351,8 +351,7 @@
                     </div>
                 @else
                     @foreach ($relatedProperty as $item)
-
-                    <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+                        <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
                             <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
                                 data-wow-duration="1500ms">
                                 <div class="inner-box">
