@@ -21,54 +21,52 @@
             <li class="nav-item">
                 <a href="{{ route('home') }}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
-                    <span class="link-title">back to main page</span>
+                    <span class="link-title">Back to Main Page</span>
                 </a>
             </li>
+
             <li class="nav-item nav-category">Gojo Property</li>
+
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
-                    aria-controls="emails">
+                <a class="nav-link" data-bs-toggle="collapse" href="#propertyType" role="button" aria-expanded="false" aria-controls="propertyType">
                     <i class="link-icon" data-feather="mail"></i>
                     <span class="link-title">Property Type</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="emails">
+                <div class="collapse" id="propertyType">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="{{ route('all.type') }}" class="nav-link">All Type</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/email/read.html" class="nav-link">Add Type</a>
+                            <a href="{{ route('add.type') }}" class="nav-link">Add Type</a>
                         </li>
-
                     </ul>
                 </div>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#amenitie" role="button" aria-expanded="false"
-                    aria-controls="emails">
+                <a class="nav-link" data-bs-toggle="collapse" href="#amenitieSection" role="button" aria-expanded="false" aria-controls="amenitieSection">
                     <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">Amenitie </span>
+                    <span class="link-title">Amenitie</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="amenitie">
+                <div class="collapse" id="amenitieSection">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="{{ route('all.amenitie') }}" class="nav-link">All Amenitie</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/email/read.html" class="nav-link">Add Amenitie</a>
+                            <a href="{{ route('add.amenitie') }}" class="nav-link">Add Amenitie</a>
                         </li>
-
                     </ul>
                 </div>
             </li>
-            <!-- property ui in the admin dashboard -->
+
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#property" role="button" aria-expanded="false"
-                    aria-controls="emails">
+                <a class="nav-link" data-bs-toggle="collapse" href="#property" role="button" aria-expanded="false" aria-controls="property">
                     <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">Property </span>
+                    <span class="link-title">Property</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="property">
@@ -79,7 +77,6 @@
                         <li class="nav-item">
                             <a href="{{ route('add.property') }}" class="nav-link">Add Property</a>
                         </li>
-
                     </ul>
                 </div>
             </li>
@@ -90,11 +87,11 @@
                     <span class="link-title">Calendar</span>
                 </a>
             </li>
+
             <li class="nav-item nav-category">Components</li>
 
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
-                    aria-controls="uiComponents">
+                <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false" aria-controls="uiComponents">
                     <i class="link-icon" data-feather="feather"></i>
                     <span class="link-title">UI Kit</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
@@ -110,9 +107,16 @@
                     </ul>
                 </div>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button"
-                    aria-expanded="false" aria-controls="advancedUI">
+                <a href="{{ route('smtp.setting') }}" class="nav-link">
+                    <i class="link-icon" data-feather="calendar"></i>
+                    <span class="link-title">SMTP Setting</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false" aria-controls="advancedUI">
                     <i class="link-icon" data-feather="anchor"></i>
                     <span class="link-title">Advanced UI</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
@@ -125,14 +129,13 @@
                         <li class="nav-item">
                             <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
                         </li>
-
                     </ul>
                 </div>
             </li>
 
             <li class="nav-item nav-category">Docs</li>
             <li class="nav-item">
-                <a href="#"class="nav-link">
+                <a href="#" class="nav-link">
                     <i class="link-icon" data-feather="hash"></i>
                     <span class="link-title">Documentation</span>
                 </a>
