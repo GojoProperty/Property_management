@@ -50,5 +50,68 @@ class TestimonialController extends Controller
         return redirect()->route('all.testimonials')->with($notification);
     
     }
+
+    public function EditTestimonials($id){
+
+        $testimonial = Testimonial::findOrFail($id);
+        return view('backend.testimonial.edit_testimonial',compact('testimonial'));
+
+    }
+
+
+     public function UpdateTestimonials(Request $request){
+        
+        $test_id = $request->id;
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $manager = new ImageManager(new Driver()); 
+            $img = $manager->read($image)->resize(100, 100);
+            $img->save(public_path('upload/testimonial/' . $name_gen));
+            $save_url = 'upload/testimonial/'.$name_gen;
+
+            Testimonial::findOrFail($test_id)->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'message' => $request->message,
+                'image' => $save_url, 
+            ]);
+
+            $notification = array(
+                'message' => 'Testimonial Updated Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.testimonials')->with($notification);
+        }else{
+            Testimonial::findOrFail($test_id)->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'message' => $request->message, 
+            ]);
+            
+            $notification = array(
+                'message' => 'Testimonial Updated Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.testimonials')->with($notification);
+        }
+
+    } 
+
+
+    public function DeleteTestimonials($id){
+
+        $test = Testimonial::findOrFail($id);
+        $img = $test->image;
+        unlink($img);
+        Testimonial::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Testimonial Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification); 
+
+    }
     
 }
