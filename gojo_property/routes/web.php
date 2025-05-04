@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Controllers\Backend\SettingController;
 
+
 // Homepage
 Route::get('/', [UserController::class, 'Index'])->name('home');
 
@@ -145,9 +146,11 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
     });
 
 
-    // Schedule
+    // Schedule Request Route
     Route::get('/agent/schedule/request', [AgentPropertyController::class, 'AgentScheduleRequest'])->name('agent.schedule.request');
     Route::get('/agent/details/schedule/{id}', [AgentPropertyController::class, 'AgentDetailsSchedule'])->name('agent.details.schedule');
+    
+    Route::post('/agent/update/schedule', [AgentPropertyController::class, 'AgentUpdateSchedule'])->name('agent.update.schedule');
     
 });
 
