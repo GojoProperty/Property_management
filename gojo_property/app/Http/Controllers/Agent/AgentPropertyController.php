@@ -480,7 +480,7 @@ class AgentPropertyController extends Controller
     {
         $id = Auth::user()->id;
         $usermsg = Schedule::with(['user', 'property'])
-            ->where('user_id', $id)
+            ->where('agent_id', $id)
             ->get();
 
         return view('agent.schedule.schedule_request', compact('usermsg'));
@@ -491,4 +491,5 @@ class AgentPropertyController extends Controller
         $schedule = Schedule::findOrFail($id);
         return view('agent.schedule.schedule_details', compact('schedule'));
     } // End Method
+    
 }

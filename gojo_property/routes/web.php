@@ -148,6 +148,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
     // Schedule
     Route::get('/agent/schedule/request', [AgentPropertyController::class, 'AgentScheduleRequest'])->name('agent.schedule.request');
     Route::get('/agent/details/schedule/{id}', [AgentPropertyController::class, 'AgentDetailsSchedule'])->name('agent.details.schedule');
+    
 });
 
 // ===================== Frontend Routes =====================
