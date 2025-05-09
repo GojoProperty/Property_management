@@ -1,4 +1,5 @@
 @extends('frontend.frontend_dashboard')
+
 @section('main')
 
 <!-- Page Title Section -->
