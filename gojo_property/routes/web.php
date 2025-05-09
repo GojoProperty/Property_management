@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
 use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\BlogController;
 
 
 Route::get('/', [UserController::class, 'Index']);
@@ -122,9 +123,7 @@ Route::controller(BlogController::class)->group(function(){
     Route::post('/store/post', 'StorePost')->name('store.post'); 
     Route::get('/edit/post/{id}', 'EditPost')->name('edit.post');
     Route::post('/update/post', 'UpdatePost')->name('update.post');
-    Route::get('/delete/post/{id}', 'DeletePost')->name('delete.post');  
-
->>>>>>> blog-post-setup-updated
+    Route::get('/delete/post/{id}', 'DeletePost')->name('delete.post');
 });
 
 

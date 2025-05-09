@@ -11,7 +11,7 @@
         <div class="content-box clearfix">
             <h1>{{ $blog->post_title }}</h1>
             <ul class="bread-crumb clearfix">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{ url('/') }}">Home</a></li>
                 <li>{{ $blog->post_title }}</li>
             </ul>
         </div>
