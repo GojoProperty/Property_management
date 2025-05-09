@@ -153,7 +153,7 @@
                                         $post = App\Models\BlogPost::where('blogcat_id', $cat->id)->get();
                                     @endphp
                                     <li>
-                                        <a href="blog-details.html">
+                                        <a href="{{ url('blog/cat/list/'.$cat->id) }}">
                                             {{ $cat->category_name }}<span>({{ count($post) }})</span>
                                         </a>
                                     </li>
