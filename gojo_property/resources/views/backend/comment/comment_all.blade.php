@@ -4,20 +4,16 @@
 
 <div class="page-content">
 
-    <!-- Breadcrumb Navigation -->
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <!-- Add breadcrumb items if needed -->
         </ol>
     </nav>
 
-    <!-- Blog Comments Table -->
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-
-                    <h6 class="card-title">All Blog Comments</h6>
+                    <h6 class="card-title">Blog Comment All</h6>
 
                     <div class="table-responsive">
                         <table id="dataTableExample" class="table">
@@ -38,16 +34,13 @@
                                         <td>{{ $item['user']['name'] }}</td>
                                         <td>{{ $item->subject }}</td>
                                         <td>
-                                            <a href="{{ route('admin.comment.reply', $item->id) }}" class="btn btn-inverse-warning">
-                                                Replay
-                                            </a>
+                                            <a href="{{ route('admin.comment.reply', $item->id) }}" class="btn btn-inverse-warning">Reply</a>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-
+                    </div>                  
                 </div>
             </div>
         </div>

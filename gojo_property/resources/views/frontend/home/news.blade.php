@@ -7,7 +7,6 @@
         <div class="sec-title centred">
             <h5>News & Article</h5>
             <h2>Stay Update With Realshed</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing sed do eiusmod tempor incididunt <br />labore dolore magna aliqua enim.</p>
         </div>
         <div class="row clearfix">
         @foreach($blog as $item) 

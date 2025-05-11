@@ -1,8 +1,7 @@
 @extends('frontend.frontend_dashboard')
-
 @section('main')
 
-<!-- Page Title Section -->
+<!-- Page Title -->
 <section class="page-title-two bg-color-1 centred">
     <div class="pattern-layer">
         <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});"></div>
@@ -19,11 +18,11 @@
     </div>
 </section>
 
-<!-- Blog Details Section -->
+
+<!-- Sidebar Page Container -->
 <section class="sidebar-page-container blog-details sec-pad-2">
     <div class="auto-container">
         <div class="row clearfix">
-            <!-- Content Side -->
             <div class="col-lg-8 col-md-12 col-sm-12 content-side">
                 <div class="blog-details-content">
                     <div class="news-block-one">
@@ -37,7 +36,7 @@
                                 <ul class="post-info clearfix">
                                     <li class="author-box">
                                         <figure class="author-thumb">
-                                            <img src="{{ !empty($blog->user->photo) ? url('upload/admin_images/'.$blog->user->photo) : url('upload/no_image.jpg') }}" alt="">
+                                            <img src="{{ (!empty($blog->user->photo)) ? url('upload/admin_images/'.$blog->user->photo) : url('upload/no_image.jpg') }}" alt="">
                                         </figure>
                                         <h5><a href=" ">{{ $blog['user']['name'] }}</a></h5>
                                     </li>
@@ -58,129 +57,149 @@
                         </div>
                     </div>
 
-                    <!-- Comments -->
+                    @php
+                        $comment = App\Models\Comment::where('post_id', $blog->id)->where('parent_id', null)->limit(5)->get();
+                    @endphp
+
                     <div class="comments-area">
                         <div class="group-title">
-                            <h4>3 Comments</h4>
+                            <h4>Comments</h4>
                         </div>
-                        @for($i = 1; $i <= 3; $i++)
-                            <div class="comment-box{{ $i == 2 ? ' replay-comment' : '' }}">
+                        <div class="comment-box">
+                            @foreach($comment as $com)
                                 <div class="comment">
                                     <figure class="thumb-box">
-                                        <img src="assets/images/news/comment-{{ $i }}.jpg" alt="">
+                                        <img src="{{ (!empty($com->user->photo)) ? url('upload/user_images/'.$com->user->photo) : url('upload/no_image.jpg') }}" alt="">
                                     </figure>
                                     <div class="comment-inner">
                                         <div class="comment-info clearfix">
-                                            <h5>{{ ['Rebeka Dawson', 'Elizabeth Winstead', 'Benedict Cumbatch'][$i - 1] }}</h5>
-                                            <span>April 10, 2020</span>
+                                            <h5>{{ $com->user->name }}</h5>
+                                            <span>{{ $com->created_at->format('M d Y') }}</span>
                                         </div>
                                         <div class="text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                                            <p>{{ $com->subject }}</p>
+                                            <p>{{ $com->message }}</p>
                                             <a href="blog-details.html"><i class="fas fa-share"></i>Reply</a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endfor
+
+                                @php
+                                    $reply = App\Models\Comment::where('parent_id', $com->id)->get();
+                                @endphp
+
+                                @foreach($reply as $rep)
+                                    <div class="comment replay-comment">
+                                        <figure class="thumb-box">
+                                            <img src="{{ url('upload/ariyan.jpg') }}" alt="">
+                                        </figure>
+                                        <div class="comment-inner">
+                                            <div class="comment-info clearfix">
+                                                <h5>{{ $rep->subject }}</h5>
+                                                <span>{{ $rep->created_at->format('M d Y') }}</span>
+                                            </div>
+                                            <div class="text">
+                                                <p>{{ $rep->message }}</p>
+                                                <a href="blog-details.html"><i class="fas fa-share"></i>Reply</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endforeach
+                        </div>
                     </div>
 
-                    <!-- Comment Form -->
                     <div class="comments-form-area">
                         <div class="group-title">
                             <h4>Leave a Comment</h4>
                         </div>
                         @auth
-                        <form action="{{ route('store.comment') }}" method="post" class="comment-form default-form">
-                            @csrf 
-                            <input type="hidden" name="post_id" value="{{ $blog->id }}">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <input type="text" name="subject" placeholder="Subject" required>
+                            <form action="{{ route('store.comment') }}" method="post" class="comment-form default-form">
+                                @csrf
+                                <input type="hidden" name="post_id" value="{{ $blog->id }}">
+                                <div class="row">
+                                    <div class="col-lg-12 form-group">
+                                        <input type="text" name="subject" placeholder="Subject" required="">
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <textarea name="message" placeholder="Your message"></textarea>
+                                    </div>
+                                    <div class="col-lg-12 form-group message-btn">
+                                        <button type="submit" class="theme-btn btn-one">Submit Now</button>
+                                    </div>
                                 </div>
-                                <div class="col-lg-12 form-group">
-                                    <textarea name="message" placeholder="Your message"></textarea>
-                                </div>
-                                <div class="col-lg-12 form-group message-btn">
-                                    <button type="submit" class="theme-btn btn-one">Submit Now</button>
-                                </div>
-                            </div>
-                        </form>
-                        @else 
-                            <p><b>For Add Comment You need to login first <a href="{{ route('login')}}"> Login Here </a> </b></p>
+                            </form>
+                        @else
+                            <p><b>For Add Comment You need to login first <a href="{{ route('login') }}">Login Here</a></b></p>
                         @endauth
                     </div>
 
                 </div>
             </div>
 
-            <!-- Sidebar Side -->
             <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
                 <div class="blog-sidebar">
-                    <!-- Search Widget -->
                     <div class="sidebar-widget search-widget">
-                        <div class="widget-title"><h4>Search</h4></div>
+                        <div class="widget-title">
+                            <h4>Search</h4>
+                        </div>
                         <div class="search-inner">
                             <form action="blog-1.html" method="post">
                                 <div class="form-group">
-                                    <input type="search" name="search_field" placeholder="Search" required>
+                                    <input type="search" name="search_field" placeholder="Search" required="">
                                     <button type="submit"><i class="fas fa-search"></i></button>
                                 </div>
                             </form>
                         </div>
                     </div>
-
-                    <!-- Social Links -->
                     <div class="sidebar-widget social-widget">
-                        <div class="widget-title"><h4>Follow Us On</h4></div>
+                        <div class="widget-title">
+                            <h4>Follow Us On</h4>
+                        </div>
                         <ul class="social-links clearfix">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="blog-1.html"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="blog-1.html"><i class="fab fa-google-plus-g"></i></a></li>
+                            <li><a href="blog-1.html"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="blog-1.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="blog-1.html"><i class="fab fa-instagram"></i></a></li>
                         </ul>
                     </div>
-
-                    <!-- Category Widget -->
                     <div class="sidebar-widget category-widget">
-                        <div class="widget-title"><h4>Category</h4></div>
+                        <div class="widget-title">
+                            <h4>Category</h4>
+                        </div>
                         <div class="widget-content">
                             <ul class="category-list clearfix">
                                 @foreach($bcategory as $cat)
                                     @php
                                         $post = App\Models\BlogPost::where('blogcat_id', $cat->id)->get();
                                     @endphp
-                                    <li>
-                                        <a href="{{ url('blog/cat/list/'.$cat->id) }}">
-                                            {{ $cat->category_name }}<span>({{ count($post) }})</span>
-                                        </a>
-                                    </li>
+                                    <li><a href="{{ url('blog/cat/list/'.$cat->id) }}">{{ $cat->category_name }}<span>({{ count($post) }})</span></a></li>
                                 @endforeach
                             </ul>
                         </div>
                     </div>
-
-                    <!-- Recent Posts -->
                     <div class="sidebar-widget post-widget">
-                        <div class="widget-title"><h4>Recent Posts</h4></div>
+                        <div class="widget-title">
+                            <h4>Recent Posts</h4>
+                        </div>
                         <div class="post-inner">
                             @foreach($dpost as $post)
                                 <div class="post">
-                                    <figure class="post-thumb">
-                                        <a href="blog-details.html"><img src="{{ asset($post->post_image) }}" alt=""></a>
-                                    </figure>
+                                    <figure class="post-thumb"><a href="blog-details.html"><img src="{{ asset($post->post_image) }}" alt=""></a></figure>
                                     <h5><a href="blog-details.html">{{ $post->post_title }}</a></h5>
                                     <span class="post-date">{{ $post->created_at->format('M d Y') }}</span>
                                 </div>
                             @endforeach
                         </div>
                     </div>
-
                 </div>
             </div>
+
         </div>
     </div>
 </section>
+<!-- Sidebar Page Container End -->
 
 <!-- Subscribe Section -->
 <section class="subscribe-section bg-color-3">
@@ -197,7 +216,7 @@
                 <div class="form-inner">
                     <form action="contact.html" method="post" class="subscribe-form">
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Enter your email" required>
+                            <input type="email" name="email" placeholder="Enter your email" required="">
                             <button type="submit">Subscribe Now</button>
                         </div>
                     </form>
@@ -206,5 +225,6 @@
         </div>
     </div>
 </section>
+<!-- Subscribe Section End -->
 
 @endsection

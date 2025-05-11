@@ -11,7 +11,7 @@ use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
 use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Backend\TestimonialController;
-use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Backend\BlogController;
 
 
 Route::get('/', [UserController::class, 'Index']);
