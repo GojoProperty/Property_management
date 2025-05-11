@@ -13,6 +13,7 @@ use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
+use App\Http\Controllers\PreferenceController;
 
 Route::get('/', [UserController::class, 'Index'])->name('home');
 
@@ -41,6 +42,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/compare', 'UserCompare')->name('user.compare');
         Route::get('/get-compare-property', 'GetCompareProperty');
         Route::get('/compare-remove/{id}', 'CompareRemove');
+    });
+
+    // User Preferences Routes
+    Route::controller(PreferenceController::class)->group(function () {
+        Route::get('/user/preferences', 'create')->name('preferences.create');
+        Route::post('/user/preferences', 'store')->name('preferences.store');
     });
 });
 
