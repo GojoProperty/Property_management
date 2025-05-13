@@ -1,6 +1,6 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
-    <div class="container">
+    <div class="container py-5"> {{-- py-5 = padding-top and padding-bottom --}}
         <h2>Set Your Property Preferences</h2>
 
         @if (session('success'))
@@ -13,12 +13,6 @@
             <div class="form-group">
                 <label for="location">Preferred city</label>
                 <input type="text" name="city" class="form-control" value="{{ old('city', $preference->city) }}">
-            </div>
-
-            <div class="form-group">
-                <label for="lowest_price">Minimum Price</label>
-                <input type="number" name="lowest_price" class="form-control"
-                    value="{{ old('lowest_price', $preference->lowest_price) }}">
             </div>
 
             <div class="form-group">

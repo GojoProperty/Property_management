@@ -12,7 +12,7 @@ class Preference extends Model
     protected $fillable = [
         'user_id',
         'city',
-        'lowest_price',
+
         'max_price',
         'property_type',
         'bedrooms',

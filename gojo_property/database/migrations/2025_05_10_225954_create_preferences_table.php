@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('city')->nullable();
-            $table->decimal('lowest_price', 10, 2)->nullable();
+
             $table->decimal('max_price', 10, 2)->nullable();
             $table->string('property_type')->nullable();
             $table->string('bedrooms')->nullable();
