@@ -1,6 +1,10 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
     <div class="container">
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         <h2>Set Your Property Preferences</h2>
 
         @if (session('success'))
