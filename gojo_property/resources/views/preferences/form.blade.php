@@ -1,14 +1,6 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
     <div class="container">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-=======
-
->>>>>>> Stashed changes
         <h2>Set Your Property Preferences</h2>
 
         @if (session('success'))
@@ -24,7 +16,7 @@
             </div>
 
             <div class="form-group">
-                <label for="min_price">Minimum Price</label>
+                <label for="lowest_price">Minimum Price</label>
                 <input type="number" name="lowest_price" class="form-control"
                     value="{{ old('lowest_price', $preference->lowest_price) }}">
             </div>
@@ -42,13 +34,13 @@
             </div>
 
             <div class="form-group">
-                <label for="property_type">Bedrooms</label>
+                <label for="bedrooms">Bedrooms</label>
                 <input type="text" name="bedrooms" class="form-control"
                     value="{{ old('bedrooms', $preference->bedrooms) }}">
             </div>
 
             <div class="form-group">
-                <label for="property_type">Bathrooms</label>
+                <label for="bathrooms">Bathrooms</label>
                 <input type="text" name="bathrooms" class="form-control"
                     value="{{ old('bathrooms', $preference->bathrooms) }}">
             </div>
