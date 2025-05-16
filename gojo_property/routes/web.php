@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\DashboardrecomendController;
 
 Route::get('/', [UserController::class, 'Index'])->name('home');
 
@@ -28,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
     Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
-
+    Route::get('/user/recommendations', [UserController::class, 'recommendations'])->name('user.recommendations');
     // User Wishlist Routes
     Route::controller(WishlistController::class)->group(function () {
         Route::get('/user/wishlist', 'UserWishlist')->name('user.wishlist');
@@ -150,7 +151,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
 
 
 // Frontend Property Details Routes  
-Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
+Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails'])->name('property.details');
 // Wishlist Add Route 
 Route::post('/add-to-wishList/{property_id}', [WishlistController::class, 'AddToWishList']);
 // Compare Add Route 

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
+use App\Models\PreferenceNotification;
 
 class UserController extends Controller
 {
@@ -95,5 +96,14 @@ class UserController extends Controller
         );
 
         return back()->with($notification);
+    }
+
+    public function recommendations()
+    {
+        $user = Auth::user();
+        $notifications = PreferenceNotification::where('user_id', $user->id)
+            ->with(['property.type']) // So we can access $notify->property->type->name in the Blade file
+            ->latest()->get();
+        return view('frontend.dashboard.recommendation', compact('notifications'));
     }
 }

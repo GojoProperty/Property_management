@@ -16,9 +16,10 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Storage;
 
+use App\Models\Preference;
+use App\Models\PreferenceNotification;
 
 
-$imgmanager = new ImageManager(new Driver());
 
 class PropertyController extends Controller
 {
@@ -109,10 +110,27 @@ class PropertyController extends Controller
             }
         }
 
-        return redirect()->route('all.property')->with([
-            'message' => 'Property Inserted Successfully',
-            'alert-type' => 'success'
-        ]);
+        $preferences = Preference::all();
+
+        foreach ($preferences as $preference) {
+            // Normalize data
+            $matchesCity = $preference->city === null || $preference->city === $property->city;
+            $matchesType = $preference->property_type === null || $preference->property_type === $property->ptype_id;
+            $matchesBedrooms = $preference->bedrooms === null || $preference->bedrooms == $property->bedrooms;
+            $matchesBathrooms = $preference->bathrooms === null || $preference->bathrooms == $property->bathrooms;
+            $matchesPrice = $preference->max_price === null || (float)$property->max_price <= (float)$preference->max_price;
+
+            if ($matchesCity && $matchesType && $matchesBedrooms && $matchesBathrooms && $matchesPrice) {
+                PreferenceNotification::create([
+                    'user_id' => $preference->user_id,
+                    'property_id' => $property->id,
+                ]);
+            }
+            return redirect()->route('all.property')->with([
+                'message' => 'Property Inserted Successfully',
+                'alert-type' => 'success'
+            ]);
+        }
     } // End Method 
 
     public function editProperty($id) //to keep the data that is gonna be edited
