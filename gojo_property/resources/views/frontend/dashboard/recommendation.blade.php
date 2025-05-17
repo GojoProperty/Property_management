@@ -25,7 +25,8 @@
                                     {{ $property->max_price ? '$' . number_format($property->max_price) : 'N/A' }} <br>
                                     <strong>Type:</strong> {{ $property->type->type_name ?? 'N/A' }} <br>
                                     <strong>Bedrooms:</strong> {{ $property->bedrooms ?? 'N/A' }} <br>
-                                    <strong>Bathrooms:</strong> {{ $property->bathrooms ?? 'N/A' }}
+                                    <strong>Bathrooms:</strong> {{ $property->bathrooms ?? 'N/A' }}<br>
+                                    <strong>Property Status:</strong> For {{ $property->property_status ?? 'N/A' }}
                                 </p>
                                 <a href="{{ route('property.details', ['id' => $property->id, 'slug' => $property->property_slug]) }}"
                                     class="btn btn-success btn-sm">

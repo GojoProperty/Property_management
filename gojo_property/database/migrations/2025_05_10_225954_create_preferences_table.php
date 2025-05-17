@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('property_type')->nullable();
             $table->string('bedrooms')->nullable();
             $table->string('bathrooms')->nullable();
+            $table->string('property_status');
+
+
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

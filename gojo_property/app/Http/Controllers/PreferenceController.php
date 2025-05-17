@@ -24,7 +24,8 @@ class PreferenceController extends Controller
             'max_price' => 'nullable|numeric|min:0',
             'property_type' => 'nullable|integer|exists:property_types,id',
             'bathrooms' => 'nullable|string|max:255',
-            'bedrooms' => 'nullable|string|max:255'
+            'bedrooms' => 'nullable|string|max:255',
+            'Property_status' => 'nullable|string|max:255'
         ]);
 
         $validated['user_id'] = Auth::id(); // ← Add this line

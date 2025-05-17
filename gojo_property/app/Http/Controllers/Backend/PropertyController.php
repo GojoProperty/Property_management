@@ -119,8 +119,8 @@ class PropertyController extends Controller
             $matchesBedrooms = $preference->bedrooms === null || $preference->bedrooms == $property->bedrooms;
             $matchesBathrooms = $preference->bathrooms === null || $preference->bathrooms == $property->bathrooms;
             $matchesPrice = $preference->max_price === null || (float)$property->max_price <= (float)$preference->max_price;
-
-            if ($matchesCity && $matchesType && $matchesBedrooms && $matchesBathrooms && $matchesPrice) {
+            $matchesPropStatus = $preference->property_status === null || $preference->property_status == $property->property_status;
+            if ($matchesCity && $matchesType && $matchesBedrooms && $matchesBathrooms && $matchesPrice && $matchesPropStatus) {
                 PreferenceNotification::create([
                     'user_id' => $preference->user_id,
                     'property_id' => $property->id,

@@ -59,7 +59,14 @@
                 <input type="text" name="bathrooms" class="form-control"
                     value="{{ old('bathrooms', $preference->bathrooms) }}">
             </div>
-
+            <div class="form-group ">
+                <label class="form-label">Property Status</label>
+                <select name="property_status" class="form-select" id="propStatus">
+                    <option selected="" disabled="">Select Status</option>
+                    <option value="rent">For Rent</option>
+                    <option value="buy">For Buy</option>
+                </select>
+            </div>
             <button type="submit" class="btn btn-success">Save Preferences</button>
         </form>
     </div>
