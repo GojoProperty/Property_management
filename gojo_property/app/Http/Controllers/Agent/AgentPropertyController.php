@@ -20,6 +20,7 @@
  use Illuminate\Support\Facades\DB;
  use App\Models\PackagePlan;
  use Barryvdh\DomPDF\Facade\Pdf;
+ use App\Models\State;
 
 
  
@@ -37,6 +38,7 @@
      {
          $propertytype = PropertyType::latest()->get();
          $amenities = Amenities::latest()->get();
+         $pstate = State::latest()->get();
          $id = Auth::user()->id;
          $property = User::where('role','agent')->where('id',$id)->first();
          $pcount = $property->credit;
@@ -46,7 +48,7 @@
             return redirect()->route('buy.package');
          }else{
  
-             return view('agent.property.add_property',compact('propertytype','amenities'));
+             return view('agent.property.add_property',compact('propertytype','amenities','pstate'));
          }
      } // End Method 
  
@@ -146,11 +148,12 @@
          $type = $property->amenities_id;
          $property_amin = explode(',', $type);
          $multiImage = MultiImage::where('property_id', $id)->get();
+         $pstate = State::latest()->get();
          $propertytype = PropertyType::latest()->get();
          $amenities = Amenities::latest()->get();
         
  
-         return view('agent.property.edit_property', compact('property', 'propertytype', 'amenities',  'property_amin', 'multiImage', 'facilities'));
+         return view('agent.property.edit_property', compact('property', 'propertytype', 'amenities',  'property_amin', 'multiImage', 'facilities','pstate'));
      } // End Method 
  
      public function AgentUpdateProperty(Request $request)

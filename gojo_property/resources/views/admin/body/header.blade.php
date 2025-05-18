@@ -213,10 +213,15 @@
                 </div>
             </li>
 
-            @php
-                $id = Auth::user()->id;
-                $profileData = App\Models\User::find($id);
-            @endphp
+          @php
+    $user = Auth::user();
+    $profileData = null;
+
+    if ($user) {
+        $profileData = App\Models\User::find($user->id);
+    }
+@endphp
+
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
@@ -231,8 +236,9 @@
                                 alt="profile">
                         </div>
                         <div class="text-center">
-                            <p class="text-muted">{{ $profileData->name }}</p>
-                            <p class="text-muted">{{ $profileData->email }}</p>
+                           <p class="text-muted">{{ $profileData->name ?? 'Guest' }}</p>
+
+                            <p class="text-muted">{{ $profileData->email ?? 'no emails'}}</p>
                         </div>
                     </div>
                     <ul class="list-unstyled p-1">

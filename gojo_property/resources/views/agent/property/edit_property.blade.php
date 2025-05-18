@@ -78,21 +78,23 @@
                                     <div class="col-sm-3">
                                         <div class="mb-3">
                                             <label class="form-label">City</label>
-                                            <input type="text" name="city" class="form-control"
-                                                value="{{ $property->city }}">
-                                        </div>
-                                    </div><!-- Col -->
-                                    <div class="col-sm-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">State</label>
-                                            <input type="text" name="state" class="form-control"
-                                                value="{{ $property->state }}">
-                                        </div>
-                                    </div><!-- Col -->
-                                </div><!-- Row -->
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="mb-3">
+                <input type="text" name="city"  class="form-control" value="{{ $property->city }}" >
+            </div>
+        </div><!-- Col -->
+        <div class="col-sm-3">
+            <div class="mb-3">
+               <label class="form-label">State</label>
+                <select name="state" class="form-select" id="exampleFormControlSelect1">
+                <option selected="" disabled="">Select State</option>
+               @foreach($pstate as $state)
+                <option value="{{ $state->id }}" {{ $state->id == $property->state ? 'selected' : '' }}>{{ $state->state_name }}</option>
+               @endforeach
+            </select>
+            </div>
+        </div><!-- Col -->
+
+          <div class="col-sm-3">
+            <div class="mb-3">
                                             <label class="form-label">Property Size</label>
                                             <input type="text" name="property_size" class="form-control"
                                                 value="{{ $property->property_size }}">

@@ -17,6 +17,7 @@ use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Storage;
 use App\Models\PackagePlan;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\State;
 
 
 
@@ -33,9 +34,10 @@ class PropertyController extends Controller
     public function addProperty()
     {
         $propertytype = PropertyType::latest()->get();
+        $pstate = State::latest()->get();
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
-        return view('backend.property.add_property', compact('propertytype', 'amenities', 'activeAgent'));
+        return view('backend.property.add_property',compact('propertytype','amenities','activeAgent','pstate'));
     } // End Method 
 
     public function storeProperty(Request $request)
@@ -54,7 +56,7 @@ class PropertyController extends Controller
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $imgManager->read($image)->resize(370, 250)->save('upload/property/thambnail/' . $name_gen);
             $save_url = 'upload/property/thambnail/' . $name_gen;
-        } else {
+         }else {
             $save_url = null;
         }
 
@@ -124,12 +126,13 @@ class PropertyController extends Controller
         $type = $property->amenities_id;
         $property_amin = explode(',', $type);
         $multiImage = MultiImage::where('property_id', $id)->get();
+        $pstate = State::latest()->get();
         $propertytype = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.edit_property', compact('property', 'propertytype', 'amenities', 'activeAgent', 'property_amin', 'multiImage', 'facilities'));
-    } // End Method 
+        return view('backend.property.edit_property', compact('property', 'propertytype', 'amenities', 'activeAgent', 'property_amin', 'multiImage', 'facilities','pstate'));
+    }  
 
     public function updateProperty(Request $request)
     {

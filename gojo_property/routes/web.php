@@ -9,10 +9,12 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
+use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
+
 
 Route::get('/', [UserController::class, 'Index']);
 
@@ -44,7 +46,7 @@ Route::middleware('auth')->group(function () {
 });
 
 //login and register route
-Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login');
+Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login')->middleware(RedirectIfAuthenticated::class);
 Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
 
@@ -136,6 +138,16 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/changeStatus', 'changeStatus');
 
 });
+// State  All Route
+Route::controller(\App\Http\Controllers\Backend\StateController::class)->group(function () {
+     Route::get('/all/state', 'AllState')->name('all.state'); 
+     Route::get('/add/state', 'AddState')->name('add.state');
+     Route::post('/store/state', 'StoreState')->name('store.state');
+     Route::get('/edit/state/{id}', 'EditState')->name('edit.state');
+     Route::post('/update/state', 'UpdateState')->name('update.state');
+     Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state'); 
+});
+
 // Agent routes
 /// Agent Group Middleware 
 
