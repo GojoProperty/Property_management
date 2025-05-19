@@ -11,21 +11,23 @@ use Illuminate\Support\Facades\Config;
 
 class AgentController extends Controller
 {
-    public function AgentDashboard(){
+    public function AgentDashboard()
+    {
 
         return view('agent.index');
     } //end method
 
-    public function AgentLogin(){
- 
-        return view('agent.agent_login');
+    public function AgentLogin()
+    {
 
+        return view('agent.agent_login');
     } // End Method 
 
 
-    public function AgentRegister(Request $request){
- 
- 
+    public function AgentRegister(Request $request)
+    {
+
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -40,37 +42,35 @@ class AgentController extends Controller
         Auth::login($user);
 
         return redirect(Config::get('constants.AGENT'));
+    } // End Method 
 
-    }// End Method 
 
-
-    public function AgentLogout(Request $request){
+    public function AgentLogout(Request $request)
+    {
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-         $notification = array(
-            'message' => 'Agent Logout Successfully',
-            'alert-type' => 'success'
-        ); 
 
-        return redirect('/agent/login')->with($notification);
-    }// End Method 
+
+        return redirect('/login');
+    } // End Method 
 
 
 
-    public function AgentProfile(){
- 
+    public function AgentProfile()
+    {
+
         $id = Auth::user()->id;
         $profileData = User::find($id);
-        return view('agent.agent_profile_view',compact('profileData'));
+        return view('agent.agent_profile_view', compact('profileData'));
+    } // End Method 
 
-     }// End Method 
 
-
-public function AgentProfileStore(Request $request){
+    public function AgentProfileStore(Request $request)
+    {
 
         $id = Auth::user()->id;
         $data = User::find($id);
@@ -78,14 +78,14 @@ public function AgentProfileStore(Request $request){
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
-        $data->address = $request->address; 
+        $data->address = $request->address;
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/agent_images/'.$data->photo));
-            $filename = date('YmdHi').$file->getClientOriginalName(); 
-            $file->move(public_path('upload/agent_images'),$filename);
-            $data['photo'] = $filename;  
+            @unlink(public_path('upload/agent_images/' . $data->photo));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/agent_images'), $filename);
+            $data['photo'] = $filename;
         }
 
         $data->save();
@@ -96,20 +96,20 @@ public function AgentProfileStore(Request $request){
         );
 
         return redirect()->back()->with($notification);
+    } // End Method 
 
-     }// End Method 
 
+    public function AgentChangePassword()
+    {
 
-     public function AgentChangePassword(){
- 
         $id = Auth::user()->id;
         $profileData = User::find($id);
-        return view('agent.agent_change_password',compact('profileData'));
+        return view('agent.agent_change_password', compact('profileData'));
+    } // End Method 
 
-     }// End Method 
 
-
-       public function AgentUpdatePassword(Request $request){
+    public function AgentUpdatePassword(Request $request)
+    {
 
         // Validation 
         $request->validate([
@@ -121,29 +121,29 @@ public function AgentProfileStore(Request $request){
         /// Match The Old Password
 
         if (!Hash::check($request->old_password, auth::user()->password)) {
-          
-           $notification = array(
-            'message' => 'Old Password Does not Match!',
-            'alert-type' => 'error'
-        );
 
-        return back()->with($notification);
+            $notification = array(
+                'message' => 'Old Password Does not Match!',
+                'alert-type' => 'error'
+            );
+
+            return back()->with($notification);
         }
 
         /// Update The New Password 
 
-        User::whereId(auth()->user()->id)->update([
-            'password' => Hash::make($request->new_password)
 
+
+        User::whereId(Auth::id())->update([
+            'password' => Hash::make($request->new_password)
         ]);
 
-         $notification = array(
+        $notification = array(
             'message' => 'Password Change Successfully',
             'alert-type' => 'success'
         );
 
-        return back()->with($notification); 
-
-     }// End Method 
+        return back()->with($notification);
+    } // End Method 
 
 }

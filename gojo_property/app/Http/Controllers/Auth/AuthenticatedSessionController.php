@@ -33,10 +33,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $notification = array(
-            'message' => 'User ' . $username . ' Login Successfully',
-            'alert-type' => 'info'
-        );
+
         session()->forget('url.intended');
         $url = '';
 
@@ -48,7 +45,7 @@ class AuthenticatedSessionController extends Controller
             $url = '/dashboard';
         }
 
-        return redirect()->intended($url)->with($notification);
+        return redirect()->intended($url);
     }
 
     /*

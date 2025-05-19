@@ -1,21 +1,21 @@
 /* Change the background & text color of the page wrapper */
 .main-wrapper .page-wrapper {
-    background: #F8F9FA  !important; 
-    color: #333333!important; 
+    background: #34495E  !important; 
+    color: #E0E0E0!important; 
 }
 
 /* customize the navbar*/
 .navbar {
-    background-color:#4CAF50 !important ;
+    background-color:#2C3E50 !important ;
 }
 .navbar a {
-    color: #FFFFFF !important;
+    color: #E0E0E0 !important;
 }
 .navbar a:hover{
     color: #42BA32 !important;
 }
 .navbar .search-form .input-group .input-group-text{
-    background-color: #f2f2f2 !important; 
+    background-color: #3E4E5A !important; 
     padding-bottom: 3px;
     margin-right: 1px;
 }
@@ -26,20 +26,20 @@
 
 }
 #navbarForm {
-    color: #333333;
+    color: #E0E0E0;
 }
 /* Customize the breadcrumb */
 .breadcrumb{
     margin-bottom: 15px;
     padding: 10px;
     border-radius: 5px;
-    background: #EEEEEE !important; 
-    color: #333333 !important;
+    background: #3C4A57 !important; 
+    color: #E0E0E0 !important;
     font-size: 20rem;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2) !important;
 }
 .breadcrumb a {
-    color:#4CAF50 !important ;
+    color:#2C3E50 !important ;
     font-size: 1rem;
     font-weight: bold;
     background-color: #bcd1be;
@@ -48,9 +48,9 @@
 
 /* Card Styling */
 .card {
-    background-color: #ffffff !important; 
-    color: #333333 !important;
-    border: 2px solid #4CAF50 !important; 
+    background-color: #E0E0E0 !important; 
+    color: #E0E0E0 !important;
+    border: 2px solid #2C3E50 !important; 
     border-radius: 12px !important;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2) !important;
     padding: 1.5rem !important;
@@ -62,11 +62,11 @@
     width: 40%;
 }
 .card-body{
-    color: #333333 !important;
+    color: #E0E0E0 !important;
 }
 /* Table Styling */
 .card table {
-    background-color: #f2f2f2 !important; 
+    background-color: #3E4E5A !important; 
     border-radius: 8px;
     width: 100%;
     border-collapse: separate;
@@ -75,8 +75,8 @@
 
 /* Table Head */
 .card thead {
-    background-color: #E0E0E0 !important; 
-    color: #000000 !important; 
+    background-color: #B0BFC7 !important; 
+    color: #E0E0E0 !important; 
     font-weight: bold;
 }
 
@@ -88,38 +88,38 @@
 
 /* Alternating row colors */
 .card tbody tr:nth-child(odd) {
-    background-color: #ececec !important;
+    background-color: #3F4E5B !important;
 }
 
 /* Hover effect */
 .card tbody tr:hover {
-    background-color: #d9d9d9 !important; 
+    background-color: #465863 !important; 
 }
 
 /* Table Borders */
 .card th, .card td {
     padding: 12px;
-    border-bottom: 1px solid #4CAF50 !important; 
+    border-bottom: 1px solid #2C3E50 !important; 
 }
 
 /* Pagination Styling */
 .dataTables_paginate .page-link {
-    background-color: #4CAF50 !important;
+    background-color: #2C3E50 !important;
     color: white !important;
     border: none;
 }
 
 .dataTables_paginate .page-item.active .page-link {
-    background-color: #388E3C !important; 
+    background-color: #1F2D3A !important; 
     color: white !important;
 }
 
 /* Search & Dropdown */
 .dataTables_filter input, .dataTables_length select {
-    border: 1px solid #4CAF50 !important;
+    border: 1px solid #2C3E50 !important;
     border-radius: 5px;
     padding: 5px;
-    background-color:  #4CAF50 !important;
+    background-color:  #2C3E50 !important;
 }
 
 /* Buttons (Edit & Delete) */
@@ -129,24 +129,24 @@
 }
 
 .btn-inverse-danger {
-    background-color: #F44336!important; 
+    background-color: #B55D60!important; 
     color: white !important;
 }
 
 /* Button Variants */
 .card .btn-inverse-info {
-    background-color:#4CAF50 !important;
-    color: #ffffff !important;
+    background-color:#2C3E50 !important;
+    color: #E0E0E0 !important;
 }
 
 .card .btn-inverse-warning {
     background-color: #FFC107 !important;
-    color: #ffffff !important;
+    color: #E0E0E0 !important;
 }
 
 .card .btn-inverse-danger {
-    background-color:#F44336 !important;
-    color: #ffffff !important;
+    background-color:#B55D60 !important;
+    color: #E0E0E0 !important;
 }
 
 /* Button Hover */
@@ -165,19 +165,19 @@
 
 /*the sidebar toogler three-hyphen icon*/
 .sidebar-toggler {
-    color: #4CAF50 !important; 
+    color: #2C3E50 !important; 
 }
 .sidebar-toggler svg {
-    stroke: #4CAF50 !important;
+    stroke: #2C3E50 !important;
     transition: stroke 0.3s ease-in-out; 
 }
 .sidebar-toggler:hover svg {
-    stroke: #388E3C !important;
+    stroke: #1F2D3A !important;
 }
 /* sidebar header styling*/
 .sidebar .sidebar-header{
-    background-color:#4CAF50 !important;
-    color: #E8F5E9 !important; 
+    background-color:#2C3E50 !important;
+    color: #C0CFC7 !important; 
 }
 .sidebar .sidebar-header .sidebar-brand span {
     color: #3A3A3A;
@@ -186,8 +186,8 @@
 }
 /* sidebar body styling*/
 .sidebar .sidebar-body {
-    background-color:#4CAF50 !important;
-    color: #E8F5E9 !important; 
+    background-color:#2C3E50 !important;
+    color: #C0CFC7 !important; 
     font-weight: 500;
     padding: 10px 15px;
     display: block;
@@ -196,7 +196,7 @@
 
 /* Sidebar Links */
 .sidebar a {
-    color: #E8F5E9 !important; 
+    color: #C0CFC7 !important; 
     font-weight: 500;
     padding: 10px 15px;
     display: block;
@@ -206,14 +206,14 @@
 /* Sidebar Links - Hover & Active */
 .sidebar a:hover, 
 .sidebar a.active {
-    background-color: #388E3C !important; 
-    color: #FFFFFF !important; 
+    background-color: #1F2D3A !important; 
+    color: #E0E0E0 !important; 
     border-radius: 5px;
 }
 
 /* Sidebar Icons */
 .sidebar a i {
-    color: #FFFFFF !important; 
+    color: #E0E0E0 !important; 
     margin-right: 8px;
 }
 
@@ -225,25 +225,25 @@
 
 /*customize footer*/
 footer{
-    background-color:  #4CAF50 !important; 
+    background-color:  #2C3E50 !important; 
 }
 footer a{
-    color: #E8F5E9!important;
+    color: #C0CFC7!important;
     font-weight: bold;
 }
 .text-muted{
-    color: #E8F5E9!important;
+    color: #C0CFC7!important;
 }
 /* Card Styling */
 .card-body {
-    background-color: #FFFFFF;
+    background-color: #E0E0E0;
     
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .card .card-title {
-    color:#4CAF50 !important ;
+    color:#2C3E50 !important ;
     text-transform: uppercase;
     font-size: 2rem;
     font-weight: bold;
@@ -253,7 +253,7 @@ footer a{
 /* Form Labels */
 .form-label {
     font-weight: bold;
-    color: #4CAF50; /* Soft Green */
+    color: #2C3E50; /* Soft Green */
 }
 
 /* Input Fields & Select */
@@ -262,21 +262,21 @@ footer a{
     border-radius: 5px;
     padding: 8px;
     transition: border-color 0.3s ease-in-out;
-    background-color: #ffffff !important; 
-    color: #333333 !important;
-    border: 2px solid #4CAF50 !important; 
+    background-color: #E0E0E0 !important; 
+    color: #2C3E50!important;
+    border: 2px solid #2C3E50 !important; 
     font-size: 1rem;
     font-weight: 500;
 }
 
 .form-control:focus, 
 .form-select:focus {
-    border-color: #4CAF50; /* Green Focus */
+    border-color: #2C3E50; /* Green Focus */
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 /* Custom Background for Select Input */
 #amenities_id {
-    background-color: #F8F9FA; /* Soft Light Gray (Primary Color) */
+    background-color: #34495E; /* Soft Light Gray (Primary Color) */
     border: 1px solid #ccc;
     padding: 8px;
     border-radius: 5px;
@@ -287,74 +287,75 @@ footer a{
 
 /* On Focus */
 #amenities_id:focus {
-    background-color: #ffffff;
-    border-color: #4CAF50; /* Soft Green (Secondary Color) */
+    background-color: #E0E0E0;
+    border-color: #2C3E50; /* Soft Green (Secondary Color) */
     outline: none;
 }
 
 /* Customizing the Select2 Dropdown */
+.select2-container--default .select2-results > .select2-results__options {
+    background-color: #34495E;
+    color: #E0E0E0;
+}
+
 .select2-container--default .select2-selection--multiple {
-    background-color: #F8F9FA !important; /* Match input background */
-    border: 1px solid #ccc !important;
-    border-radius: 5px !important;
-    padding: 5px !important;
+    background-color: #34495E;
+    color: #E0E0E0;
+    border: 1px solid #2C3E50;
 }
 
-/* When Select2 is focused */
-.select2-container--default.select2-container--focus .select2-selection--multiple {
-    border-color: #4CAF50 !important; /* Green border on focus */
-    background-color: #ffffff !important;
+.select2-container--default .select2-selection__choice {
+    background-color: #2C3E50;
+    color: #E0E0E0;
+}
+select option:hover,
+.select2-results__option--highlighted {
+    background-color: #2C3E50;
+    color: #FFFFFF;
 }
 
-/* Selected Items */
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-    background-color: #4CAF50 !important; /* Soft Green for selected items */
-    color: white !important;
-    border-radius: 3px !important;
-    padding: 3px 6px !important;
-}
 
 /* Set the editor content background */
 .tox .tox-edit-area {
-    background-color: #F8F9FA !important;
+    background-color: #34495E !important;
   }
   
   /* Change the text color */
   .tox .tox-edit-area iframe {
-    color: #4CAF50 !important;
+    color: #2C3E50 !important;
   }
   
   /* Customize the toolbar */
   .tox .tox-toolbar {
-    background-color: #4CAF50 !important;
+    background-color: #2C3E50 !important;
   }
   
   /* Style the toolbar buttons */
   .tox .tox-toolbar__group .tox-tbtn {
-    background-color: #F8F9FA !important;
-    color: #4CAF50 !important;
-    border: 1px solid #4CAF50 !important;
+    background-color: #34495E !important;
+    color: #2C3E50 !important;
+    border: 1px solid #2C3E50 !important;
     border-radius: 4px;
   }
   
   /* Dropdown menu background */
   .tox .tox-mbtn {
-    background-color: #F8F9FA !important;
-    color: #4CAF50 !important;
-    border: 1px solid #4CAF50 !important;
+    background-color: #34495E !important;
+    color: #2C3E50 !important;
+    border: 1px solid #2C3E50 !important;
   }
   
 #tinymceExample{
-    background-color: #ffffff !important;
+    background-color: #E0E0E0 !important;
 }
 .tox.tox-tinymce .tox-menubar{
-    background-color: #F8F9FA !important;
+    background-color: #34495E !important;
 }
 
 .tox.tox-tinymce .tox-statusbar {
-    background-color: #F8F9FA !important;
+    background-color: #34495E !important;
     border-color: #2aaa2a;
-    color: #4CAF50 !important;
+    color: #2C3E50 !important;
 }
 /* File Input */
 input[type="file"] {
@@ -366,8 +367,8 @@ input[type="file"] {
 #mainThmb {
     max-width: 100px;
     margin-top: 10px;
-    background-color: #ffffff !important; 
-    color: #333333 !important;
+    background-color: #E0E0E0 !important; 
+    color: #E0E0E0 !important;
 }
 
 /* Textarea */
@@ -389,7 +390,7 @@ input[type="file"] {
 /* Custom File Upload Button */
 .custom-file-label {
     display: inline-block;
-    background-color: #4CAF50; /* Green */
+    background-color: #2C3E50; /* Green */
     color: white;
     padding: 8px 15px;
     font-size: 14px;
@@ -400,7 +401,7 @@ input[type="file"] {
 }
 
 .custom-file-label:hover {
-    background-color: #45A049; /* Darker green */
+    background-color: #3A5A68; /* Darker green */
 }
 
 /* Display selected file name */
@@ -423,39 +424,42 @@ input[type="file"] {
     appearance: none;
     print-color-adjust: exact;
 }
+.form-check-label{
+  color: #2C3E50;
+}
 /* Checkbox & Radio */
 .form-check-input:checked {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
+    background-color: #2C3E50;
+    border-color: #2C3E50;
 }
 
 /* Buttons */
 .btn-primary {
-    background-color: #4CAF50; /* Green */
-    border-color: #4CAF50;
+    background-color: #2C3E50; /* Green */
+    border-color: #2C3E50;
     padding: 10px 20px;
     font-weight: bold;
     transition: background 0.3s ease-in-out;
 }
 
 .btn-primary:hover {
-    background-color: #45A049; /* Slightly darker green */
+    background-color: #3A5A68; /* Slightly darker green */
 }
 
 /* Add More Button */
 .btn-success {
-    background-color: #66BB6A; /* Lighter green */
-    border-color: #66BB6A;
+    background-color: #A3B18A; /* Lighter green */
+    border-color: #A3B18A;
     transition: background 0.3s ease-in-out;
 }
 
 .btn-success:hover {
-    background-color: #57A05C;
+    background-color: #8D9F78;
 }
 
 /* Links */
 a {
-    color: #4CAF50;
+    color: #2C3E50;
     text-decoration: none;
     font-weight: bold;
 }
@@ -468,7 +472,7 @@ a:hover {
 /* Change the background and text color of the entire body */
 body {
     background-color: #121212 !important; 
-    color: #E0E0E0 !important; 
+    color: #B0BFC7 !important; 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -482,13 +486,13 @@ body {
 
 /* Adjust text styles globally */
 h1, h2, h3, h4, h5, h6 {
-    color: #FFFFFF !important;
+    color: #E0E0E0 !important;
 }
 
 /* Override Bootstrap color variables */
 :root {
-    --bs-body-bg:  #F8F9FA  !important;
-    --bs-body-color:  #333333 !important;
+    --bs-body-bg:  #34495E  !important;
+    --bs-body-color:  #E0E0E0 !important;
     --bs-link-color: #00ADB5 !important;
     --bs-primary: #00ADB5 !important;
     --bs-secondary: #393E46 !important;
