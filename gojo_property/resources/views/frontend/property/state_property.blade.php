@@ -8,10 +8,10 @@
              </div>
              <div class="auto-container">
                  <div class="content-box clearfix">
-                     <h1>Rent Property </h1>
+                     <h1>{{$bstate->state_name}}</h1>
                      <ul class="bread-crumb clearfix">
                          <li><a href="index.html">Home</a></li>
-                         <li>Rent Property List</li>
+                         <li>{{$bstate->state_name}} Property List</li>
                      </ul>
                  </div>
              </div>
@@ -29,70 +29,63 @@
                                  <div class="widget-title">
                                      <h5>Property</h5>
                                  </div>
- @php
-$states = App\Models\State::latest()->get();
-$ptypes = App\Models\PropertyType::latest()->get();
-
- @endphp
-
-                                 <form action="{{ route('all.property.search') }}" method="post" class="search-form">
-    @csrf 
-
-    <div class="widget-content">
-        <div class="select-box">
-            <select name="property_status" class="wide">
-               <option data-display="All Type">All Status</option>
-               <option value="rent">Rent</option>
-               <option value="buy">Buy</option> 
-            </select>
-        </div>
-        <div class="select-box">
-            <select name="ptype_id" class="wide">
-               <option data-display="Type" selected="" disabled="" >Select Type</option>
-               
-              @foreach($ptypes as $type)
-   <option value="{{ $type->type_name }}">{{ $type->type_name }}</option>
-   @endforeach
-                
-            </select>
-        </div>
-        <div class="select-box">
-            <select name="state" class="wide">
-               <option data-display="State" selected="" disabled="" >Select State</option>
-               @foreach($states as $state)
-   <option value="{{ $state->state_name }}">{{ $state->state_name }}</option>
-   @endforeach
-            </select>
-        </div>
-        <div class="select-box">
-            <select name="bedrooms" class="wide">
-               <option data-display="Rooms">Max Rooms</option>
-               <option value="1">1 Rooms</option>
-               <option value="2">2 Rooms</option>
-               <option value="3">3 Rooms</option>
-               <option value="4">4 Rooms</option>
-               <option value="5">5 Rooms</option>
-            </select>
-        </div>
-        <div class="select-box">
-            <select name="bathrooms" class="wide">
-               <option data-display="BathRooms">Max BathRoom</option>
-               <option value="1">1 BathRoom</option>
-               <option value="2">2 BathRoom</option>
-               <option value="3">3 BathRoom</option>
-               <option value="4">4 BathRoom</option>
-               <option value="5">5 BathRoom</option>
-            </select>
-        </div>
-      
-        <div class="filter-btn">
-            <button type="submit" class="theme-btn btn-one"><i class="fas fa-filter"></i>&nbsp;Filter</button>
-        </div>
-    </div>
-</form>
-
-
-</div>
+                                 <div class="widget-content">
+                                     <div class="select-box">
+                                         <select class="wide">
+                                            <option data-display="All Type">All Type</option>
+                                            <option value="1">Villa</option>
+                                            <option value="2">Commercial</option>
+                                            <option value="3">Residential</option>
+                                         </select>
+                                     </div>
+                                     <div class="select-box">
+                                         <select class="wide">
+                                            <option data-display="Select Location">Select Location</option>
+                                            <option value="1">New York</option>
+                                            <option value="2">California</option>
+                                            <option value="3">London</option>
+                                            <option value="4">Maxico</option>
+                                         </select>
+                                     </div>
+                                     <div class="select-box">
+                                         <select class="wide">
+                                            <option data-display="This Area Only">This Area Only</option>
+                                            <option value="1">New York</option>
+                                            <option value="2">California</option>
+                                            <option value="3">London</option>
+                                            <option value="4">Maxico</option>
+                                         </select>
+                                     </div>
+                                     <div class="select-box">
+                                         <select class="wide">
+                                            <option data-display="All Type">Max Rooms</option>
+                                            <option value="1">2+ Rooms</option>
+                                            <option value="2">3+ Rooms</option>
+                                            <option value="3">4+ Rooms</option>
+                                            <option value="4">5+ Rooms</option>
+                                         </select>
+                                     </div>
+                                     <div class="select-box">
+                                         <select class="wide">
+                                            <option data-display="Most Popular">Most Popular</option>
+                                            <option value="1">Villa</option>
+                                            <option value="2">Commercial</option>
+                                            <option value="3">Residential</option>
+                                         </select>
+                                     </div>
+                                     <div class="select-box">
+                                         <select class="wide">
+                                            <option data-display="All Type">Select Floor</option>
+                                            <option value="1">2x Floor</option>
+                                            <option value="2">3x Floor</option>
+                                            <option value="3">4x Floor</option>
+                                         </select>
+                                     </div>
+                                     <div class="filter-btn">
+                                         <button type="submit" class="theme-btn btn-one"><i class="fas fa-filter"></i>&nbsp;Filter</button>
+                                     </div>
+                                 </div>
+                             </div>
                              <div class="price-filter sidebar-widget">
                                  <div class="widget-title">
                                      <h5>Select Price Range</h5>
@@ -131,9 +124,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                              </div>
                              <div class="wrapper list">
                                  <div class="deals-list-content list-item">
-                                  
- 
- 
+    
       @foreach($property as $item)
              <div class="deals-block-one">
                  <div class="inner-box">
@@ -193,10 +184,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                  </div>
              </div>
              @endforeach
- 
- 
- 
-                                  
+     
                                  </div>
                                 
                              </div>
@@ -241,12 +229,5 @@ $ptypes = App\Models\PropertyType::latest()->get();
              </div>
          </section>
          <!-- subscribe-section end -->
- 
- 
- 
- 
- 
- 
- 
  
  @endsection

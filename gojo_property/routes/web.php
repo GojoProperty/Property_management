@@ -207,3 +207,11 @@ Route::get('/rent/property', [IndexController::class, 'RentProperty'])->name('re
 Route::get('/buy/property', [IndexController::class, 'BuyProperty'])->name('buy.property');
 // Get All Property Type Data 
 Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');
+// Get State Details Data 
+ Route::get('/state/details/{id}', [IndexController::class, 'StateDetails'])->name('state.details');
+ // Home Page Buy Seach Option
+   Route::post('/buy/property/search', [IndexController::class, 'BuyPropertySearch'])->name('buy.property.search');
+   // Home Page Rent Seach Option
+   Route::post('/rent/property/search', [IndexController::class, 'RentPropertySeach'])->name('rent.property.search');
+   // All Property Seach Option
+   Route::post('/all/property/search', [IndexController::class, 'AllPropertySeach'])->name('all.property.search');
