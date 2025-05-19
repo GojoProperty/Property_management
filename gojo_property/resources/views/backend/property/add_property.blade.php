@@ -61,6 +61,7 @@
                                                     class="custom-file-input" multiple>
                                                 <label for="multiImg" class="custom-file-label">Choose Files</label>
                                                 <span id="file-name">No files chosen</span>
+                                                <span id="file-name">No files chosen</span>
                                             </div>
                                             <div class="row" id="preview_img"></div>
                                         </div>
@@ -243,6 +244,7 @@
                                                 Add
                                                 More..</a>
                                         </div>
+
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary w-auto mt-4">Save Changes </button>
