@@ -52,9 +52,9 @@ Route::middleware('auth')->group(function () {
 });
 
 //login and register route
-Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login');
+
 Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
+
 
 require __DIR__ . '/auth.php';
 
@@ -108,6 +108,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/details/property/{id}', 'DetailsProperty')->name('details.property');
         Route::post('/inactive/property', 'inactiveProperty')->name('inactive.property');
         Route::post('/active/property', 'activeProperty')->name('active.property');
+        Route::get('/property/{id}/rules', 'viewTerms')->name('property.rules');
     });
 });
 

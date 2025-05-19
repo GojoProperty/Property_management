@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Amenities;
 use App\Models\PropertyType;
 use App\Models\User;
+use App\Models\Rules;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
 use Intervention\Image\ImageManager;
@@ -109,7 +110,13 @@ class PropertyController extends Controller
                 ]);
             }
         }
-
+        // Save terms of use
+        if ($request->filled('rules')) {
+            Rules::create([
+                'property_id' => $property->id,
+                'content' => $request->rules
+            ]);
+        }
         $preferences = Preference::all();
 
         foreach ($preferences as $preference) {
@@ -190,6 +197,11 @@ class PropertyController extends Controller
 
         return redirect()->route('all.property')->with($notification);
     } // End Method 
+    public function viewTerms($id)
+    {
+        $property = Property::with('rules')->findOrFail($id);
+        return view('frontend.property.rules', compact('property'));
+    }
 
     public function updatePropertyThambnail(Request $request)
     {

@@ -153,6 +153,16 @@
                                 </div>
                             </div>
                         </div>
+                        <tr>
+                            <td>Terms of Use</td>
+                            <td>
+                                <a href="{{ route('property.rules', $property->id) }}"
+                                    class="btn btn-sm btn-outline-primary">
+                                    View Terms of Use
+                                </a>
+                            </td>
+                        </tr>
+
                         <div class="statistics-box content-widget"><!--video -->
                             <div class="title-box">
                                 <h4>Property Video </h4>

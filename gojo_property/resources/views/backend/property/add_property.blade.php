@@ -243,6 +243,12 @@
                                                 Add
                                                 More..</a>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="rules">Terms of Use / Rules & Regulations</label>
+                                            <textarea name="rules" id="rules" class="form-control" rows="5"
+                                                placeholder="Enter rules and regulations here..."></textarea>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary w-auto">Save Changes </button>

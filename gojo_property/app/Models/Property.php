@@ -26,4 +26,8 @@ class Property extends Model
     {
         return $this->hasMany(Facility::class, 'property_id');
     }
+    public function rules()
+    {
+        return $this->hasOne(Rules::class);
+    }
 }
