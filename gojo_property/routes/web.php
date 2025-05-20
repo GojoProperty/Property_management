@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-//login and register route
+// and register route
 
 Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
 
