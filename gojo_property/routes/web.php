@@ -118,6 +118,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
     Route::post('/agent/profile/store', [AgentController::class, 'AgentProfileStore'])->name('agent.profile.store');
     Route::get('/agent/change/password', [AgentController::class, 'AgentChangePassword'])->name('agent.change.password');
     Route::post('/agent/update/password', [AgentController::class, 'AgentUpdatePassword'])->name('agent.update.password');
+    
 
     // Agent Property
     Route::controller(AgentPropertyController::class)->group(function () {
@@ -134,6 +135,9 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
         Route::get('/agent/details/property/{id}', 'AgentDetailsProperty')->name('agent.details.property');
         Route::get('/agent/delete/property/{id}', 'AgentDeleteProperty')->name('agent.delete.property');
         Route::get('/agent/message/details/{id}', 'AgentMessageDetails')->name('agent.message.details');
+        
+
+
 
         // Buy Package
         Route::get('/buy/package', 'BuyPackage')->name('buy.package');
