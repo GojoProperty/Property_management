@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
     <!-- End layout styles -->
 
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/custom.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('backend/assets/css/custom.css') }}"> -->
 
     <link rel="shortcut icon" href="{{ asset('backend/assets/images/logo.png') }}" />
 

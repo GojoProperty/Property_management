@@ -9,11 +9,8 @@ use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
 use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Agent\AgentPropertyController;
-use App\Http\Controllers\Frontend\IndexController;
-use App\Http\Controllers\Frontend\WishlistController;
-use App\Http\Controllers\Frontend\CompareController;
-use App\Http\Controllers\Backend\SettingController;
-
+use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Backend\BlogController;
 
 
 Route::get('/', [UserController::class, 'Index'])->name('home');;
@@ -151,6 +148,40 @@ Route::controller(\App\Http\Controllers\Backend\StateController::class)->group(f
     Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
 });
 
+// Testimonials  All Route 
+Route::controller(TestimonialController::class)->group(function () {
+
+    Route::get('/all/testimonials', 'AllTestimonials')->name('all.testimonials');
+    Route::get('/add/testimonials', 'AddTestimonials')->name('add.testimonials');
+    Route::post('/store/testimonials', 'StoreTestimonials')->name('store.testimonials');
+    Route::get('/edit/testimonials/{id}', 'EditTestimonials')->name('edit.testimonials');
+    Route::post('/update/testimonials', 'UpdateTestimonials')->name('update.testimonials');
+    Route::get('/delete/testimonials/{id}', 'DeleteTestimonials')->name('delete.testimonials');
+});
+
+
+// Blog Cateory All Route 
+Route::controller(BlogController::class)->group(function () {
+
+    Route::get('/all/blog/category', 'AllBlogCategory')->name('all.blog.category');
+    Route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
+    Route::get('/blog/category/{id}', 'EditBlogCategory');
+    Route::post('/update/blog/category', 'UpdateBlogCategory')->name('update.blog.category');
+    Route::get('/delete/blog/category/{id}', 'DeleteBlogCategory')->name('delete.blog.category');
+});
+
+// Blog Post  All Route 
+Route::controller(BlogController::class)->group(function () {
+
+    Route::get('/all/post', 'AllPost')->name('all.post');
+    Route::get('/add/post', 'AddPost')->name('add.post');
+    Route::post('/store/post', 'StorePost')->name('store.post');
+    Route::get('/edit/post/{id}', 'EditPost')->name('edit.post');
+    Route::post('/update/post', 'UpdatePost')->name('update.post');
+    Route::get('/delete/post/{id}', 'DeletePost')->name('delete.post');
+});
+
+
 // Agent routes
 /// Agent Group Middleware 
 
@@ -222,3 +253,12 @@ Route::controller(IndexController::class)->group(function () {
 Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
 Route::post('/add-to-wishlist/{property_id}', [WishlistController::class, 'AddToWishList']);
 Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
+
+// Blog Details Route 
+Route::get('/blog/details/{slug}', [BlogController::class, 'BlogDetails']);
+Route::get('/blog/cat/list/{id}', [BlogController::class, 'BlogCatList']);
+Route::get('/blog', [BlogController::class, 'BlogList'])->name('blog.list');
+Route::post('/store/comment', [BlogController::class, 'StoreComment'])->name('store.comment');
+Route::get('/admin/blog/comment', [BlogController::class, 'AdminBlogComment'])->name('admin.blog.comment');
+Route::get('/admin/comment/reply/{id}', [BlogController::class, 'AdminCommentReply'])->name('admin.comment.reply');
+Route::post('/reply/message', [BlogController::class, 'ReplyMessage'])->name('reply.message');
