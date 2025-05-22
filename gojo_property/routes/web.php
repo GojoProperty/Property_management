@@ -9,8 +9,15 @@ use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
 use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Agent\AgentPropertyController;
+
+use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\CompareController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
+
+
 
 
 Route::get('/', [UserController::class, 'Index'])->name('home');;
