@@ -43,10 +43,7 @@
                                         <td>City </td>
                                         <td><code>{{ $property->city }}</code></td>
                                     </tr>
-                                    <tr>
-                                        <td>State </td>
-                                        <td><code>{{ $property->state }}</code></td>
-                                    </tr>
+                                   <td><code>{{ $property->pstate->state_name ?? 'N/A' }}</code></td>
 
                                     <tr>
                                         <td>Main Image </td>
@@ -110,11 +107,10 @@
                                         <td>
                                             <select name="amenities_id[]" class="js-example-basic-multiple form-select"
                                                 multiple="multiple" data-width="100%">
-                                                @foreach ($amenities as $ameni)
-                                                    <option value="{{ $ameni->amenities_name }}"
-                                                        {{ in_array($ameni->amenities_name, $property_amin) ? 'selected' : '' }}>
-                                                        {{ $ameni->amenities_name }}</option>
-                                                @endforeach
+                                              @foreach ($amenities as $ameni)
+  <option value="{{ $ameni->amenitis_name }}" {{ (in_array($ameni->amenitis_name,$property_amin)) ? 'selected' : '' }} >{{ $ameni->amenitis_name }}</option>
+@endforeach
+
                                             </select>
                                         </td>
                                     </tr>

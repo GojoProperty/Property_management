@@ -7,6 +7,7 @@ use App\Http\Controllers\AgentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
+use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
@@ -14,10 +15,9 @@ use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Controllers\Backend\SettingController;
 
 
-// Homepage
-Route::get('/', [UserController::class, 'Index'])->name('home');
 
-// Dashboard
+Route::get('/', [UserController::class, 'Index'])->name('home');;
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -48,8 +48,8 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-// Auth routes
-Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login');
+//login and register route
+Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login')->middleware(RedirectIfAuthenticated::class);
 Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
 
@@ -141,6 +141,16 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/delete/agent/{id}', 'DeleteAgent')->name('delete.agent');
     Route::get('/changeStatus', 'changeStatus');
 });
+// State  All Route
+Route::controller(\App\Http\Controllers\Backend\StateController::class)->group(function () {
+    Route::get('/all/state', 'AllState')->name('all.state');
+    Route::get('/add/state', 'AddState')->name('add.state');
+    Route::post('/store/state', 'StoreState')->name('store.state');
+    Route::get('/edit/state/{id}', 'EditState')->name('edit.state');
+    Route::post('/update/state', 'UpdateState')->name('update.state');
+    Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
+});
+
 // Agent routes
 /// Agent Group Middleware 
 
@@ -206,4 +216,11 @@ Route::get('/rent/property', [IndexController::class, 'RentProperty'])->name('re
 Route::get('/buy/property', [IndexController::class, 'BuyProperty'])->name('buy.property');
 // Get All Property Type Data 
 Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');
-Route::post('/store/schedule', [IndexController::class, 'StoreSchedule'])->name('store.schedule');
+// Get State Details Data 
+Route::get('/state/details/{id}', [IndexController::class, 'StateDetails'])->name('state.details');
+// Home Page Buy Seach Option
+Route::post('/buy/property/search', [IndexController::class, 'BuyPropertySearch'])->name('buy.property.search');
+// Home Page Rent Seach Option
+Route::post('/rent/property/search', [IndexController::class, 'RentPropertySeach'])->name('rent.property.search');
+// All Property Seach Option
+Route::post('/all/property/search', [IndexController::class, 'AllPropertySeach'])->name('all.property.search');

@@ -1,8 +1,13 @@
 @php
-    $id = Auth::user()->id;
-    $agentId = App\Models\User::find($id);
-    $status = $agentId->status;
+    $user = Auth::user();
+    $status = null;
+
+    if ($user) {
+        $agent = App\Models\User::find($user->id);
+        $status = $agent?->status;
+    }
 @endphp
+
 
 <nav class="sidebar">
     <div class="sidebar-header">

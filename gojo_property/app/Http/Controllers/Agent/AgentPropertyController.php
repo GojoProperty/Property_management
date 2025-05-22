@@ -39,6 +39,7 @@ class AgentPropertyController extends Controller
     {
         $propertytype = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
+        $pstate = State::latest()->get();
         $id = Auth::user()->id;
         $property = User::where('role', 'agent')->where('id', $id)->first();
         $pcount = $property->credit;
@@ -48,7 +49,7 @@ class AgentPropertyController extends Controller
             return redirect()->route('buy.package');
         } else {
 
-            return view('agent.property.add_property', compact('propertytype', 'amenities'));
+            return view('agent.property.add_property', compact('propertytype', 'amenities', 'pstate'));
         }
     } // End Method 
 
@@ -148,11 +149,12 @@ class AgentPropertyController extends Controller
         $type = $property->amenities_id;
         $property_amin = explode(',', $type);
         $multiImage = MultiImage::where('property_id', $id)->get();
+        $pstate = State::latest()->get();
         $propertytype = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
 
 
-        return view('agent.property.edit_property', compact('property', 'propertytype', 'amenities',  'property_amin', 'multiImage', 'facilities'));
+        return view('agent.property.edit_property', compact('property', 'propertytype', 'amenities',  'property_amin', 'multiImage', 'facilities', 'pstate'));
     } // End Method 
 
     public function AgentUpdateProperty(Request $request)
@@ -491,9 +493,10 @@ class AgentPropertyController extends Controller
         $schedule = Schedule::findOrFail($id);
         return view('agent.schedule.schedule_details', compact('schedule'));
     } // End Method
-    
-    public function AgentUpdateSchedule(Request $request){
- 
+
+    public function AgentUpdateSchedule(Request $request)
+    {
+
         $sid = $request->id;
 
         Schedule::findOrFail($sid)->update([
@@ -501,16 +504,13 @@ class AgentPropertyController extends Controller
 
         ]);
 
-         $notification = array(
+        $notification = array(
             'message' => 'You have Confirm Schedule Successfully',
             'alert-type' => 'success'
         );
 
         return redirect()->route('agent.schedule.request')->with($notification);
+    } // End Method 
 
-
-    }// End Method 
-    
 
 }
-
