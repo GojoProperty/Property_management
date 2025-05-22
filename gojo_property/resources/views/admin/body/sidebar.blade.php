@@ -12,7 +12,7 @@
 <nav class="sidebar">
     <!-- Sidebar Header -->
     <div class="sidebar-header">
-        <a href="#" class="sidebar-brand">
+        <a href="{{ route('home') }}" class="sidebar-brand">
             Gojo<span>property</span>
         </a>
         <div class="sidebar-toggler not-active">

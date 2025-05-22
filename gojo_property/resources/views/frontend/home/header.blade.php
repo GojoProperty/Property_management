@@ -17,29 +17,29 @@
                     <li><a href="index.html"><i class="fab fa-google-plus-g"></i></a></li>
                     <li><a href="index.html"><i class="fab fa-vimeo-v"></i></a></li>
                 </ul>
+                <div> {{-- sign up based on autentication  --}}
+                    @auth
+                        <div class="sign-box">
+                            @php
+                                $role = Auth::user()->role;
+                            @endphp
 
-                @auth
-                    <div class="sign-box">
-                        @php
-                            $role = Auth::user()->role;
-                        @endphp
+                            @if ($role === 'admin')
+                                <a href="{{ route('admin.dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
+                            @elseif ($role === 'agent')
+                                <a href="{{ route('agent.dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
+                            @else
+                                <a href="{{ route('dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
+                            @endif
 
-                        @if ($role === 'admin')
-                            <a href="{{ route('admin.dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
-                        @elseif ($role === 'agent')
-                            <a href="{{ route('agent.dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
-                        @else
-                            <a href="{{ route('dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
-                        @endif
-
-                        <a href="{{ route('user.logout') }}"><i class="fas fa-user"></i>Logout</a>
-                    </div>
-                @else
-                    <div class="sign-box">
-                        <a href="{{ route('login') }}"><i class="fas fa-user"></i>Sign In</a>
-                    </div>
-                @endauth
-
+                            <a href="{{ route('user.logout') }}"><i class="fas fa-user"></i>Logout</a>
+                        </div>
+                    @else
+                        <div class="sign-box">
+                            <a href="{{ route('login') }}"><i class="fas fa-user"></i>Sign In</a>
+                        </div>
+                    @endauth
+                </div>
             </div>
         </div>
     </div>
@@ -48,7 +48,6 @@
         <div class="outer-box">
             <div class="main-box">
                 <div class="logo-box">
-                    {{-- <figure class="logo"><a href="index.html"><img src="{{ asset('frontend/assets/images/logo.png') }}" alt=""></a></figure> --}}
                     <figure class="logo"><a href="{{ url('/') }}"><img
                                 src="{{ asset('frontend/assets/images/Gojologo.png') }}" alt=""></a></figure>
                 </div>
@@ -171,6 +170,7 @@
             </div>
         </div>
     </div>
+
 
     <!--sticky Header-->
     <div class="sticky-header">
