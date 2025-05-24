@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AgentController;
+use Illuminate\Support\Facades\Mail;
 
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
+use App\Http\Controllers\TransactionController;
 
 Route::get('/', [UserController::class, 'Index']);
 
@@ -195,3 +197,17 @@ Route::get('/rent/property', [IndexController::class, 'RentProperty'])->name('re
 Route::get('/buy/property', [IndexController::class, 'BuyProperty'])->name('buy.property');
 // Get All Property Type Data 
 Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');
+// Transaction Requests
+Route::middleware(['auth'])->group(function () {
+    Route::post('/purchase-request', [TransactionController::class, 'purchaseRequest'])->name('purchase.request');
+    Route::post('/rent-request', [TransactionController::class, 'rentRequest'])->name('rent.request');
+});
+
+Route::get('/test-mail', function () {
+    Mail::raw('Hello! This is a test email from Gojo Property.', function ($message) {
+        $message->to('darartuamanu6@gmail.com')
+                ->subject('Test Email From Gojo Property');
+    });
+
+    return 'Test email sent!';
+});
