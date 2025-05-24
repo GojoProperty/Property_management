@@ -11,29 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('preferences', function (Blueprint $table) {
+        Schema::create('preference_notifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('city')->nullable();
-            $table->decimal('max_price', 10, 2)->nullable();
-            $table->string('property_type')->nullable();
-            $table->string('bedrooms')->nullable();
-            $table->string('bathrooms')->nullable();
-            $table->string('property_status');
-
-
+            $table->unsignedBigInteger('property_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('preferences');
+        Schema::dropIfExists('preference_notifications');
     }
 };

@@ -21,11 +21,32 @@
                     value="{{ old('max_price', $preference->max_price) }}">
             </div>
 
+            {{-- <div class="col-sm-4">
+                <div class="mb-3">
+                    <label class="form-label">Property Type </label>
+                    <select name="ptype_id" class="form-select" id="exampleFormControlSelect1">
+                        <option selected="" disabled="">Select Type</option>
+                        @foreach ($propertytype as $ptype)
+                            <option value="{{ $ptype->id }}">{{ $ptype->type_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div> --}}
+
             <div class="form-group">
-                <label for="property_type">Property Type</label>
-                <input type="text" name="property_type" class="form-control"
-                    value="{{ old('property_type', $preference->property_type) }}">
+                <label class="form-label">Property Type </label>
+                <select name="property_type" class="form-select" id="exampleFormControlSelect1">
+                    <option selected="" disabled="">Select Type</option>
+                    @foreach ($propertyTypes as $ptype)
+                        <option value="{{ $ptype->id }}"
+                            {{ old('property_type', $preference->property_type) == $ptype->id ? 'selected' : '' }}>
+                            {{ $ptype->type_name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
+
 
             <div class="form-group">
                 <label for="bedrooms">Bedrooms</label>
@@ -38,7 +59,14 @@
                 <input type="text" name="bathrooms" class="form-control"
                     value="{{ old('bathrooms', $preference->bathrooms) }}">
             </div>
-
+            <div class="form-group ">
+                <label class="form-label">Property Status</label>
+                <select name="property_status" class="form-select" id="propStatus">
+                    <option selected="" disabled="">Select Status</option>
+                    <option value="rent">For Rent</option>
+                    <option value="buy">For Buy</option>
+                </select>
+            </div>
             <button type="submit" class="btn btn-success">Save Preferences</button>
         </form>
     </div>

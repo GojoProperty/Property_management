@@ -19,6 +19,9 @@ use App\Models\PackagePlan;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\State;
 
+use App\Models\Preference;
+use App\Models\PreferenceNotification;
+
 
 
 class PropertyController extends Controller
@@ -35,7 +38,7 @@ class PropertyController extends Controller
         $pstate = State::latest()->get();
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
-        return view('backend.property.add_property',compact('propertytype','amenities','activeAgent','pstate'));
+        return view('backend.property.add_property', compact('propertytype', 'amenities', 'activeAgent', 'pstate'));
     } // End Method 
 
     public function storeProperty(Request $request)
@@ -54,7 +57,7 @@ class PropertyController extends Controller
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $imgManager->read($image)->resize(370, 250)->save('upload/property/thambnail/' . $name_gen);
             $save_url = 'upload/property/thambnail/' . $name_gen;
-         }else {
+        } else {
             $save_url = null;
         }
 
@@ -111,10 +114,27 @@ class PropertyController extends Controller
             }
         }
 
-        return redirect()->route('all.property')->with([
-            'message' => 'Property Inserted Successfully',
-            'alert-type' => 'success'
-        ]);
+        $preferences = Preference::all();
+
+        foreach ($preferences as $preference) {
+            // Normalize data
+            $matchesCity = $preference->city === null || $preference->city === $property->city;
+            $matchesType = $preference->property_type === null || $preference->property_type === $property->ptype_id;
+            $matchesBedrooms = $preference->bedrooms === null || $preference->bedrooms == $property->bedrooms;
+            $matchesBathrooms = $preference->bathrooms === null || $preference->bathrooms == $property->bathrooms;
+            $matchesPrice = $preference->max_price === null || (float)$property->max_price <= (float)$preference->max_price;
+            $matchesPropStatus = $preference->property_status === null || $preference->property_status == $property->property_status;
+            if ($matchesCity && $matchesType && $matchesBedrooms && $matchesBathrooms && $matchesPrice && $matchesPropStatus) {
+                PreferenceNotification::create([
+                    'user_id' => $preference->user_id,
+                    'property_id' => $property->id,
+                ]);
+            }
+            return redirect()->route('all.property')->with([
+                'message' => 'Property Inserted Successfully',
+                'alert-type' => 'success'
+            ]);
+        }
     } // End Method 
 
     public function editProperty($id) //to keep the data that is gonna be edited
@@ -129,8 +149,8 @@ class PropertyController extends Controller
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.edit_property', compact('property', 'propertytype', 'amenities', 'activeAgent', 'property_amin', 'multiImage', 'facilities','pstate'));
-    }  
+        return view('backend.property.edit_property', compact('property', 'propertytype', 'amenities', 'activeAgent', 'property_amin', 'multiImage', 'facilities', 'pstate'));
+    }
 
     public function updateProperty(Request $request)
     {
@@ -373,24 +393,23 @@ class PropertyController extends Controller
         return redirect()->route('all.property')->with($notification);
     } // End Method 
 
-    public function AdminPackageHistory(){
- 
+    public function AdminPackageHistory()
+    {
+
         $packagehistory = PackagePlan::latest()->get();
-        return view('backend.package.package_history',compact('packagehistory'));
-   
-   
-       }// End Method 
-       
-       public function PackageInvoice($id){
- 
-        $packagehistory = PackagePlan::where('id',$id)->first();
+        return view('backend.package.package_history', compact('packagehistory'));
+    } // End Method 
+
+    public function PackageInvoice($id)
+    {
+
+        $packagehistory = PackagePlan::where('id', $id)->first();
 
         $pdf = Pdf::loadView('backend.package.package_history_invoice', compact('packagehistory'))->setPaper('a4')->setOption([
             'tempDir' => public_path(),
             'chroot' => public_path(),
         ]);
         return $pdf->download('invoice.pdf');
-
-    }// End Method
+    } // End Method
 
 }
