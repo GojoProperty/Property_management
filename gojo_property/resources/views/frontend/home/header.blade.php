@@ -62,7 +62,7 @@
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
                                 <li class="current dropdown"><a href="index.html"><span>Home</span></a>
-                                    <ul>
+                                    {{-- <ul>
                                         <li><a href="index.html">Main Home</a></li>
                                         <li><a href="index-2.html">Home Modern</a></li>
                                         <li><a href="index-3.html">Home Map</a></li>
@@ -77,17 +77,17 @@
                                                 <li><a href="index-3.html">Header Style 03</a></li>
                                             </ul>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="dropdown"><a href="index.html"><span>Listing</span></a>
-                                    <ul>
+                                <li><a href="index.html"><span>Listing</span></a>
+                                    {{-- <ul>
                                         <li><a href="agents-list.html">Agents List</a></li>
                                         <li><a href="agents-grid.html">Agents Grid</a></li>
                                         <li><a href="agents-details.html">Agent Details</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
                                 <li class="dropdown"><a href="index.html"><span>Property</span></a>
-                                    <ul>
+                                    {{-- <ul>
                                         <li><a href="property-list.html">Property List</a></li>
                                         <li><a href="property-grid.html">Property Grid</a></li>
                                         <li><a href="property-list-2.html">Property List Full View</a></li>
@@ -98,10 +98,10 @@
                                         <li><a href="property-details-2.html">Property Details 02</a></li>
                                         <li><a href="property-details-3.html">Property Details 03</a></li>
                                         <li><a href="property-details-4.html">Property Details 04</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
                                 <li class="dropdown"><a href="index.html"><span>Pages</span></a>
-                                    <div class="megamenu">
+                                    {{-- <div class="megamenu">
                                         <div class="row clearfix">
                                             <div class="col-xl-4 column">
                                                 <ul>
@@ -149,22 +149,22 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </li>
                                 <li class="dropdown"><a href="index.html"><span>Agency</span></a>
-                                    <ul>
+                                    {{-- <ul>
                                         <li><a href="agency-list.html">Agency List</a></li>
                                         <li><a href="agency-grid.html">Agency Grid</a></li>
                                         <li><a href="agency-details.html">Agency Details</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
                                 <li class="dropdown"><a href="index.html"><span>Blog</span></a>
-                                    <ul>
+                                    {{-- <ul>
                                         <li><a href="blog-1.html">Blog 01</a></li>
                                         <li><a href="blog-2.html">Blog 02</a></li>
                                         <li><a href="blog-3.html">Blog 03</a></li>
                                         <li><a href="blog-details.html">Blog Details</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
                                 <li><a href="contact.html"><span>Contact</span></a></li>
                             </ul>
