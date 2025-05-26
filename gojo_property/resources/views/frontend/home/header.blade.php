@@ -164,68 +164,69 @@
                         </div>
                     </nav>
                 </div>
-                <div> {{-- add listing based on autentication  --}}
-                    @auth
-                        <div class="btn-box">
-                            @php
-                                $role = Auth::user()->role;
-                            @endphp
+                <div> {{-- add listing based on authentication --}}
+                    <div> {{-- add listing based on autentication  --}}
+                        @auth
+                            <div class="btn-box">
+                                @php
+                                    $role = Auth::user()->role;
+                                @endphp
 
-                            @if ($role === 'admin')
-                                <a href="{{ route('add.property') }}" class="theme-btn btn-one">Add listing</a>
-                            @elseif ($role === 'agent')
-                                <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
-                            @else
-                                <a href="{{ route('dashboard') }}" class="theme-btn btn-one">user add listing</a>
-                            @endif
-                        </div>
-                    @else
-                        <div class="btn-box">
-                            <a href="{{ route('add.property') }}" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+                                @if ($role === 'admin')
+                                    <a href="{{ route('add.property') }}" class="theme-btn btn-one">Add listing</a>
+                                @elseif ($role === 'agent')
+                                    <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
+                                @else
+                                    <a href="{{ route('dashboard') }}" class="theme-btn btn-one">User Add Listing</a>
+                                @endif
+                            </div>
+                        @endauth
 
-                        </div>
-                    @endauth
+                        @guest
+                            <div class="btn-box">
+                                <a href="{{ route('add.property') }}" class="theme-btn btn-one"><span>+</span> Add
+                                    Listing</a>
+                            </div>
+                        @endauth
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!--sticky Header-->
-    <div class="sticky-header">
-        <div class="outer-box">
-            <div class="main-box">
-                <div class="logo-box">
-                    <figure class="logo"><a href="index.html"><img
-                                src="{{ asset('frontend/assets/images/Gojologo.png') }}" alt=""></a></figure>
-                </div>
-                <div class="menu-area clearfix">
-                    <nav class="main-menu clearfix">
-                        <!--Keep This Empty / Menu will come through Javascript-->
-                    </nav>
-                </div>
-                <div> {{-- add listing based on autentication  --}}
-                    @auth
-                        <div class="btn-box">
-                            @php
-                                $role = Auth::user()->role;
-                            @endphp
+        <!--sticky Header-->
+        <div class="sticky-header">
+            <div class="outer-box">
+                <div class="main-box">
+                    <div class="logo-box">
+                        <figure class="logo"><a href="index.html"><img
+                                    src="{{ asset('frontend/assets/images/Gojologo.png') }}" alt=""></a>
+                        </figure>
+                    </div>
+                    <div class="menu-area clearfix">
+                        <nav class="main-menu clearfix">
+                            <!--Keep This Empty / Menu will come through Javascript-->
+                        </nav>
+                    </div>
+                    <div> {{-- add listing based on autentication  --}}
+                        @endphp
 
-                            @if ($role === 'admin')
-                                <a href="{{ route('add.property') }}" class="theme-btn btn-one">Add listing</a>
-                            @elseif ($role === 'agent')
-                                <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
-                            @else
-                                <a href="{{ route('dashboard') }}" class="theme-btn btn-one">user add listing</a>
-                            @endif
-                        </div>
-                    @else
-                        <div class="btn-box">
-                            <a href="{{ route('login') }}" class="theme-btn btn-one">Add Listing</a>
-                        </div>
-                    @endauth
-                </div>
+                        @if ($role === 'admin')
+                            <a href="{{ route('add.property') }}" class="theme-btn btn-one">Add listing</a>
+                        @elseif ($role === 'agent')
+                            <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
+                        @else
+                            <a href="{{ route('dashboard') }}" class="theme-btn btn-one">user add listing</a>
+                        @endif
+                    </div>
+                @else
+                    <div class="btn-box">
+                        <a href="{{ route('login') }}" class="theme-btn btn-one">Add Listing</a>
+                    </div>
+                @endauth
             </div>
         </div>
     </div>
+</div>
 </header>
