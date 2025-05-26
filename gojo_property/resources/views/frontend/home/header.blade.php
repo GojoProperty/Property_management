@@ -210,23 +210,31 @@
                         </nav>
                     </div>
                     <div> {{-- add listing based on autentication  --}}
-                        @endphp
+                        @auth
+                            <div class="btn-box">
+                                @php
+                                    $role = Auth::user()->role;
+                                @endphp
 
-                        @if ($role === 'admin')
-                            <a href="{{ route('add.property') }}" class="theme-btn btn-one">Add listing</a>
-                        @elseif ($role === 'agent')
-                            <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
-                        @else
-                            <a href="{{ route('dashboard') }}" class="theme-btn btn-one">user add listing</a>
-                        @endif
+                                @if ($role === 'admin')
+                                    <a href="{{ route('add.property') }}" class="theme-btn btn-one">Add listing</a>
+                                @elseif ($role === 'agent')
+                                    <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
+                                @else
+                                    <a href="{{ route('dashboard') }}" class="theme-btn btn-one">User Add Listing</a>
+                                @endif
+                            </div>
+                        @endauth
+
+                        @guest
+                            <div class="btn-box">
+                                <a href="{{ route('add.property') }}" class="theme-btn btn-one"><span>+</span> Add
+                                    Listing</a>
+                            </div>
+                        @endauth
                     </div>
-                @else
-                    <div class="btn-box">
-                        <a href="{{ route('login') }}" class="theme-btn btn-one">Add Listing</a>
-                    </div>
-                @endauth
+                </div>
             </div>
         </div>
     </div>
-</div>
 </header>

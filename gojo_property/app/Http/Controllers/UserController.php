@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Schedule;
-
 use App\Models\PreferenceNotification;
 
 class UserController extends Controller
