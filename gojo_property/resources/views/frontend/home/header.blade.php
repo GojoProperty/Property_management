@@ -164,8 +164,32 @@
                         </div>
                     </nav>
                 </div>
+<<<<<<< Updated upstream
                 <div class="btn-box">
                     <a href="index.html" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+=======
+                <div> {{-- add listing based on autentication  --}}
+                    @auth
+                        <div class="btn-box">
+                            @php
+                                $role = Auth::user()->role;
+                            @endphp
+
+                            @if ($role === 'admin')
+                                <a href="{{ route('add.property') }}" class="theme-btn btn-one">Add listing</a>
+                            @elseif ($role === 'agent')
+                                <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
+                            @else
+                                <a href="{{ route('dashboard') }}" class="theme-btn btn-one">user add listing</a>
+                            @endif
+                        </div>
+                    @else
+                        <div class="btn-box">
+                            <a href="{{ route('add.property') }}" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+
+                        </div>
+                    @endauth
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
@@ -185,8 +209,31 @@
                         <!--Keep This Empty / Menu will come through Javascript-->
                     </nav>
                 </div>
+<<<<<<< Updated upstream
                 <div class="btn-box">
                     <a href="index.html" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+=======
+                <div> {{-- add listing based on autentication  --}}
+                    @auth
+                        <div class="btn-box">
+                            @php
+                                $role = Auth::user()->role;
+                            @endphp
+
+                            @if ($role === 'admin')
+                                <a href="{{ route('add.property') }}" class="theme-btn btn-one">Add listing</a>
+                            @elseif ($role === 'agent')
+                                <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
+                            @else
+                                <a href="{{ route('dashboard') }}" class="theme-btn btn-one">user add listing</a>
+                            @endif
+                        </div>
+                    @else
+                        <div class="btn-box">
+                            <a href="{{ route('login') }}"><i class="theme-btn btn-one"></i>Add Listing</a>
+                        </div>
+                    @endauth
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
