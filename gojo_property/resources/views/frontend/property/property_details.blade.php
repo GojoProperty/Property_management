@@ -116,7 +116,7 @@
                             </div>
                             <ul class="info clearfix">
                                 <li><span>Address:</span> {{ $property->address }}</li>
-                                <li><span>State/county:</span> {{ $property['pstate']['state_name'] }}</li>
+                                <li><span>State/county:</span> {{ $property['pstate']['state_name'] ?? 'N/A' }}</li>
                                 <li><span>Neighborhood:</span> {{ $property->neighborhood }}</li>
                                 <li><span>City:</span> {{ $property->city }}</li>
                             </ul>
@@ -241,104 +241,110 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="form-inner">
-                                @auth
+                        </div>
+                        <div class="form-inner">
+                            @auth
+                                @php
+                                    $id = Auth::user()->id;
+                                    $userData = App\Models\User::find($id);
+                                @endphp
 
-                                    @php
-                                        $id = Auth::user()->id;
-                                        $userData = App\Models\User::find($id);
-                                    @endphp
-
-                                    <form action="{{ route('property.message') }}" method="post" class="default-form">
-                                        @csrf
-
-                                        <input type="hidden" name="property_id" value="{{ $property->id }}">
-
-                                        @if ($property->agent_id == null)
-                                            <input type="hidden" name="agent_id" value="">
-                                        @else
-                                            <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
-                                        @endif
-
-                                        <div class="form-group">
-                                            <input type="text" name="msg_name" placeholder="Your name"
-                                                value="{{ $userData->name }}">
-                                        </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <textarea name="message" placeholder="Message"></textarea>
-                                </div>
-                                <div class="form-group message-btn">
-                                    <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                </div>
-                                </form>
-                            @else
                                 <form action="{{ route('property.message') }}" method="post" class="default-form">
                                     @csrf
 
                                     <input type="hidden" name="property_id" value="{{ $property->id }}">
-
                                     @if ($property->agent_id == null)
                                         <input type="hidden" name="agent_id" value="">
                                     @else
                                         <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
                                     @endif
 
-
+                                    <div class="form-group">
+                                        <input type="text" name="msg_name" placeholder="Your name"
+                                            value="{{ $userData->name }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="msg_email" placeholder="Your Email"
+                                            value="{{ $userData->email }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="msg_phone" placeholder="Phone"
+                                            value="{{ $userData->phone }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="message" placeholder="Message"></textarea>
+                                    </div>
                                     <div class="form-group message-btn">
                                         <button type="submit" class="theme-btn btn-one">Send Message</button>
                                     </div>
                                 </form>
+                            @else
+                                <form action="{{ route('property.message') }}" method="post" class="default-form">
+                                    @csrf
+                                    <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                    @if ($property->agent_id == null)
+                                        <input type="hidden" name="agent_id" value="">
+                                    @else
+                                        <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
+                                    @endif
 
+                                    <div class="form-group">
+                                        <input type="text" name="msg_name" placeholder="Your name" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="msg_email" placeholder="Your Email" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="msg_phone" placeholder="Phone" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="message" placeholder="Message"></textarea>
+                                    </div>
+                                    <div class="form-group message-btn">
+                                        <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                    </div>
+                                </form>
                             @endauth
-
-
-
                         </div>
-
-
-
                     </div>
-                </div>
-                <div class="calculator-widget sidebar-widget">
-                    <div class="calculate-inner">
-                        <div class="widget-title">
-                            <h4>Mortgage Calculator</h4>
-                        </div>
-                        <form method="post" action="mortgage-calculator.html" class="default-form">
-                            <div class="form-group">
-                                <i class="fas fa-dollar-sign"></i>
-                                <input type="number" name="total_amount" placeholder="Total Amount">
+                    <div class="calculator-widget sidebar-widget">
+                        <div class="calculate-inner">
+                            <div class="widget-title">
+                                <h4>Mortgage Calculator</h4>
                             </div>
-                            <div class="form-group">
-                                <i class="fas fa-dollar-sign"></i>
-                                <input type="number" name="down_payment" placeholder="Down Payment">
-                            </div>
-                            <div class="form-group">
-                                <i class="fas fa-percent"></i>
-                                <input type="number" name="interest_rate" placeholder="Interest Rate">
-                            </div>
-                            <div class="form-group">
-                                <i class="far fa-calendar-alt"></i>
-                                <input type="number" name="loan" placeholder="Loan Terms(Years)">
-                            </div>
-                            <div class="form-group">
-                                <div class="select-box">
-                                    <select class="wide">
-                                        <option data-display="Monthly">Monthly</option>
-                                        <option value="1">Yearly</option>
-                                    </select>
+                            <form method="post" action="mortgage-calculator.html" class="default-form">
+                                <div class="form-group">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <input type="number" name="total_amount" placeholder="Total Amount">
                                 </div>
-                            </div>
-                            <div class="form-group message-btn">
-                                <button type="submit" class="theme-btn btn-one">Calculate Now</button>
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <input type="number" name="down_payment" placeholder="Down Payment">
+                                </div>
+                                <div class="form-group">
+                                    <i class="fas fa-percent"></i>
+                                    <input type="number" name="interest_rate" placeholder="Interest Rate">
+                                </div>
+                                <div class="form-group">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <input type="number" name="loan" placeholder="Loan Terms(Years)">
+                                </div>
+                                <div class="form-group">
+                                    <div class="select-box">
+                                        <select class="wide">
+                                            <option data-display="Monthly">Monthly</option>
+                                            <option value="1">Yearly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group message-btn">
+                                    <button type="submit" class="theme-btn btn-one">Calculate Now</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         <div class="similar-content">
             <div class="title">

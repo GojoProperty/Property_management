@@ -26,8 +26,12 @@ class Property extends Model
     {
         return $this->hasMany(Facility::class, 'property_id');
     }
-     public function pstate(){
-        return $this->belongsTo(State::class,'state','id');
+    public function pstate()
+    {
+        return $this->belongsTo(State::class, 'state', 'id');
     }
-
+    public function rules()
+    {
+        return $this->hasMany(Rules::class);
+    }
 }
