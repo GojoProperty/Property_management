@@ -11,6 +11,7 @@ use App\Models\Amenities;
 use App\Models\PropertyType;
 use App\Models\User;
 use App\Models\PackagePlan;
+use App\Models\AgentRating;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PropertyMessage;
 use Carbon\Carbon;
@@ -26,8 +27,9 @@ class IndexController extends Controller
         $facility = Facility::where('property_id', $id)->get();
         $type_id = $property->ptype_id;
         $relatedProperty = Property::where('ptype_id', $type_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(3)->get();
-
-        return view('frontend.property.property_details', compact('property', 'multiImage', 'property_amen', 'facility', 'relatedProperty'));
+        $agent = User::findOrFail($property->agent_id);
+        
+        return view('frontend.property.property_details', compact('property', 'multiImage', 'property_amen', 'facility', 'relatedProperty', 'agent'));
     } // End Method
 
     public function PropertyMessage(Request $request)
@@ -133,7 +135,34 @@ class IndexController extends Controller
 
         return view('frontend.property.property_type',compact('property','pbread'));
 
-    }// End Method   
+    }// End Method 
+    
+    public function SubmitAgentRating(Request $request)
+    {
+        $request->validate([
+        'agent_id' => 'required|exists:users,id',
+        'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        // Check if user has already rated this agent
+        $existing = AgentRating::where('agent_id', $request->agent_id)
+                           ->where('user_id', auth()->id())
+                           ->first();
+
+        if ($existing) {
+            return redirect()->back()->with('error', 'You have already rated this agent.');
+        }
+
+        AgentRating::create([
+            'agent_id' => $request->agent_id,
+            'user_id' => auth()->id(),
+            'rating' => $request->rating,
+            'comment' => $request->comment,
+        ]);
+        
+        return redirect()->back()->with('success', 'Thank you for rating this agent!');
+    }
+
     
 }
 

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\AgentRating;
 
 class User extends Authenticatable
 {
@@ -41,4 +42,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function averageRating()
+    {
+        return AgentRating::where('agent_id', $this->id)->avg('rating') ?? 0;
+    }
+
+    public function agentRatings()
+    {
+        return $this->hasMany(AgentRating::class, 'agent_id');
+    }
+
 }
