@@ -230,9 +230,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
         // Schedule Request Route
         Route::get('/agent/schedule/request',  'AgentScheduleRequest')->name('agent.schedule.request');
         Route::get('/agent/details/schedule/{id}', 'AgentDetailsSchedule')->name('agent.details.schedule');
-
         Route::post('/agent/update/schedule', 'AgentUpdateSchedule')->name('agent.update.schedule');
-
 
         // Buy Package
         Route::get('/buy/package', 'BuyPackage')->name('buy.package');
@@ -245,7 +243,10 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
     });
 });
 Route::controller(IndexController::class)->group(function () {
+
     Route::post('/property/message', 'PropertyMessage')->name('property.message');
+    Route::post('/store/schedule',  'StoreSchedule')->name('store.schedule');
+
     // Agent Details Page in Frontend 
     Route::get('/agent/details/{id}', 'AgentDetails')->name('agent.details');
     // Send Message from Agent Details Page 
@@ -258,7 +259,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/property/type/{id}',  'PropertyType')->name('property.type');
     // Get State Details Data 
     Route::get('/state/details/{id}',  'StateDetails')->name('state.details');
-    // Home Page Buy Seach Option
+    // Home Page Buy Seach Optiont
     Route::post('/buy/property/search',  'BuyPropertySearch')->name('buy.property.search');
     // Home Page Rent Seach Option
     Route::post('/rent/property/search',  'RentPropertySeach')->name('rent.property.search');
