@@ -7,10 +7,9 @@
  
  
  
-  
- <!-- category-section -->
-   @include('frontend.home.category')
- <!-- category-section end -->
+          <!-- category-section -->
+         @include('frontend.home.category')
+         <!-- category-section end -->
  
  
          <!-- feature-section -->
