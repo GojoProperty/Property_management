@@ -188,6 +188,15 @@
                                     </ul>
                                 </div>
                             </div>
+                        @else
+                            <div class="amenities-box content-widget">
+                                <div class="title-box">
+                                    <h4>Terms & Conditions</h4>
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-muted">No terms and conditions added by the owner.</p>
+                                </div>
+                            </div>
                         @endif
 
                         <!-- Schedule Site Visit -->
