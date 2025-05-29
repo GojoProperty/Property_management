@@ -17,7 +17,7 @@ use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
-
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\DashboardrecomendController;
 
@@ -62,9 +62,10 @@ Route::middleware('auth')->group(function () {
 });
 
 //login and register route
-Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login');
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::get('/agent/register', [AgentController::class, 'AgentRegisterForm'])->name('agent.register.form');
 Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
+//Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
 
 require __DIR__ . '/auth.php';
 
