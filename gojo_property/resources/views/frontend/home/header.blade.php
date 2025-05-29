@@ -49,7 +49,7 @@
             <div class="main-box">
                 <div class="logo-box">
                     <figure class="logo"><a href="{{ url('/') }}"><img
-                                src="{{ asset('frontend/assets/images/Gojologo.png') }}" alt=""></a></figure>
+                                src="{{ asset('frontend/assets/images/gojo.png') }}" alt=""></a></figure>
                 </div>
                 <div class="menu-area clearfix">
 
@@ -200,8 +200,8 @@
             <div class="outer-box">
                 <div class="main-box">
                     <div class="logo-box">
-                        <figure class="logo"><a href="index.html"><img
-                                    src="{{ asset('frontend/assets/images/Gojologo.png') }}" alt=""></a>
+                        <figure class="logo"><a href="{{ url('/') }}"><img
+                                    src="{{ asset('frontend/assets/images/gojo.png') }}" alt=""></a>
                         </figure>
                     </div>
                     <div class="menu-area clearfix">

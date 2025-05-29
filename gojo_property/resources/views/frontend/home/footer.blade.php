@@ -77,7 +77,7 @@
         <div class="auto-container">
             <div class="inner-box clearfix">
                 <figure class="footer-logo"><a href="index.html"><img
-                            src="{{ asset('frontend/assets/images/Gojologo.png') }}" alt=""></a></figure>
+                            src="{{ asset('frontend/assets/images/gojo.png') }}" alt=""></a></figure>
                 <div class="copyright pull-left">
 
                     <p><a href="index.html">Gojo property</a> &copy;{{ date('Y') }} All Right Reserved</p>
