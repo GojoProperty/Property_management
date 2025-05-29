@@ -6,13 +6,11 @@ use App\Http\Controllers\AgentController;
 use Illuminate\Support\Facades\Mail;
 
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AgentController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
-use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Agent\AgentPropertyController;
-
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
@@ -21,6 +19,9 @@ use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\TransactionController;
 
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\DashboardrecomendController;
 
 
 
@@ -38,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
     Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
-
+    Route::get('/user/recommendations', [UserController::class, 'recommendations'])->name('user.recommendations');
     Route::get('/user/schedule/request', [UserController::class, 'UserScheduleRequest'])->name('user.schedule.request');
 
     // Wishlist
@@ -54,12 +55,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/get-compare-property', 'GetCompareProperty');
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
+
+    // User Preferences Routes
+    Route::controller(PreferenceController::class)->group(function () {
+        Route::get('/user/preferences', 'create')->name('preferences.create');
+        Route::post('/user/preferences', 'store')->name('preferences.store');
+    });
 });
 
 //login and register route
-Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login');
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::get('/agent/register', [AgentController::class, 'AgentRegisterForm'])->name('agent.register.form');
 Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
+//Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
 
 require __DIR__ . '/auth.php';
 
@@ -261,7 +269,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/all/property/search', 'AllPropertySeach')->name('all.property.search');
 });
 // ===================== Frontend Routes =====================
-Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
+Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails'])->name('property.details');
 Route::post('/add-to-wishlist/{property_id}', [WishlistController::class, 'AddToWishList']);
 Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
 
