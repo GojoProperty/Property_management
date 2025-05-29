@@ -17,7 +17,6 @@ use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
-
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\DashboardrecomendController;
 
@@ -211,7 +210,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
     Route::post('/agent/update/password', [AgentController::class, 'AgentUpdatePassword'])->name('agent.update.password');
 
 
-    // Agent Property
+    // Agent Propert
     Route::controller(AgentPropertyController::class)->group(function () {
         Route::get('/agent/all/property', 'AgentAllProperty')->name('agent.all.property');
         Route::get('/agent/add/property', 'AgentAddProperty')->name('agent.add.property');

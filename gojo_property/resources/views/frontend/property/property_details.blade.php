@@ -139,19 +139,13 @@
                                                     <h6>{{ $item->facility_name }} <span>({{ $item->distance }} )</span>
                                                     </h6>
                                                 </div>
-                                                <ul class="rating pull-right clearfix">
-                                                    <li><i class="icon-39"></i></li>
-                                                    <li><i class="icon-39"></i></li>
-                                                    <li><i class="icon-39"></i></li>
-                                                    <li><i class="icon-39"></i></li>
-                                                    <li><i class="icon-40"></i></li>
-                                                </ul>
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="statistics-box content-widget"><!--video -->
                             <div class="title-box">
                                 <h4>Property Video </h4>
@@ -163,6 +157,21 @@
                                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </figure>
                         </div>
+                        <div class="amenities-box content-widget">
+                            @if ($property->rules->count())
+                                <div class="title-box">
+                                    <h4> Terms & Conditions</h4>
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        @foreach ($property->rules as $rule)
+                                            <li>{{ $rule->content }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
+
                         <div class="schedule-box content-widget">
                             <div class="title-box">
                                 <h4>Schedule Site Visit </h4>

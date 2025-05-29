@@ -258,7 +258,7 @@
                                 </div>
 
                                 <div id="moreRules"></div>
-                                <button type="submit" class="btn btn-primary w-auto">Save Changes </button>
+                                <button type="submit" class="btn btn-primary w-auto mt-4">Save Changes </button>
                             </form>
                         </div>
                     </div>
@@ -333,16 +333,16 @@
         });
     </script>
 
-    @push('scripts')
-        <script>
-            document.getElementById('addRule').addEventListener('click', function() {
-                const field = `
+
+    <script>
+        document.getElementById('addRule').addEventListener('click', function() {
+            const field = `
             <textarea name="rules[]" class="form-control mt-2" rows="3" placeholder="Write rule here..."></textarea>
         `;
-                document.getElementById('moreRules').insertAdjacentHTML('beforeend', field);
-            });
-        </script>
-    @endpush
+            document.getElementById('moreRules').insertAdjacentHTML('beforeend', field);
+        });
+    </script>
+
 
 
     {{-- to validate the inputs --}}
