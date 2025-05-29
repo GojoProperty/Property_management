@@ -1,6 +1,13 @@
 @php
     use App\Models\Property;
-    $property = Property::where('status', '1')->where('featured', '1')->limit(4)->get();
+
+    $property = Property::where('status', '1')
+        ->where('featured', '1')
+        ->whereDoesntHave('transactions', function($query) {
+            $query->whereIn('status', ['pending', 'approved']);
+        })
+        ->limit(4)
+        ->get();
 @endphp
 
 <section class="feature-section sec-pad bg-color-1">

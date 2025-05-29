@@ -6,7 +6,6 @@ use App\Http\Controllers\AgentController;
 use Illuminate\Support\Facades\Mail;
 
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AgentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
