@@ -6,7 +6,7 @@
     <div class="auto-container">
         <div class="sec-title centred">
             <h5>News & Article</h5>
-            <h2>Stay Update With Realshed</h2>
+            <h2>Stay Update With Gojo Property</h2>
         </div>
         <div class="row clearfix">
         @foreach($blog as $item) 
