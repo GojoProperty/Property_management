@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\ProfileController;
+
 use App\Http\Controllers\AgentController;
 use Illuminate\Support\Facades\Mail;
 
@@ -66,7 +67,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::get('/agent/register', [AgentController::class, 'AgentRegisterForm'])->name('agent.register.form');
 Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
-//Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
+
 
 require __DIR__ . '/auth.php';
 
