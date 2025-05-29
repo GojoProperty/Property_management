@@ -1,22 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
+//use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AgentController;
+use Illuminate\Support\Facades\Mail;
+
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
-use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Agent\AgentPropertyController;
-
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
-use App\Http\Controllers\Backend\SettingController;
+//use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\TransactionController;
 
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\DashboardrecomendController;
 
 
 
@@ -34,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
     Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
-
+    Route::get('/user/recommendations', [UserController::class, 'recommendations'])->name('user.recommendations');
     Route::get('/user/schedule/request', [UserController::class, 'UserScheduleRequest'])->name('user.schedule.request');
 
     // Wishlist
@@ -50,12 +55,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/get-compare-property', 'GetCompareProperty');
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
+
+    // User Preferences Routes
+    Route::controller(PreferenceController::class)->group(function () {
+        Route::get('/user/preferences', 'create')->name('preferences.create');
+        Route::post('/user/preferences', 'store')->name('preferences.store');
+    });
 });
 
 //login and register route
-Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login');
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::get('/agent/register', [AgentController::class, 'AgentRegisterForm'])->name('agent.register.form');
 Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
+//Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
 
 require __DIR__ . '/auth.php';
 
@@ -257,7 +269,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/all/property/search', 'AllPropertySeach')->name('all.property.search');
 });
 // ===================== Frontend Routes =====================
-Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
+Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails'])->name('property.details');
 Route::post('/add-to-wishlist/{property_id}', [WishlistController::class, 'AddToWishList']);
 Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
 
@@ -269,3 +281,29 @@ Route::post('/store/comment', [BlogController::class, 'StoreComment'])->name('st
 Route::get('/admin/blog/comment', [BlogController::class, 'AdminBlogComment'])->name('admin.blog.comment');
 Route::get('/admin/comment/reply/{id}', [BlogController::class, 'AdminCommentReply'])->name('admin.comment.reply');
 Route::post('/reply/message', [BlogController::class, 'ReplyMessage'])->name('reply.message');
+// Send Message from Property Details Page 
+Route::post('/property/message', [IndexController::class, 'PropertyMessage'])->name('property.message');
+// Agent Details Page in Frontend 
+Route::get('/agent/details/{id}', [IndexController::class, 'AgentDetails'])->name('agent.details');
+// Send Message from Agent Details Page 
+Route::post('/agent/details/message', [IndexController::class, 'AgentDetailsMessage'])->name('agent.details.message');
+// Get All Rent Property 
+Route::get('/rent/property', [IndexController::class, 'RentProperty'])->name('rent.property');
+// Get All Buy Property 
+Route::get('/buy/property', [IndexController::class, 'BuyProperty'])->name('buy.property');
+// Get All Property Type Data 
+Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');
+// Transaction Requests
+Route::middleware(['auth'])->group(function () {
+    Route::post('/purchase-request', [TransactionController::class, 'purchaseRequest'])->name('purchase.request');
+    Route::post('/rent-request', [TransactionController::class, 'rentRequest'])->name('rent.request');
+});
+
+Route::get('/test-mail', function () {
+    Mail::raw('Hello! This is a test email from Gojo Property.', function ($message) {
+        $message->to('darartuamanu6@gmail.com')
+                ->subject('Test Email From Gojo Property');
+    });
+
+    return 'Test email sent!';
+});

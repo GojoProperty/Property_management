@@ -53,6 +53,15 @@ class UsersTableSeeder extends Seeder
                 'status' => 'active',
 
             ],
+            [
+                'name' => 'heriCustomer',
+                'username' => 'Hericustomer',
+                'email' => 'heri111@gmail.com',
+                'password' => Hash::make('111'),
+                'role' => 'customer',
+                'status' => 'active',
+
+            ],
         ]);
     }
 }

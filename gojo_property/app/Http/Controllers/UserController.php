@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Schedule;
-  
+use App\Models\PreferenceNotification;
 
 class UserController extends Controller
 {
@@ -98,16 +98,24 @@ class UserController extends Controller
 
         return back()->with($notification);
     }
-    public function UserScheduleRequest(){
- 
+
+    public function recommendations()
+    {
+        $user = Auth::user();
+        $notifications = PreferenceNotification::where('user_id', $user->id)
+            ->with(['property.type']) // So we can access $notify->property->type->name in the Blade file
+            ->latest()->get();
+        return view('frontend.dashboard.recommendation', compact('notifications'));
+    }
+    public function UserScheduleRequest()
+    {
+
         $id = Auth::user()->id;
         $userData = User::find($id);
 
-        $srequest = Schedule::where('user_id',$id)->get();
-        return view('frontend.message.schedule_request',compact('userData','srequest'));
-
+        $srequest = Schedule::where('user_id', $id)->get();
+        return view('frontend.message.schedule_request', compact('userData', 'srequest'));
     } // End Method 
 
 
 }
-

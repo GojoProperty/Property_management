@@ -130,6 +130,30 @@
                                         <td>Long description </td>
                                         <td><code>{!! $property->long_descp !!}</code></td>
                                     </tr>
+                                <tr>
+                                    <td>Action</td>
+                                    <td>
+                                        @if ($property->status == 1)
+                                            @if($property->property_status == 'buy')
+                                                <form method="post" action="{{ route('purchase.request') }}">
+                                                    @csrf
+                                                    <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                                    <button type="submit" class="btn btn-success">Buy Now</button>
+                                                </form>
+                                            @elseif($property->property_status == 'rent')
+                                                <form method="post" action="{{ route('rent.request') }}">
+                                                    @csrf
+                                                    <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                                    <button type="submit" class="btn btn-info">Rent Now</button>
+                                                </form>
+                                            @else
+                                                <span class="badge bg-secondary">Not Available</span>
+                                            @endif
+                                        @else
+                                            <span class="badge bg-danger">Inactive Property</span>
+                                        @endif
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                             <br><br>

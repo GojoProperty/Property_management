@@ -163,29 +163,75 @@
                         </div>
                     </nav>
                 </div>
-                <div class="btn-box">
-                    <a href="index.html" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+                <div> {{-- add listing based on authentication --}}
+                    <div> {{-- add listing based on autentication  --}}
+                        @auth
+                            <div class="btn-box">
+                                @php
+                                    $role = Auth::user()->role;
+                                @endphp
+
+                                @if ($role === 'admin')
+                                    <a href="{{ route('add.property') }}" class="theme-btn btn-one">Add listing</a>
+                                @elseif ($role === 'agent')
+                                    <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
+                                @else
+                                    <a href="{{ route('dashboard') }}" class="theme-btn btn-one">User Add Listing</a>
+                                @endif
+                            </div>
+                        @endauth
+
+                        @guest
+                            <div class="btn-box">
+                                <a href="{{ route('add.property') }}" class="theme-btn btn-one"><span>+</span> Add
+                                    Listing</a>
+                            </div>
+                        @endauth
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!--sticky Header-->
-    <div class="sticky-header">
-        <div class="outer-box">
-            <div class="main-box">
-                <div class="logo-box">
-                    <figure class="logo"><a href="index.html"><img
-                                src="{{ asset('frontend/assets/images/Gojologo.png') }}" alt=""></a></figure>
-                </div>
-                <div class="menu-area clearfix">
-                    <nav class="main-menu clearfix">
-                        <!--Keep This Empty / Menu will come through Javascript-->
-                    </nav>
-                </div>
-                <div class="btn-box">
-                    <a href="index.html" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+        <!--sticky Header-->
+        <div class="sticky-header">
+            <div class="outer-box">
+                <div class="main-box">
+                    <div class="logo-box">
+                        <figure class="logo"><a href="index.html"><img
+                                    src="{{ asset('frontend/assets/images/Gojologo.png') }}" alt=""></a>
+                        </figure>
+                    </div>
+                    <div class="menu-area clearfix">
+                        <nav class="main-menu clearfix">
+                            <!--Keep This Empty / Menu will come through Javascript-->
+                        </nav>
+                    </div>
+                    <div> {{-- add listing based on autentication  --}}
+                        @auth
+                            <div class="btn-box">
+                                @php
+                                    $role = Auth::user()->role;
+                                @endphp
+
+                                @if ($role === 'admin')
+                                    <a href="{{ route('add.property') }}" class="theme-btn btn-one">Add listing</a>
+                                @elseif ($role === 'agent')
+                                    <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
+                                @else
+                                    <a href="{{ route('dashboard') }}" class="theme-btn btn-one">User Add Listing</a>
+                                @endif
+                            </div>
+                        @endauth
+
+                        @guest
+                            <div class="btn-box">
+                                <a href="{{ route('add.property') }}" class="theme-btn btn-one"><span>+</span> Add
+                                    Listing</a>
+                            </div>
+                        @endauth
+                    </div>
                 </div>
             </div>
         </div>

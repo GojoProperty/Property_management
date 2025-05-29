@@ -193,6 +193,7 @@
                         <span class="link-title">Documentation</span>
                     </a>
                 </li>
+            @endif
         </ul>
     </div>
 </nav>

@@ -241,8 +241,11 @@
                                     </div>
                                 @endif
                             </div>
+
                             <div class="form-inner">
                                 @auth
+                                    <h4>Contact Agent</h4>
+                        
 
                                     @php
                                         $id = Auth::user()->id;
@@ -300,43 +303,39 @@
 
 
                     </div>
+                    <div class="calculator-widget sidebar-widget">
+     <!-- ========== Property Request Section ========== -->
+        <div class="property-request-section" style="margin-top: 40px; margin-bottom: 60px;">
+            <div class="calculate-inner">
+                <div class="widget-title">
+                    <h4>Request This Property</h4>
                 </div>
-                <div class="calculator-widget sidebar-widget">
-                    <div class="calculate-inner">
-                        <div class="widget-title">
-                            <h4>Mortgage Calculator</h4>
+
+                @auth
+                    <form method="post"
+                        action="{{ $property->property_status == 'buy' ? route('purchase.request') : route('rent.request') }}"
+                        class="default-form">
+                        @csrf
+                        <input type="hidden" name="property_id" value="{{ $property->id }}">
+
+                        <div class="form-group">
+                            <label>Property Price</label>
+                            <input type="text" value="{{ $property->max_price }} ETB" class="form-control" readonly>
                         </div>
-                        <form method="post" action="mortgage-calculator.html" class="default-form">
-                            <div class="form-group">
-                                <i class="fas fa-dollar-sign"></i>
-                                <input type="number" name="total_amount" placeholder="Total Amount">
-                            </div>
-                            <div class="form-group">
-                                <i class="fas fa-dollar-sign"></i>
-                                <input type="number" name="down_payment" placeholder="Down Payment">
-                            </div>
-                            <div class="form-group">
-                                <i class="fas fa-percent"></i>
-                                <input type="number" name="interest_rate" placeholder="Interest Rate">
-                            </div>
-                            <div class="form-group">
-                                <i class="far fa-calendar-alt"></i>
-                                <input type="number" name="loan" placeholder="Loan Terms(Years)">
-                            </div>
-                            <div class="form-group">
-                                <div class="select-box">
-                                    <select class="wide">
-                                        <option data-display="Monthly">Monthly</option>
-                                        <option value="1">Yearly</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group message-btn">
-                                <button type="submit" class="theme-btn btn-one">Calculate Now</button>
-                            </div>
-                        </form>
+
+                        <div class="form-group message-btn">
+                            @if ($property->property_status == 'buy')
+                                <button type="submit" class="btn btn-success w-100">Buy Now</button>
+                            @elseif ($property->property_status == 'rent')
+                                <button type="submit" class="btn btn-info w-100">Rent Now</button>
+                            @endif
+                        </div>
+                    </form>
+                @else
+                    <div class="alert alert-warning">
+                        <strong>Notice:</strong> Please <a href="{{ route('login') }}">Login</a> to make a transaction request.
                     </div>
-                </div>
+                @endauth
             </div>
         </div>
         </div>
@@ -344,9 +343,9 @@
             <div class="title">
                 <h4>Similar Properties</h4>
             </div>
+
             <div class="row clearfix">
                 @if ($relatedProperty->isEmpty())
-                    <!-- Check if there are no similar properties -->
                     <div class="col-12">
                         <p>No similar type property is available for now.</p>
                     </div>
@@ -357,8 +356,9 @@
                                 data-wow-duration="1500ms">
                                 <div class="inner-box">
                                     <div class="image-box">
-                                        <figure class="image"><img src="{{ asset($item->property_thambnail) }}"
-                                                alt=""></figure>
+                                        <figure class="image">
+                                            <img src="{{ asset($item->property_thambnail) }}" alt="">
+                                        </figure>
                                         <div class="batch"><i class="icon-11"></i></div>
                                         <span class="category">{{ $item->type->type_name }}</span>
                                     </div>
@@ -366,23 +366,24 @@
                                         <div class="author-info clearfix">
                                             <div class="author pull-left">
                                                 @if ($item->agent_id == null)
-                                                    <figure class="author-thumb"><img
-                                                            src="{{ url('upload/heriadmin.jpg') }}" alt="">
+                                                    <figure class="author-thumb">
+                                                        <img src="{{ url('upload/heriadmin.jpg') }}" alt="">
                                                     </figure>
-                                                    <h6>Admin </h6>
+                                                    <h6>Admin</h6>
                                                 @else
-                                                    <figure class="author-thumb"><img
-                                                            src="{{ !empty($item->user->photo) ? url('upload/agent_images/' . $item->user->photo) : url('upload/no_image.jpg') }}"
-                                                            alt=""></figure>
+                                                    <figure class="author-thumb">
+                                                        <img src="{{ !empty($item->user->photo) ? url('upload/agent_images/' . $item->user->photo) : url('upload/no_image.jpg') }}" alt="">
+                                                    </figure>
                                                     <h6>{{ $item->user->name }}</h6>
                                                 @endif
                                             </div>
-                                            <div class="buy-btn pull-right"><a href="property-details.html">For
-                                                    {{ $item->property_status }}</a></div>
+                                            <div class="buy-btn pull-right">
+                                                <a href="property-details.html">For {{ $item->property_status }}</a>
+                                            </div>
                                         </div>
                                         <div class="title-text">
-                                            <h4><a
-                                                    href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{ $item->property_name }}</a>
+                                            <h4>
+                                                <a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{ $item->property_name }}</a>
                                             </h4>
                                         </div>
                                         <div class="price-box clearfix">
@@ -401,9 +402,9 @@
                                             <li><i class="icon-15"></i>{{ $item->bathrooms }} Baths</li>
                                             <li><i class="icon-16"></i>{{ $item->property_size }} Sq Ft</li>
                                         </ul>
-                                        <div class="btn-box"><a
-                                                href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
-                                                class="theme-btn btn-two">See Details</a></div>
+                                        <div class="btn-box">
+                                            <a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}" class="theme-btn btn-two">See Details</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -412,33 +413,8 @@
                 @endif
             </div>
         </div>
-    </section>
-    <!-- property-details end -->
+        <!-- ========== End Similar Properties Section ========== -->
 
-    <!-- subscribe-section -->
-    <section class="subscribe-section bg-color-3">
-        <div class="pattern-layer"
-            style="background-image: url({{ asset('frontend/assets/images/shape/shape-2.png') }});"></div>
-        <div class="auto-container">
-            <div class="row clearfix">
-                <div class="col-lg-6 col-md-6 col-sm-12 text-column">
-                    <div class="text">
-                        <span>Subscribe</span>
-                        <h2>Sign Up To Our Newsletter To Get The Latest News And Offers.</h2>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 form-column">
-                    <div class="form-inner">
-                        <form action="contact.html" method="post" class="subscribe-form">
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Enter your email" required="">
-                                <button type="submit">Subscribe Now</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
     <!-- subscribe-section end -->
-@endsection
+    
