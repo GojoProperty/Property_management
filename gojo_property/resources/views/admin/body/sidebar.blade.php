@@ -8,7 +8,6 @@
     }
 @endphp
 
-
 <nav class="sidebar">
     <!-- Sidebar Header -->
     <div class="sidebar-header">
@@ -34,7 +33,7 @@
 
             @if ($status === 'active')
                 <li class="nav-item nav-category">Gojo Property</li>
-
+                <!-- Property Type -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#propertyType" role="button"
                         aria-expanded="false" aria-controls="propertyType">
@@ -54,6 +53,7 @@
                     </div>
                 </li>
 
+                <!-- Amenitie Section -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#amenitieSection" role="button"
                         aria-expanded="false" aria-controls="amenitieSection">
@@ -73,6 +73,7 @@
                     </div>
                 </li>
 
+                <!-- Property Section -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#property" role="button" aria-expanded="false"
                         aria-controls="property">
@@ -92,12 +93,14 @@
                     </div>
                 </li>
 
+                <!-- Package -->
                 <li class="nav-item">
                     <a href="{{ route('admin.package.history') }}" class="nav-link">
                         <i class="link-icon" data-feather="calendar"></i>
                         <span class="link-title">Package History</span>
                     </a>
                 </li>
+
                 <li class="nav-item nav-category">User All Function</li>
 
                 <!-- Blog Category -->
