@@ -22,14 +22,16 @@ class TransactionReferenceNotification extends Notification
         return ['mail'];
     }
 
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->subject('Your Gojo Property Transaction Reference')
-                    ->greeting('Hello ' . $notifiable->name . '!')
-                    ->line('Thank you for your transaction request on Gojo Property.')
-                    ->line('Your transaction reference code is: **' . $this->referenceCode . '**')
-                    ->line('Please keep this code for future reference.')
-                    ->salutation('Thanks for using Gojo Property!');
-    }
+   public function toMail($notifiable)
+{
+    return (new MailMessage)
+        ->subject('Your Gojo Property Transaction Reference')
+        ->greeting('Hello ' . $notifiable->name . '!')
+        ->line('Thank you for your transaction request on Gojo Property.')
+        ->line('Your transaction reference code is: **' . $this->referenceCode . '**')
+        ->line('Please reply to this email within 24 hours attaching your transaction receipt.')
+        ->line('If you do not reply within 24 hours, your transaction request may be cancelled.')
+        ->salutation('Thanks for using Gojo Property!');
+}
+
 }

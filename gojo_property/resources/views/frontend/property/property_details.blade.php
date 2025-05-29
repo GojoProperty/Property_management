@@ -306,40 +306,43 @@
                     <div class="calculator-widget sidebar-widget">
      <!-- ========== Property Request Section ========== -->
         <div class="property-request-section" style="margin-top: 40px; margin-bottom: 60px;">
-            <div class="calculate-inner">
-                <div class="widget-title">
+            <div class="widget-title">
                     <h4>Request This Property</h4>
                 </div>
+    <div class="card shadow">
+        <div class="card-body">
+            @auth
+                <form method="post"
+                    action="{{ $property->property_status == 'buy' ? route('purchase.request') : route('rent.request') }}"
+                    class="default-form">
+                    @csrf
+                    <input type="hidden" name="property_id" value="{{ $property->id }}">
 
-                @auth
-                    <form method="post"
-                        action="{{ $property->property_status == 'buy' ? route('purchase.request') : route('rent.request') }}"
-                        class="default-form">
-                        @csrf
-                        <input type="hidden" name="property_id" value="{{ $property->id }}">
-
-                        <div class="form-group">
-                            <label>Property Price</label>
-                            <input type="text" value="{{ $property->max_price }} ETB" class="form-control" readonly>
-                        </div>
-
-                        <div class="form-group message-btn">
-                            @if ($property->property_status == 'buy')
-                                <button type="submit" class="btn btn-success w-100">Buy Now</button>
-                            @elseif ($property->property_status == 'rent')
-                                <button type="submit" class="btn btn-info w-100">Rent Now</button>
-                            @endif
-                        </div>
-                    </form>
-                @else
-                    <div class="alert alert-warning">
-                        <strong>Notice:</strong> Please <a href="{{ route('login') }}">Login</a> to make a transaction request.
+                    <div class="form-group mb-3">
+                        <label>Property Price</label>
+                        <input type="text" value="{{ $property->max_price }} ETB" class="form-control" readonly>
                     </div>
-                @endauth
-            </div>
+
+                    <div class="form-group message-btn">
+                        @if ($property->property_status == 'buy')
+                            <button type="submit" class="btn btn-success w-100">Buy Now</button>
+                        @elseif ($property->property_status == 'rent')
+                            <button type="submit" class="btn btn-success w-100">Rent Now</button>
+                        @endif
+                    </div>
+                </form>
+            @else
+                <div class="alert alert-warning mb-0">
+                    <strong>Notice:</strong> Please <a href="{{ route('login') }}">Login</a> to make a transaction request.
+                </div>
+            @endauth
         </div>
-        </div>
-        <div class="similar-content">
+    </div>
+</div>
+
+
+        <!-- ========== Similar Properties Section ========== -->
+        <div class="similar-properties-section" style="margin-top: 60px;">
             <div class="title">
                 <h4>Similar Properties</h4>
             </div>
