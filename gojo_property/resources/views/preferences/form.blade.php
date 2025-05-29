@@ -32,8 +32,6 @@
                     @endforeach
                 </select>
             </div>
-
-
             <div class="form-group">
                 <label for="bedrooms">Bedrooms</label>
                 <input type="text" name="bedrooms" class="form-control"
