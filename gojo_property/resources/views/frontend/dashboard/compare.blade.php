@@ -25,12 +25,11 @@
     <section class="property-page-section property-list">
         <div class="auto-container">
             <div class="row g-4">
-                <!-- Sidebar -->
+
                 <div class="col-lg-12 col-md-12 col-sm-12 content-side">
-                    <!-- 🔵 JS will inject summary here -->
+
                     <div id="compare-summary" class="mb-3"></div>
 
-                    <!-- 🔵 JS will inject property cards here -->
                     <div id="compare-cards" class="d-flex flex-column gap-4"></div>
                 </div>
             </div>
