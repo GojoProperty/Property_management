@@ -1,9 +1,12 @@
 <div class="widget-content">
     <ul class="category-list">
 
-        <li><a href="{{ route('user.profile') }}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
-        <li><a href="{{ route('user.wishlist') }}"><i class="fa fa-indent" aria-hidden="true"></i> Your Property
-                WishList </a></li>
+        <li><a href="{{ route('user.profile') }}"><i class="fa fa-cog" aria-hidden="true"></i> Profile Settings</a></li>
+
+        <li><a href="{{ route('user.change.password') }}"><i class="fa fa-key" aria-hidden="true"></i> Password Setting</a>
+        </li>
+        <li><a href="{{ route('user.wishlist') }}"><i class="fa fa-indent" aria-hidden="true"></i> Your Wishlist Property
+            </a></li>
 
         <li><a href="{{ route('user.compare') }}"><i class="fa fa-list-alt" aria-hidden="true"></i></i> Properties to
                 Compare </a>
@@ -21,8 +24,6 @@
                 <i class="fas fa-star text-success"></i> Recommendations
             </a>
         </li>
-
-        <li><a href="{{ route('user.change.password') }}"><i class="fa fa-key" aria-hidden="true"></i> Security</a></li>
         <li><a href="{{ route('user.logout') }}"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i> Logout</a>
         </li>
     </ul>

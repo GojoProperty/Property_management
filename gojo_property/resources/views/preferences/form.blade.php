@@ -1,5 +1,23 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
+    <section class="page-title-two bg-color-1 centred">
+        <div class="pattern-layer">
+            <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
+            </div>
+            <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
+            </div>
+        </div>
+
+        <div class="auto-container">
+            <div class="content-box clearfix">
+                <h1>Your Preference form</h1>
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li>set your preference</li>
+                </ul>
+            </div>
+        </div>
+    </section>
     <div class="container py-5"> {{-- py-5 = padding-top and padding-bottom --}}
         <h2>Set Your Property Preferences</h2>
 
