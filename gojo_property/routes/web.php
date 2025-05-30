@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/wishlist', 'UserWishlist')->name('user.wishlist');
         Route::get('/get-wishlist-property', 'GetWishlistProperty');
         Route::get('/wishlist-remove/{id}', 'WishlistRemove');
+        // Wishlist Add Route 
+        Route::post('/add-to-wishList/{property_id}', 'AddToWishList');
     });
 
     // Compare
@@ -250,6 +252,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/property/message', 'PropertyMessage')->name('property.message');
     Route::post('/store/schedule',  'StoreSchedule')->name('store.schedule');
 
+<<<<<<< Updated upstream
     // Agent Details Page in Frontend 
     Route::get('/agent/details/{id}', 'AgentDetails')->name('agent.details');
     // Send Message from Agent Details Page 
@@ -272,6 +275,12 @@ Route::controller(IndexController::class)->group(function () {
 // ===================== Frontend Routes =====================
 Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails'])->name('property.details');
 Route::post('/add-to-wishlist/{property_id}', [WishlistController::class, 'AddToWishList']);
+=======
+// Frontend Property Details Routes  
+Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
+
+// Compare Add Route 
+>>>>>>> Stashed changes
 Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
 
 // Blog Details Route 
