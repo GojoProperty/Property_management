@@ -273,7 +273,7 @@ Route::controller(IndexController::class)->group(function () {
 });
 // ===================== Frontend Routes =====================
 Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails'])->name('property.details');
-Route::post('/add-to-wishlist/{property_id}', [WishlistController::class, 'AddToWishList']);
+
 Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
 
 // Blog Details Route 
