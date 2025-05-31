@@ -39,23 +39,10 @@ class CompareController extends Controller
 
     public function GetCompareProperty()
     {
-        $compareItems = Compare::with('property')->where('user_id', Auth::id())->get();
+        $compare = Compare::with('property')->where('user_id', Auth::id())->latest()->get();
 
-        $lowest = $compareItems->sortBy('property.lowest_price')->first();
-        $largest = $compareItems->sortByDesc('property.property_size')->first();
-        $most = $compareItems->sortByDesc('property.bedrooms')->first();
-
-        return response()->json([
-            'compare' => $compareItems,
-            'lowestPrice' => $lowest->property->lowest_price,
-            'lowestPriceName' => $lowest->property->property_name,
-            'largestArea' => $largest->property->property_size,
-            'largestAreaName' => $largest->property->property_name,
-            'mostRooms' => $most->property->bedrooms,
-            'mostRoomsName' => $most->property->property_name
-        ]);
-    }
-
+        return response()->json($compare);
+    } // End Method 
 
     public function CompareRemove($id)
     {

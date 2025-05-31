@@ -43,15 +43,11 @@
                                             <td>
                                                 @if ($item->status == 1)
                                                     <span class="badge rounded-pill bg-success">Active</span>
-                                                @elseif ($item->status == 0 && $item->property_status == 'For Rent')
-                                                    <span class="badge rounded-pill bg-warning text-dark">Rented</span>
-                                                @elseif ($item->status == 0 && $item->property_status == 'For Buy')
-                                                    <span class="badge rounded-pill bg-secondary">Sold</span>
                                                 @else
-                                                    <span class="badge rounded-pill bg-danger">Inactive</span>
+                                                    <span class="badge rounded-pill bg-danger">InActive</span>
                                                 @endif
-                                            </td>
 
+                                            </td>
                                             <td>
                                                 <a href="{{ route('details.property', $item->id) }}"
                                                     class="btn btn-inverse-info" title="Details"> <i data-feather="eye"></i>

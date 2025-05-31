@@ -113,15 +113,6 @@ class PropertyController extends Controller
                 ]);
             }
         }
-        // After $property = Property::create([...]);
-
-        if ($request->has('rules')) {
-            foreach ($request->rules as $rule) {
-                if (!empty($rule)) {
-                    $property->rules()->create(['content' => $rule]);
-                }
-            }
-        }
 
         $preferences = Preference::all();
 
