@@ -20,7 +20,7 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\DashboardrecomendController;
 
