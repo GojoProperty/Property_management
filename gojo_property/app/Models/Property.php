@@ -34,4 +34,8 @@ class Property extends Model
     {
         return $this->hasMany(Rules::class);
     }
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
