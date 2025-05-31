@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AgentController;
 use Illuminate\Support\Facades\Mail;
-
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\AdminController;
@@ -72,6 +73,9 @@ Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name(
 
 
 require __DIR__ . '/auth.php';
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
+
 
 // ===================== Admin Routes =====================
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -302,11 +306,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/rent-request', [TransactionController::class, 'rentRequest'])->name('rent.request');
 });
 
-Route::get('/test-mail', function () {
-    Mail::raw('Hello! This is a test email from Gojo Property.', function ($message) {
-        $message->to('darartuamanu6@gmail.com')
-            ->subject('Test Email From Gojo Property');
-    });
 
-    return 'Test email sent!';
-});
+Route::get('/transactions/details', [TransactionController::class, 'TransactionDetails'])->name('transaction.details');
+
+// Update status
+Route::put('/transaction/update-status/{id}', [TransactionController::class, 'updateStatus'])->name('update.transaction.status');
+
+// Delete transaction
+Route::get('/transaction/delete/{id}', [TransactionController::class, 'deleteTransaction'])->name('delete.transaction');
