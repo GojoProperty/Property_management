@@ -148,7 +148,7 @@
                     </a>
                 </li>
 
-                <!-- UI Kit -->
+                {{-- <!-- UI Kit -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button"
                         aria-expanded="false" aria-controls="uiComponents">
@@ -166,9 +166,9 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
 
-                <!-- Advanced UI -->
+                <!-- Transaction -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button"
                         aria-expanded="false" aria-controls="advancedUI">
@@ -181,21 +181,21 @@
                             <li class="nav-item">
                                 <a href="{{ route('transaction.details') }}" class="nav-link">All Transactions</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </li>
 
-                <!-- Docs Section -->
+                {{-- <!-- Docs Section -->
                 <li class="nav-item nav-category">Docs</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="link-icon" data-feather="hash"></i>
                         <span class="link-title">Documentation</span>
                     </a>
-                </li>
+                </li> --}}
             @endif
         </ul>
     </div>
