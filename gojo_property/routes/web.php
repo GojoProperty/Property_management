@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\ProfileController;
+
 use App\Http\Controllers\AgentController;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -15,10 +16,11 @@ use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
-//use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\DashboardrecomendController;
 
@@ -46,6 +48,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/wishlist', 'UserWishlist')->name('user.wishlist');
         Route::get('/get-wishlist-property', 'GetWishlistProperty');
         Route::get('/wishlist-remove/{id}', 'WishlistRemove');
+        // Wishlist Add Route 
+        Route::post('/add-to-wishList/{property_id}', 'AddToWishList');
     });
 
     // Compare
@@ -66,7 +70,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::get('/agent/register', [AgentController::class, 'AgentRegisterForm'])->name('agent.register.form');
 Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
-//Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware('redirect.authenticated');
+
 
 require __DIR__ . '/auth.php';
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -216,7 +220,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
     Route::post('/agent/update/password', [AgentController::class, 'AgentUpdatePassword'])->name('agent.update.password');
 
 
-    // Agent Property
+    // Agent Propert
     Route::controller(AgentPropertyController::class)->group(function () {
         Route::get('/agent/all/property', 'AgentAllProperty')->name('agent.all.property');
         Route::get('/agent/add/property', 'AgentAddProperty')->name('agent.add.property');
@@ -235,9 +239,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
         // Schedule Request Route
         Route::get('/agent/schedule/request',  'AgentScheduleRequest')->name('agent.schedule.request');
         Route::get('/agent/details/schedule/{id}', 'AgentDetailsSchedule')->name('agent.details.schedule');
-
         Route::post('/agent/update/schedule', 'AgentUpdateSchedule')->name('agent.update.schedule');
-
 
         // Buy Package
         Route::get('/buy/package', 'BuyPackage')->name('buy.package');
@@ -250,7 +252,10 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
     });
 });
 Route::controller(IndexController::class)->group(function () {
+
     Route::post('/property/message', 'PropertyMessage')->name('property.message');
+    Route::post('/store/schedule',  'StoreSchedule')->name('store.schedule');
+
     // Agent Details Page in Frontend 
     Route::get('/agent/details/{id}', 'AgentDetails')->name('agent.details');
     // Send Message from Agent Details Page 
@@ -263,7 +268,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/property/type/{id}',  'PropertyType')->name('property.type');
     // Get State Details Data 
     Route::get('/state/details/{id}',  'StateDetails')->name('state.details');
-    // Home Page Buy Seach Option
+    // Home Page Buy Seach Optiont
     Route::post('/buy/property/search',  'BuyPropertySearch')->name('buy.property.search');
     // Home Page Rent Seach Option
     Route::post('/rent/property/search',  'RentPropertySeach')->name('rent.property.search');
@@ -272,7 +277,7 @@ Route::controller(IndexController::class)->group(function () {
 });
 // ===================== Frontend Routes =====================
 Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails'])->name('property.details');
-Route::post('/add-to-wishlist/{property_id}', [WishlistController::class, 'AddToWishList']);
+
 Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
 
 // Blog Details Route 
@@ -300,6 +305,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/purchase-request', [TransactionController::class, 'purchaseRequest'])->name('purchase.request');
     Route::post('/rent-request', [TransactionController::class, 'rentRequest'])->name('rent.request');
 });
+
 
 
 Route::get('/transactions/details', [TransactionController::class, 'TransactionDetails'])->name('transaction.details');

@@ -1,4 +1,4 @@
-<section class="download-section bg-color-3">
+{{--<section class="download-section bg-color-3">
     <div class="pattern-layer" style="background-image: url({{ asset('frontend/assets/images/shape/shape-3.png') }});"></div>
     <div class="auto-container">
         <div class="row clearfix">
@@ -30,4 +30,4 @@
             </div>
         </div>
     </div>
-</section>
+</section>--}}

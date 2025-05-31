@@ -8,9 +8,8 @@
                             <h3>About</h3>
                         </div>
                         <div class="text">
-                            <p>Lorem ipsum dolor amet consetetur adi pisicing elit sed eiusm tempor in cididunt ut
-                                labore dolore magna aliqua enim ad minim venitam</p>
-                            <p>Quis nostrud exercita laboris nisi ut aliquip commodo.</p>
+                            <p>Gojo Property is your trusted digital bridge between property owners and seekers. Whether you're looking to buy, sell, or rent a home, Gojo Properties makes the process simple, secure, and efficient.</p>
+                            <p>Our mission is to make property transactions smarter and faster by putting everything you need in one place.</p>
                         </div>
                     </div>
                 </div>
@@ -61,11 +60,11 @@
                         </div>
                         <div class="widget-content">
                             <ul class="info-list clearfix">
-                                <li><i class="fas fa-map-marker-alt"></i>Flat 20, Reynolds Neck, North Helenaville, FV77
-                                    8WS</li>
-                                <li><i class="fas fa-microphone"></i><a href="tel:23055873407">+2(305) 587-3407</a></li>
+                                <li><i class="fas fa-map-marker-alt"></i>Hawassa,Ethiopia        
+                            Admas Mall, 6th Floor, Office No. 604</li>
+                                <li><i class="fas fa-microphone"></i><a href="tel:23055873407">+251 462 12 68 80</a></li>
                                 <li><i class="fas fa-envelope"></i><a
-                                        href="mailto:info@example.com">info@example.com</a></li>
+                                        href="mailto:info@example.com">gojoproperties@gmail.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -77,7 +76,7 @@
         <div class="auto-container">
             <div class="inner-box clearfix">
                 <figure class="footer-logo"><a href="index.html"><img
-                            src="{{ asset('frontend/assets/images/Gojologo.png') }}" alt=""></a></figure>
+                            src="{{ asset('frontend/assets/images/gojo.png') }}" alt=""></a></figure>
                 <div class="copyright pull-left">
 
                     <p><a href="index.html">Gojo property</a> &copy;{{ date('Y') }} All Right Reserved</p>

@@ -1,5 +1,23 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
+    <section class="page-title-two bg-color-1 centred">
+        <div class="pattern-layer">
+            <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
+            </div>
+            <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
+            </div>
+        </div>
+
+        <div class="auto-container">
+            <div class="content-box clearfix">
+                <h1>Your Preference form</h1>
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li>set your preference</li>
+                </ul>
+            </div>
+        </div>
+    </section>
     <div class="container py-5"> {{-- py-5 = padding-top and padding-bottom --}}
         <h2>Set Your Property Preferences</h2>
 
@@ -20,20 +38,6 @@
                 <input type="number" name="max_price" class="form-control"
                     value="{{ old('max_price', $preference->max_price) }}">
             </div>
-
-            {{-- <div class="col-sm-4">
-                <div class="mb-3">
-                    <label class="form-label">Property Type </label>
-                    <select name="ptype_id" class="form-select" id="exampleFormControlSelect1">
-                        <option selected="" disabled="">Select Type</option>
-                        @foreach ($propertytype as $ptype)
-                            <option value="{{ $ptype->id }}">{{ $ptype->type_name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div> --}}
-
             <div class="form-group">
                 <label class="form-label">Property Type </label>
                 <select name="property_type" class="form-select" id="exampleFormControlSelect1">
@@ -46,8 +50,6 @@
                     @endforeach
                 </select>
             </div>
-
-
             <div class="form-group">
                 <label for="bedrooms">Bedrooms</label>
                 <input type="text" name="bedrooms" class="form-control"
@@ -67,7 +69,7 @@
                     <option value="buy">For Buy</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success">Save Preferences</button>
+            <button type="submit" class="btn btn-success mt-4">Save Preferences</button>
         </form>
     </div>
 @endsection
