@@ -74,7 +74,7 @@
      <li><a href="contact.html"><span>Contact</span></a></li> 
     
      <li> 
-    <a href="{{ route('agent.login') }}" class="btn btn-success"><span>+</span>Add Listing</a> 
+    <a href="index.html" class="btn btn-success"><span>+</span>Add Listing</a> 
 </li> 
 
 
