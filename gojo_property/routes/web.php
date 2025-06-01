@@ -119,7 +119,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/inactive', 'InactiveProperties')->name('property.inactive');
         Route::get('/admin/rented', 'RentedProperties')->name('property.rented');
         Route::get('/admin/sold', 'SoldProperties')->name('property.sold');
-
+        Route::post('/property/toggle-hot',  'toggleHot')->name('property.toggle.hot');
 
         Route::get('/add/property', 'addProperty')->name('add.property');
         Route::post('/store/property', 'storeProperty')->name('store.property');
