@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\TransactionController;
 
 use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\Frontend\FrontendPropertyController;
 use App\Http\Controllers\DashboardrecomendController;
 
 
@@ -267,8 +268,8 @@ Route::controller(IndexController::class)->group(function () {
 });
 // ===================== Frontend Routes =====================
 Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails'])->name('property.details');
-
 Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
+Route::get('/all-properties', [FrontendPropertyController::class, 'AllProperties'])->name('all.properties');
 
 // Blog Details Route 
 Route::get('/blog/details/{slug}', [BlogController::class, 'BlogDetails']);
