@@ -13,6 +13,7 @@ use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
+use App\Http\Controllers\CustomerPropertyController;
 
 Route::get('/', [UserController::class, 'Index']);
 
@@ -121,20 +122,18 @@ Route::controller(PropertyController::class)->group(function () {
     Route::post('/active/property', 'activeProperty')->name('active.property');
     Route::get('/admin/package/history', 'AdminPackageHistory')->name('admin.package.history');
     Route::get('/package/invoice/{id}', 'PackageInvoice')->name('package.invoice');
- 
 });
 
 // Agent All Route from admin 
-Route::controller(AdminController::class)->group(function(){
- 
-    Route::get('/all/agent', 'AllAgent')->name('all.agent'); 
+Route::controller(AdminController::class)->group(function () {
+
+    Route::get('/all/agent', 'AllAgent')->name('all.agent');
     Route::get('/add/agent', 'AddAgent')->name('add.agent');
     Route::post('/store/agent', 'StoreAgent')->name('store.agent');
     Route::get('/edit/agent/{id}', 'EditAgent')->name('edit.agent');
     Route::post('/update/agent', 'UpdateAgent')->name('update.agent');
     Route::get('/delete/agent/{id}', 'DeleteAgent')->name('delete.agent');
     Route::get('/changeStatus', 'changeStatus');
-
 });
 // Agent routes
 /// Agent Group Middleware 
@@ -195,3 +194,17 @@ Route::get('/rent/property', [IndexController::class, 'RentProperty'])->name('re
 Route::get('/buy/property', [IndexController::class, 'BuyProperty'])->name('buy.property');
 // Get All Property Type Data 
 Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');
+//customer property
+Route::middleware(['auth'])->group(function () {
+    Route::get('/customer/add/property', [CustomerPropertyController::class, 'addProperty'])->name('customer.add.property');
+    Route::post('/customer/store/property', [CustomerPropertyController::class, 'CustomerStoreProperty'])->name('customer.store.property');
+    Route::get('/customer/all/property', [CustomerPropertyController::class, 'allProperty'])->name('customer.all.property');
+    Route::get('/customer/edit/property/{id}', [PropertyController::class, 'CustomerEditProperty'])->name('customer.edit.property');
+    Route::post('/customer/update/property', [PropertyController::class, 'CustomerUpdateProperty'])->name('customer.update.property');
+    Route::post('/customer/update/property/thumbnail', [PropertyController::class, 'CustomerUpdatePropertyThambnail'])->name('customer.update.property.thumbnail');
+    Route::post('/customer/update/property/multiimage', [PropertyController::class, 'CustomerUpdatePropertyMultiimage'])->name('customer.update.property.multiimage');
+    Route::get('/customer/delete/property/multiimage/{id}', [PropertyController::class, 'CustomerPropertyMultiimgDelete'])->name('customer.delete.property.multiimage');
+    Route::post('/customer/store/new/property/multiimage', [PropertyController::class, 'CustomerStoreNewMultiimage'])->name('customer.store.new.multiimage');
+    Route::post('/customer/update/property/facilities', [PropertyController::class, 'CustomerUpdatePropertyFacilities'])->name('customer.update.property.facilities');
+    Route::get('/customer/delete/property/{id}', [PropertyController::class, 'CustomerDeleteProperty'])->name('customer.delete.property');
+});

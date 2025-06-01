@@ -41,4 +41,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function customerProperties()
+    {
+        return $this->hasMany(\App\Models\Property::class, 'customer_id');
+    }
 }

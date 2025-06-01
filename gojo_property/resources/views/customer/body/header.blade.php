@@ -62,19 +62,6 @@
                                 <li><a href="{{ url('/') }}"><span>Agent</span></a></li>
                                 <li><a href="{{ url('/') }}"><span>Blog</span></a></li>
                                 <li><a href="contact.html"><span>Contact</span></a></li>
-                                <li>
-                                    @auth
-                                        @if (auth()->user()->role === 'customer')
-                                            <a href="{{ route('customer.add.property') }}"
-                                                class="btn btn-success"><span>+</span> Add Listing</a>
-                                        @endif
-                                    @else
-                                        <a href="{{ route('login') }}" class="btn btn-success"><span>+</span> Add
-                                            Listing</a>
-                                    @endauth
-                                </li>
-
-
                             </ul>
                         </div>
                     </nav>
@@ -83,34 +70,4 @@
         </div>
     </div>
 
-    <!--sticky Header-->
-    <div class="sticky-header">
-        <div class="outer-box">
-            <div class="main-box">
-                <div class="logo-box">
-                    <figure class="logo"><a href="index.html"><img
-                                src="{{ asset('frontend/assets/images/logo.png') }}" alt=""></a></figure>
-                </div>
-                <div class="menu-area clearfix">
-                    <nav class="main-menu clearfix">
-                        <!--Keep This Empty / Menu will come through Javascript-->
-                    </nav>
-                </div>
-                <div class="btn-box">
-                    <li>
-                        @auth
-                            @if (auth()->user()->role === 'customer')
-                                <a href="{{ route('customer.add.property') }}" class="btn btn-success"><span>+</span> Add
-                                    Listing</a>
-                            @endif
-                        @else
-                            <a href="{{ route('login') }}" class="btn btn-success"><span>+</span> Add Listing</a>
-                        @endauth
-                    </li>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
 </header>
