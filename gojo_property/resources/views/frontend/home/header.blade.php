@@ -60,41 +60,25 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="index.html"><span>Home</span></a>
-                                    <ul>
-                                        <li><a href="index.html">Main Home</a></li>
-                                        <li><a href="index-2.html">Home Modern</a></li>
-                                        <li><a href="index-3.html">Home Map</a></li>
-                                        <li><a href="index-4.html">Home Half Map</a></li>
-                                        <li><a href="index-5.html">Home Agent</a></li>
-                                        <li><a href="index-onepage.html">OnePage Home</a></li>
-                                        <li><a href="index-rtl.html">RTL Home</a></li>
-                                        <li class="dropdown"><a href="index.html">Header Style</a>
-                                            <ul>
-                                                <li><a href="index.html">Header Style 01</a></li>
-                                                <li><a href="index-2.html">Header Style 02</a></li>
-                                                <li><a href="index-3.html">Header Style 03</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                <li><a href="{{ url('/') }}"><span>Home</span></a>
                                 </li>
-                                <li class="dropdown"><a href="#team-section"><span>Our Agents </span></a>
-
-                                </li>
-                                <li class="dropdown"><a href="index.html"><span>Property</span></a>
+                                <li class="dropdown"><a href="#"><span>Property</span></a>
                                     <ul>
-                                        <li><a href="#deals-section">Hot properties</a></li>
+                                        <li><a href="{{ url('/') }}#deals-section">Hot properties</a></li>
                                         <li><a href="{{ route('all.properties') }}">All properties</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="index.html"><span>Pages</span></a>
+                                <li><a href="{{ url('/') }}#team-section"><span>Our Agents </span></a>
+                                </li>
+
+                                <li><a href="{{ url('/') }}#testimonial-section"><span>Our Testimonies</span></a>
 
                                 </li>
-                                <li class="dropdown"><a href="index.html"><span>Agency</span></a>
+                                <li><a href="{{ url('/') }}#place-section"><span>Popular places</span></a>
 
                                 </li>
                                 <li><a href="{{ route('blog.list') }}"><span>Blog </span></a> </li>
-                                <li><a href="contact.html"><span>Contact</span></a></li>
+                                <li><a href="{{ url('/') }}#chooseus-section"><span>why choose us</span></a></li>
                             </ul>
                         </div>
                     </nav>
