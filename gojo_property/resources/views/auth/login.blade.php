@@ -45,36 +45,9 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="tab" id="tab-2">
-                            <div class="inner-box">
-                                <h4>Sign in</h4>
-                                <form action="{{ route('register') }}" method="post" class="default-form">
-    @csrf
-    <div class="form-group">
-        <label>User name</label>
-        <input type="text" name="name" required>
-    </div>
-    <div class="form-group">
-        <label>Email address</label>
-        <input type="email" name="email" required>
-    </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" name="password" required>
-    </div>
-    <div class="form-group">
-        <label>Confirm Password</label>
-        <input type="password" name="password_confirmation" required>
-    </div>
-    <div class="form-group message-btn">
-        <button type="submit" class="theme-btn btn-one">Register</button>
-    </div>
-</form>
 
-                                <div class="othre-text">
-                                    <p>Have not any account? <a href="signup.html">Register Now</a></p>
-                                </div>
+                            <div class="form-group message-btn">
+                                <button type="submit" class="theme-btn btn-one">Sign in</button>
                             </div>
                         </form>
 

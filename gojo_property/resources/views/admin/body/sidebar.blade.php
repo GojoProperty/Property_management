@@ -99,6 +99,25 @@
                     </a>
                 </li>
                 <li class="nav-item nav-category">User All Function</li>
+                <!-- Testimonials Management -->
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#testimonials" role="button"
+                        aria-expanded="false" aria-controls="emails">
+                        <i class="link-icon" data-feather="mail"></i>
+                        <span class="link-title">Testimonials Manage</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="testimonials">
+                        <ul class="nav sub-menu">
+                            <li class="nav-item">
+                                <a href="{{ route('all.testimonials') }}" class="nav-link">All Testimonials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('add.testimonials') }}" class="nav-link">Add Testimonials</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
                 <!-- Blog Category -->
                 <li class="nav-item">
@@ -136,39 +155,6 @@
                         </ul>
                     </div>
                 </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
-                    aria-controls="uiComponents">
-                    <i class="link-icon" data-feather="feather"></i>
-                    <span class="link-title">Manage Agent</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="uiComponents">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('all.agent') }}" class="nav-link">All Agent </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('add.agent') }}"  class="nav-link">Add Agent</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button"
-                    aria-expanded="false" aria-controls="advancedUI">
-                    <i class="link-icon" data-feather="anchor"></i>
-                    <span class="link-title">Transaction</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="advancedUI">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('transaction.details') }}" class="nav-link">All Transactions</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
-                        </li>
 
                 <!-- Blog Comment -->
                 <li class="nav-item">
@@ -178,7 +164,7 @@
                     </a>
                 </li>
 
-                <!-- UI Kit -->
+                {{-- <!-- UI Kit -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button"
                         aria-expanded="false" aria-controls="uiComponents">
@@ -196,36 +182,36 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
 
-                <!-- Advanced UI -->
+                <!-- Transaction -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button"
                         aria-expanded="false" aria-controls="advancedUI">
                         <i class="link-icon" data-feather="anchor"></i>
-                        <span class="link-title">Advanced UI</span>
+                        <span class="link-title">Transaction</span>
                         <i class="link-arrow" data-feather="chevron-down"></i>
                     </a>
                     <div class="collapse" id="advancedUI">
                         <ul class="nav sub-menu">
                             <li class="nav-item">
-                                <a href="pages/advanced-ui/cropper.html" class="nav-link">Cropper</a>
+                                <a href="{{ route('transaction.details') }}" class="nav-link">All Transactions</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </li>
 
-                <!-- Docs Section -->
+                {{-- <!-- Docs Section -->
                 <li class="nav-item nav-category">Docs</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="link-icon" data-feather="hash"></i>
                         <span class="link-title">Documentation</span>
                     </a>
-                </li>
+                </li> --}}
             @endif
         </ul>
     </div>

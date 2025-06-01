@@ -29,10 +29,8 @@ class Property extends Model
      public function pstate(){
         return $this->belongsTo(State::class,'state','id');
     }
-
     public function transactions()
-{
-    return $this->hasMany(Transaction::class);
-}
-
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

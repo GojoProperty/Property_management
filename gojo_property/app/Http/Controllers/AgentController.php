@@ -53,12 +53,7 @@ class AgentController extends Controller
 
         $request->session()->regenerateToken();
 
-        $notification = array(
-            'message' => 'Agent Logout Successfully',
-            'alert-type' => 'success'
-        );
-
-        return redirect('/agent/login')->with($notification);
+        return redirect('/login');
     } // End Method 
 
 

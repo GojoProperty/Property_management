@@ -364,6 +364,8 @@
                                         </figure>
                                         <div class="batch"><i class="icon-11"></i></div>
                                         <span class="category">{{ $item->type->type_name }}</span>
+                                    <div class="form-group">
+                                        <input type="text" name="msg_name" placeholder="Your name" required="">
                                     </div>
                                     <div class="lower-content">
                                         <div class="author-info clearfix">
