@@ -3,25 +3,35 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <div class="page-content">
-        <div class="row profile-body">
 
+
+        <div class="row profile-body">
+            <!-- left wrapper start -->
+
+            <!-- left wrapper end -->
             <!-- middle wrapper start -->
             <div class="col-md-8 col-xl-8 middle-wrapper">
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
+
                             <h6 class="card-title">Add Agent </h6>
 
                             <form id="myForm" method="POST" action="{{ route('store.agent') }}" class="forms-sample">
                                 @csrf
+
+
                                 <div class="form-group mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Agent Name </label>
                                     <input type="text" name="name" class="form-control">
                                 </div>
+
                                 <div class="form-group mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Agent Email </label>
                                     <input type="email" name="email" class="form-control">
                                 </div>
+
+
                                 <div class="form-group mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Agent Phone </label>
                                     <input type="text" name="phone" class="form-control">
