@@ -426,6 +426,14 @@ class PropertyController extends Controller
 
         return view('backend.property.details_property', compact('property', 'propertytype', 'amenities', 'activeAgent', 'property_amin', 'multiImage', 'facilities'));
     } // End Method 
+    public function toggleHot(Request $request)
+    {
+        $property = Property::findOrFail($request->id);
+        $property->hot = $request->hot;
+        $property->save();
+
+        return response()->json(['success' => true]);
+    }
 
     public function inactiveProperty(Request $request)
     {

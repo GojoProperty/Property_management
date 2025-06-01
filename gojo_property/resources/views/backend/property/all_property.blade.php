@@ -60,6 +60,7 @@
                                             <th>City</th>
                                             <th>Code</th>
                                             <th>Status</th>
+                                            <th>Hot</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -86,6 +87,10 @@
                                                     @else
                                                         <span class="badge rounded-pill bg-danger">Inactive</span>
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" class="hot-toggle" data-id="{{ $item->id }}"
+                                                        {{ $item->hot ? 'checked' : '' }}>
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('details.property', $item->id) }}"
@@ -132,7 +137,30 @@
             });
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('.hot-toggle').on('change', function() {
+            var isChecked = $(this).is(':checked') ? 1 : 0;
+            var propertyId = $(this).data('id');
+
+            $.ajax({
+                url: "{{ route('property.toggle.hot') }}",
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: propertyId,
+                    hot: isChecked
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Hot status updated.');
+                    }
+                }
+            });
+        });
+    </script>
 @endpush
+
 @push('styles')
     <style>
         .nav-tabs {

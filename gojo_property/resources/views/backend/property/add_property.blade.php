@@ -196,7 +196,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="form-group mb-3">
+                                    {{-- <div class="form-group mb-3">
                                         <div class="form-check form-check-inline">
                                             <input type="checkbox" name="featured" value="1"
                                                 class="form-check-input" id="checkInline1">
@@ -211,7 +211,7 @@
                                                 Hot Property
                                             </label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row add_item">
                                         <div class="col-md-4">
                                             <div class="mb-3">
