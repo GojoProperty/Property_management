@@ -26,6 +26,7 @@
                                         <th>City</th>
                                         <th>Code</th>
                                         <th>Status</th>
+                                        <th>Action </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,10 +42,15 @@
                                             <td>{{ $item->property_code }}</td>
                                             <td>
                                                 @if ($item->status == 1)
-                                                    <span class="badge rounded-pill bg-success">Approved</span>
+                                                    <span class="badge rounded-pill bg-success">Active</span>
                                                 @else
-                                                    <span class="badge rounded-pill bg-warning">Pending</span>
+                                                    <span class="badge rounded-pill bg-warning">InActive</span>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('customer.details.property',$item->id) }}" class="btn btn-inverse-info" title="Details"> <i data-feather="eye"></i> </a>
+                                                <a href="{{ route('customer.edit.property',$item->id) }}" class="btn btn-inverse-warning" title="Edit"> <i data-feather="edit"></i> </a>
+                                                <a href="{{ route('customer.delete.property',$item->id) }}" class="btn btn-inverse-danger" id="delete" title="Delete"> <i data-feather="trash-2"></i>  </a>
                                             </td>
                                         </tr>
                                     @endforeach

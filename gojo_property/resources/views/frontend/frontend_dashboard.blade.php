@@ -39,7 +39,7 @@
     <div class="boxed_wrapper">
 
         <!-- preloader -->
-        @include('frontend.home.preload')
+        <!-- @include('frontend.home.preload') -->
         <!-- preloader end -->
 
         <!-- main header -->

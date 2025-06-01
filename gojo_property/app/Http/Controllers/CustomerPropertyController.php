@@ -36,7 +36,7 @@ class CustomerPropertyController extends Controller
                 'message' => 'You have already posted a property. Please become an agent to post more.',
                 'alert-type' => 'warning',
             ];
-            return redirect()->route('customer.dashboard')->with($notification);
+            return redirect()->route('dashboard')->with($notification);
         }
 
         $propertyTypes = PropertyType::all();
@@ -124,7 +124,7 @@ class CustomerPropertyController extends Controller
             }
         }
 
-        return redirect()->route('customer.property.all.property')->with([
+        return redirect()->route('customer.all.property')->with([
             'message' => 'Property Submitted Successfully',
             'alert-type' => 'success'
         ]);
@@ -133,9 +133,9 @@ class CustomerPropertyController extends Controller
 
     public function allProperty()
     {
-        $customer = auth()->guard('customer')->user();
+        $customer = auth()->user();
         $properties = Property::where('customer_id', $customer->id)->latest()->get();
-        return view('customer.property.all.property', compact('properties'));
+        return view('customer.property.all_property', compact('properties'));
     }
 
     public function CustomerEditProperty($id)
@@ -190,7 +190,7 @@ class CustomerPropertyController extends Controller
             'updated_at' => Carbon::now(),
         ]);
 
-        return redirect()->route('customer.property.all_property')->with([
+        return redirect()->route('customer.all.property')->with([
             'message' => 'Property Updated Successfully',
             'alert-type' => 'success'
         ]);
@@ -328,25 +328,44 @@ class CustomerPropertyController extends Controller
     public function CustomerDeleteProperty($id)
     {
         $property = Property::findOrFail($id);
-
-        if ($property->property_thambnail && file_exists(public_path($property->property_thambnail))) {
-            unlink(public_path($property->property_thambnail));
+        
+        // Check ownership
+        if ($property->customer_id != auth()->id()) {
+            abort(403);
         }
-
-        $images = MultiImage::where('property_id', $id)->get();
-        foreach ($images as $image) {
-            if ($image->photo_name && file_exists(public_path($image->photo_name))) {
-                unlink(public_path($image->photo_name));
-            }
-        }
-
-        MultiImage::where('property_id', $id)->delete();
-        Facility::where('property_id', $id)->delete();
-        $property->delete();
-
-        return redirect()->back()->with([
-            'message' => 'Property Deleted Successfully',
-            'alert-type' => 'success',
-        ]);
+        // Mark it inactive instead of deleting
+        $property->status = 0; 
+        $property->save();
+        
+        return redirect()->back()->with('success', 'Property has been marked as inactive.');
     }
+
+    
+    public function CustomerDashboard()
+    {
+        $customer = auth()->user();
+        $propertyCount = \App\Models\Property::where('customer_id', $customer->id)->count();
+        
+        return view('customer.customer_dashboard', compact('propertyCount'));
+    }
+
+    public function CustomerDetailsProperty($id)
+    {
+
+        $facilities = Facility::where('property_id', $id)->get();
+        $property = Property::findOrFail($id);
+
+        $type = $property->amenities_id;
+        $property_amin = explode(',', $type);
+
+        $multiImage = MultiImage::where('property_id', $id)->get();
+
+        $propertytype = PropertyType::latest()->get();
+        $amenities = Amenities::latest()->get();
+        $activeCustomer = User::where('status', 'active')->where('role', 'customer')->latest()->get();
+
+        return view('customer.property.details_property', compact('property', 'propertytype', 'amenities', 'activeCustomer', 'property_amin', 'multiImage', 'facilities'));
+    } // End Method 
+
+
 }
