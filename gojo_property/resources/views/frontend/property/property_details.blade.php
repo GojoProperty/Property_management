@@ -338,14 +338,14 @@
             @endauth
         </div>
     </div>
-</div>
+ </div>
 
 
         <!-- ========== Similar Properties Section ========== -->
         <div class="similar-properties-section" style="margin-top: 60px;">
-            <div class="title">
-                <h4>Similar Properties</h4>
-            </div>
+    <div class="title">
+        <h4>Similar Properties</h4>
+    </div>
 
             <div class="row clearfix">
                 @if ($relatedProperty->isEmpty())
@@ -416,6 +416,176 @@
                         </div>
                     @endforeach
                 @endif
+    <div class="row clearfix">
+        @if ($relatedProperty->isEmpty())
+            <div class="col-12">
+                <p>No similar type property is available for now.</p>
+            </div>
+        @else
+            @foreach ($relatedProperty as $item)
+                <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+                    <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
+                        data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image">
+                                    <img src="{{ asset($item->property_thambnail) }}" alt="">
+                                </figure>
+                                <div class="batch"><i class="icon-11"></i></div>
+                                <span class="category">{{ $item->type->type_name }}</span>
+                            </div>
+
+                            <!-- Contact form outside image-box -->
+                            <form method="post" action="{{ route('your.message.route') }}" class="default-form">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" name="msg_name" placeholder="Your name" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="msg_email" placeholder="Your Email" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="msg_phone" placeholder="Phone" required="">
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="message" placeholder="Message"></textarea>
+                                </div>
+                                <div class="form-group message-btn">
+                                    <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
+    </div>
+</div>
+
+
+                        <!-- Property Request Section -->
+                        <div class="calculator-widget sidebar-widget">
+                            <div class="property-request-section" style="margin-top: 40px; margin-bottom: 60px;">
+                                <div class="calculate-inner">
+                                    <div class="widget-title">
+                                        <h4>Request This Property</h4>
+                                    </div>
+
+                                    @auth
+                                        <form method="post"
+                                            action="{{ $property->property_status == 'buy' ? route('purchase.request') : route('rent.request') }}"
+                                            class="default-form">
+                                            @csrf
+                                            <input type="hidden" name="property_id" value="{{ $property->id }}">
+
+                                            <div class="form-group">
+                                                <label>Property Price</label>
+                                                <input type="text" value="{{ $property->max_price }} ETB"
+                                                    class="form-control" readonly>
+                                            </div>
+
+                                            <div class="form-group message-btn">
+                                                @if ($property->property_status == 'buy')
+                                                    <button type="submit" class="btn btn-success w-100">Buy Now</button>
+                                                @elseif ($property->property_status == 'rent')
+                                                    <button type="submit" class="btn btn-info w-100">Rent Now</button>
+                                                @endif
+                                            </div>
+                                        </form>
+                                     @else
+                                        <div class="alert alert-warning">
+                                            <strong>Notice:</strong> Please <a href="{{ route('login') }}">Login</a> to make a
+                                            transaction request.
+                                        </div>
+                                    @endauth
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Similar Properties -->
+                    <div class="similar-content">
+                        <div class="title">
+                            <h4>Similar Properties</h4>
+                        </div>
+
+                        @if ($relatedProperty->isEmpty())
+                            <div class="alert alert-info">
+                                <p>No similar properties available at this time.</p>
+                            </div>
+                        @else
+                            <div class="row">
+                                @foreach ($relatedProperty as $item)
+                                    <div class="col-md-12 mb-4">
+                                        <div class="feature-block-one">
+                                            <div class="inner-box">
+                                                <div class="image-box">
+                                                    <figure class="image">
+                                                        <img src="{{ asset($item->property_thambnail) }}" alt=""
+                                                            class="img-fluid">
+                                                    </figure>
+                                                    <div class="batch"><i class="icon-11"></i></div>
+                                                    <span class="category">{{ $item->type->type_name }}</span>
+                                                </div>
+                                                <div class="lower-content">
+                                                    <div class="author-info clearfix">
+                                                        <div class="author pull-left">
+                                                            @if ($item->agent_id == null)
+                                                                <figure class="author-thumb">
+                                                                    <img src="{{ url('upload/heriadmin.jpg') }}"
+                                                                        alt="" class="img-fluid">
+                                                                </figure>
+                                                                <h6>Admin</h6>
+                                                            @else
+                                                                <figure class="author-thumb">
+                                                                    <img src="{{ !empty($item->user->photo) ? url('upload/agent_images/' . $item->user->photo) : url('upload/no_image.jpg') }}"
+                                                                        alt="" class="img-fluid">
+                                                                </figure>
+                                                                <h6>{{ $item->user->name }}</h6>
+                                                            @endif
+                                                        </div>
+                                                        <div class="buy-btn pull-right">
+                                                            <a href="property-details.html">For
+                                                                {{ $item->property_status }}</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="title-text">
+                                                        <h4><a
+                                                                href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{ $item->property_name }}</a>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="price-box clearfix">
+                                                        <div class="price-info pull-left">
+                                                            <h6>Start From</h6>
+                                                            <h4>${{ $item->lowest_price }}</h4>
+                                                        </div>
+                                                        <ul class="other-option pull-right clearfix">
+                                                            <li><a href="property-details.html"><i
+                                                                        class="icon-12"></i></a></li>
+                                                            <li><a href="property-details.html"><i
+                                                                        class="icon-13"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <p>{{ $item->short_descp }}</p>
+                                                    <ul class="more-details clearfix">
+                                                        <li><i class="icon-14"></i>{{ $item->bedrooms }} Beds</li>
+                                                        <li><i class="icon-15"></i>{{ $item->bathrooms }} Baths</li>
+                                                        <li><i class="icon-16"></i>{{ $item->property_size }} Sq Ft</li>
+                                                    </ul>
+                                                    <div class="btn-box">
+                                                        <a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                                            class="theme-btn btn-two">See Details</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
         <!-- ========== End Similar Properties Section ========== -->

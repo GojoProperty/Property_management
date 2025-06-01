@@ -15,8 +15,7 @@
         <div class="sec-title centred">
             <h5>Features</h5>
             <h2>Featured Property</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing sed do eiusmod tempor incididunt <br />labore dolore
-                magna aliqua enim.</p>
+           
         </div>
         <div class="row clearfix">
             @foreach ($property as $item)
