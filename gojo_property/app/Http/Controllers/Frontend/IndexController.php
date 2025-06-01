@@ -62,36 +62,55 @@ class IndexController extends Controller
         }
     }
     public function StoreSchedule(Request $request)
-    {
-        $aid = $request->agent_id;
-        $pid = $request->property_id;
+{
+    $aid = $request->agent_id;
+    $pid = $request->property_id;
 
-        if (Auth::check()) {
+    if (Auth::check()) {
 
-            Schedule::insert([
-                'user_id' => Auth::user()->id,
-                'property_id' => $pid,
-                'agent_id' => $aid,
-                'tour_date' => $request->tour_date,
-                'tour_time' => $request->tour_time,
-                'message' => $pid,
-                'created_at' => Carbon::now(),
-            ]);
+        // Check if the slot is already taken
+        $existing = Schedule::where('property_id', $pid)
+            ->where('tour_date', $request->tour_date)
+            ->where('tour_time', $request->tour_time)
+            ->first();
 
+        if ($existing) {
             $notification = array(
-                'message' => 'send request successfully',
+                'message' => 'This schedule is already booked. Try choosing another time..',
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
-        } else {
-            $notification = array(
-                'message' => 'plz login your account first',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->back()->with($notification);
         }
+
+        // If not taken, insert the schedule
+        Schedule::insert([
+            'user_id' => Auth::user()->id,
+            'property_id' => $pid,
+            'agent_id' => $aid,
+            'tour_date' => $request->tour_date,
+            'tour_time' => $request->tour_time,
+            'message' => $request->message, // fixed this to store actual message, not property ID
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Request sent successfully!',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+    } else {
+        $notification = array(
+            'message' => 'Please login to your account first.',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
     }
+}
+
+
+    
     public function AgentDetails($id)
     {
 
