@@ -108,7 +108,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Property Management
     Route::controller(PropertyController::class)->group(function () {
+
         Route::get('/all/property', 'getAllProperty')->name('all.property');
+        Route::get('/admin/for-rent',  'ForRentProperties')->name('property.rent');
+        Route::get('/admin/for-sale', 'ForSaleProperties')->name('property.sale');
+        Route::get('/admin/scheduled', 'ScheduledProperties')->name('property.scheduled');
+        Route::get('/admin/requested',  'RequestedProperties')->name('property.requested');
+        Route::get('/admin/active',  'ActiveProperties')->name('property.active');
+        Route::get('/admin/inactive', 'InactiveProperties')->name('property.inactive');
+        Route::get('/admin/rented', 'RentedProperties')->name('property.rented');
+        Route::get('/admin/sold', 'SoldProperties')->name('property.sold');
+
+
         Route::get('/add/property', 'addProperty')->name('add.property');
         Route::post('/store/property', 'storeProperty')->name('store.property');
         Route::get('/edit/property/{id}', 'editProperty')->name('edit.property');
@@ -122,6 +133,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/details/property/{id}', 'DetailsProperty')->name('details.property');
         Route::post('/inactive/property', 'inactiveProperty')->name('inactive.property');
         Route::post('/active/property', 'activeProperty')->name('active.property');
+        Route::get('/admin/package/history', 'AdminPackageHistory')->name('admin.package.history');
+        Route::get('/package/invoice/{id}', 'PackageInvoice')->name('package.invoice');
     });
 
 
@@ -134,7 +147,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // Property functionalities Routes 
 Route::controller(PropertyController::class)->group(function () {
-    Route::get('/all/property', 'getAllProperty')->name('all.property');
+    // Property Tabs
+
+
     Route::get('/add/property', 'addProperty')->name('add.property');
     Route::post('/store/property', 'storeProperty')->name('store.property');
     Route::get('/edit/property/{id}', 'editProperty')->name('edit.property');
@@ -148,8 +163,6 @@ Route::controller(PropertyController::class)->group(function () {
     Route::get('/details/property/{id}', 'DetailsProperty')->name('details.property');
     Route::post('/inactive/property', 'inactiveProperty')->name('inactive.property');
     Route::post('/active/property', 'activeProperty')->name('active.property');
-    Route::get('/admin/package/history', 'AdminPackageHistory')->name('admin.package.history');
-    Route::get('/package/invoice/{id}', 'PackageInvoice')->name('package.invoice');
 });
 
 // Agent All Route from admin 

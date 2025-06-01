@@ -23,7 +23,7 @@
 
     <div class="sidebar-body">
         <ul class="nav">
-            <li class="nav-item nav-category">Main</li>
+            <li class="nav-item nav-category">Gojo Property</li>
             <li class="nav-item">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
@@ -32,7 +32,7 @@
             </li>
 
             @if ($status === 'active')
-                <li class="nav-item nav-category">Gojo Property</li>
+                <li class="nav-item nav-category">Property Management</li>
                 <!-- Property Type -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#propertyType" role="button"
@@ -92,7 +92,23 @@
                         </ul>
                     </div>
                 </li>
-
+                <!-- Transaction -->
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button"
+                        aria-expanded="false" aria-controls="advancedUI">
+                        <i class="link-icon" data-feather="anchor"></i>
+                        <span class="link-title">Transaction</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="advancedUI">
+                        <ul class="nav sub-menu">
+                            <li class="nav-item">
+                                <a href="{{ route('transaction.details') }}" class="nav-link">All Transactions</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item nav-category">Package Management</li>
                 <!-- Package -->
                 <li class="nav-item">
                     <a href="{{ route('admin.package.history') }}" class="nav-link">
@@ -101,7 +117,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item nav-category">User All Function</li>
+                <li class="nav-item nav-category">Testimony</li>
                 <!-- Testimonials Management -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#testimonials" role="button"
@@ -121,7 +137,7 @@
                         </ul>
                     </div>
                 </li>
-
+                <li class="nav-item nav-category">Blog Management</li>
                 <!-- Blog Category -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#blogcategory" role="button"
@@ -166,55 +182,6 @@
                         <span class="link-title">Blog Comment</span>
                     </a>
                 </li>
-
-                {{-- <!-- UI Kit -->
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button"
-                        aria-expanded="false" aria-controls="uiComponents">
-                        <i class="link-icon" data-feather="feather"></i>
-                        <span class="link-title">UI Kit</span>
-                        <i class="link-arrow" data-feather="chevron-down"></i>
-                    </a>
-                    <div class="collapse" id="uiComponents">
-                        <ul class="nav sub-menu">
-                            <li class="nav-item">
-                                <a href="pages/ui-components/accordion.html" class="nav-link">Accordion</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/ui-components/alerts.html" class="nav-link">Alerts</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> --}}
-
-                <!-- Transaction -->
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button"
-                        aria-expanded="false" aria-controls="advancedUI">
-                        <i class="link-icon" data-feather="anchor"></i>
-                        <span class="link-title">Transaction</span>
-                        <i class="link-arrow" data-feather="chevron-down"></i>
-                    </a>
-                    <div class="collapse" id="advancedUI">
-                        <ul class="nav sub-menu">
-                            <li class="nav-item">
-                                <a href="{{ route('transaction.details') }}" class="nav-link">All Transactions</a>
-                            </li>
-                            {{-- <li class="nav-item">
-                                <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
-                            </li> --}}
-                        </ul>
-                    </div>
-                </li>
-
-                {{-- <!-- Docs Section -->
-                <li class="nav-item nav-category">Docs</li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="link-icon" data-feather="hash"></i>
-                        <span class="link-title">Documentation</span>
-                    </a>
-                </li> --}}
             @endif
         </ul>
     </div>

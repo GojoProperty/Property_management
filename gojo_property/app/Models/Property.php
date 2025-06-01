@@ -38,4 +38,8 @@ class Property extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

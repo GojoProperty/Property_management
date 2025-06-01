@@ -46,9 +46,6 @@
                                             <div class="custom-file-wrapper">
                                                 <input type="file" name="property_thambnail" id="property_thambnail"
                                                     class="custom-file-input" onchange="mainThamUrl(this)">
-                                                <label for="property_thambnail" class="custom-file-label">Choose
-                                                    File</label>
-                                                <span id="file-name">No file chosen</span>
                                             </div>
                                             <img src="" id="mainThmb">
                                         </div>
@@ -59,8 +56,7 @@
                                             <div class="custom-file-wrapper">
                                                 <input type="file" name="multi_img[]" id="multiImg"
                                                     class="custom-file-input" multiple>
-                                                <label for="multiImg" class="custom-file-label">Choose Files</label>
-                                                <span id="multi-file-names">No files chosen</span>
+
                                             </div>
                                             <div class="row" id="preview_img"></div>
                                         </div>

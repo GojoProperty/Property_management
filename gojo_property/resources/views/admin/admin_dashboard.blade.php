@@ -47,7 +47,8 @@
     <link rel="shortcut icon" href="{{ asset('backend/assets/images/logo.png') }}" />
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-    
+    @stack('styles')
+
 
 </head>
 
@@ -142,11 +143,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- tinymce -->
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-     
-    <script src="https://unpkg.com/feather-icons"></script>
-<script>
-    feather.replace()
-</script>
 
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        feather.replace()
+    </script>
+    @stack('scripts')
 </body>
-</html> 
+
+</html>
