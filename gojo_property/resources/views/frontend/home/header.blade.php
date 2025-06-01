@@ -78,84 +78,20 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="index.html"><span>Listing</span></a>
-                                    <ul>
-                                        <li><a href="agents-list.html">Agents List</a></li>
-                                        <li><a href="agents-grid.html">Agents Grid</a></li>
-                                        <li><a href="agents-details.html">Agent Details</a></li>
-                                    </ul>
+                                <li class="dropdown"><a href="#team-section"><span>Our Agents </span></a>
+
                                 </li>
                                 <li class="dropdown"><a href="index.html"><span>Property</span></a>
                                     <ul>
-                                        <li><a href="property-list.html">Property List</a></li>
-                                        <li><a href="property-grid.html">Property Grid</a></li>
-                                        <li><a href="property-list-2.html">Property List Full View</a></li>
-                                        <li><a href="property-grid-2.html">Property Grid Full View</a></li>
-                                        <li><a href="property-list-3.html">Property List Half View</a></li>
-                                        <li><a href="property-grid-3.html">Property Grid Half View</a></li>
-                                        <li><a href="property-details.html">Property Details 01</a></li>
-                                        <li><a href="property-details-2.html">Property Details 02</a></li>
-                                        <li><a href="property-details-3.html">Property Details 03</a></li>
-                                        <li><a href="property-details-4.html">Property Details 04</a></li>
+                                        <li><a href="#deals-section">Hot properties</a></li>
+                                        <li><a href="{{ route('all.properties') }}">All properties</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="index.html"><span>Pages</span></a>
-                                    <div class="megamenu">
-                                        <div class="row clearfix">
-                                            <div class="col-xl-4 column">
-                                                <ul>
-                                                    <li>
-                                                        <h4>Pages</h4>
-                                                    </li>
-                                                    <li><a href="about.html">About Us</a></li>
-                                                    <li><a href="services.html">Our Services</a></li>
-                                                    <li><a href="faq.html">Faq's Page</a></li>
-                                                    <li><a href="pricing.html">Pricing Table</a></li>
-                                                    <li><a href="compare-roperties.html">Compare Properties</a></li>
-                                                    <li><a href="categories.html">Categories Page</a></li>
-                                                    <li><a href="career.html">Career Opportunity</a></li>
-                                                    <li><a href="testimonials.html">Testimonials</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-xl-4 column">
-                                                <ul>
-                                                    <li>
-                                                        <h4>Pages</h4>
-                                                    </li>
-                                                    <li><a href="gallery.html">Our Gallery</a></li>
-                                                    <li><a href="profile.html">My Profile</a></li>
-                                                    <li><a href="signin.html">Sign In</a></li>
-                                                    <li><a href="signup.html">Sign Up</a></li>
-                                                    <li><a href="error.html">404</a></li>
-                                                    <li><a href="agents-list.html">Agents List</a></li>
-                                                    <li><a href="agents-grid.html">Agents Grid</a></li>
-                                                    <li><a href="agents-details.html">Agent Details</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-xl-4 column">
-                                                <ul>
-                                                    <li>
-                                                        <h4>Pages</h4>
-                                                    </li>
-                                                    <li><a href="blog-1.html">Blog 01</a></li>
-                                                    <li><a href="blog-2.html">Blog 02</a></li>
-                                                    <li><a href="blog-3.html">Blog 03</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                    <li><a href="agency-list.html">Agency List</a></li>
-                                                    <li><a href="agency-grid.html">Agency Grid</a></li>
-                                                    <li><a href="agency-details.html">Agency Details</a></li>
-                                                    <li><a href="contact.html">Contact Us</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </li>
                                 <li class="dropdown"><a href="index.html"><span>Agency</span></a>
-                                    <ul>
-                                        <li><a href="agency-list.html">Agency List</a></li>
-                                        <li><a href="agency-grid.html">Agency Grid</a></li>
-                                        <li><a href="agency-details.html">Agency Details</a></li>
-                                    </ul>
+
                                 </li>
                                 <li><a href="{{ route('blog.list') }}"><span>Blog </span></a> </li>
                                 <li><a href="contact.html"><span>Contact</span></a></li>
