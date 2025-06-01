@@ -12,10 +12,6 @@
         <div class="auto-container">
             <div class="content-box clearfix">
                 <h1>{{ $property->property_name }}</h1>
-                <ul class="bread-crumb clearfix">
-                    <li><a href="index.html">Home</a></li>
-                    <li>{{ $property->property_name }}</li>
-                </ul>
             </div>
         </div>
     </section>

@@ -10,7 +10,7 @@
          <div class="inner-container">
              <div class="content-box centred">
                  <h2>Create Lasting Wealth Through Gojo Property</h2>
-                 <p>The grtatest platform to find your dream neighborhood.</p>
+                 <p>The greatest platform to find your dream neighborhood.</p>
              </div>
              <div class="search-field">
                  <div class="tabs-box">
