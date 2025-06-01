@@ -61,35 +61,34 @@ class IndexController extends Controller
             return redirect()->back()->with($notification);
         }
     }
-    public function StoreSchedule(Request $request)
+   public function StoreSchedule(Request $request)
 {
     $aid = $request->agent_id;
     $pid = $request->property_id;
 
     if (Auth::check()) {
 
-        // Check if the slot is already taken
+        // Check if the date is already taken (ignore time)
         $existing = Schedule::where('property_id', $pid)
             ->where('tour_date', $request->tour_date)
-            ->where('tour_time', $request->tour_time)
             ->first();
 
         if ($existing) {
             $notification = array(
-                'message' => 'This schedule is already booked. Try choosing another time..',
+                'message' => 'This schedule is already booked for the selected date. Try again after 24 hours.',
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
         }
 
-        // If not taken, insert the schedule
+        // If date not taken, insert the schedule
         Schedule::insert([
             'user_id' => Auth::user()->id,
             'property_id' => $pid,
             'agent_id' => $aid,
             'tour_date' => $request->tour_date,
             'tour_time' => $request->tour_time,
-            'message' => $request->message, // fixed this to store actual message, not property ID
+            'message' => $request->message,
             'created_at' => Carbon::now(),
         ]);
 
@@ -107,6 +106,8 @@ class IndexController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+
 }
 
 
