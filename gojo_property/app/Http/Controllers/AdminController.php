@@ -9,12 +9,67 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\Property;
+use App\Models\Schedule;
+use App\Models\Transaction;
+
+
 class AdminController extends Controller
 {
-    public function adminDashboard()
+
+    public function AdminDashboard()
     {
-        return view('admin.adminIndex');
-    } // End method
+        $totalProperties = Property::count();
+        $totalCustomers = User::where('role', 'customer')->count();
+        $totalAgents = User::where('role', 'agent')->count();
+        $soldProperties = Transaction::where('status', 'approved')->where('transaction_type', 'Buy')->count();
+        $rentedProperties = Transaction::where('status', 'approved')->where('transaction_type', 'Rent')->count();
+        $hotProperties = Property::where('hot', 1)->count();
+        $scheduledVisits = Schedule::count();
+        $pendingRequests = Transaction::where('status', 'pending')->count();
+        $totalTransactions = Transaction::count();
+        $approvedTransactions = Transaction::where('status', 'approved')->count();
+        $rejectedTransactions = Transaction::where('status', 'rejected')->count();
+        $transactions = Transaction::with(['property', 'user', 'agent'])->latest()->take(10)->get();
+        $pendingSchedules = Schedule::where('status', 'pending')->count();
+        $approvedSchedules = Schedule::where('status', 'approved')->count();
+        $rejectedSchedules = Schedule::where('status', 'rejected')->count();
+        $schedules = Schedule::with(['property', 'user', 'agent'])->latest()->take(10)->get();
+        $latestTransactions = Transaction::with(['user', 'property'])
+            ->where('status', 'pending')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('admin.adminIndex', compact(
+            'totalProperties',
+            'totalCustomers',
+            'totalAgents',
+            'soldProperties',
+            'rentedProperties',
+            'hotProperties',
+            'scheduledVisits',
+            'pendingRequests',
+            'transactions',
+            'totalTransactions',
+            'approvedTransactions',
+            'rejectedTransactions',
+            'schedules',
+            'pendingSchedules',
+            'approvedSchedules',
+            'rejectedSchedules',
+            'latestTransactions'
+        ));
+    }
+    public function notifylatestTrans()
+    {
+        $latestTransactions = Transaction::with(['user', 'property'])
+            ->where('status', 'pending')
+            ->latest()
+            ->take(5)
+            ->get();
+        return view('admin.body.header', compact('latestTransactions'));
+    }
 
     public function adminLogout(Request $request): RedirectResponse
     {

@@ -74,13 +74,13 @@ class PropertyController extends Controller
     }
     public function RentedProperties()
     {
-        $property = Transaction::where('status', 'approved')->where('property_status', 'For Rent')->latest()->get();
+        $property = Transaction::where('status', 'approved')->where('status', 'Rent')->latest()->get();
         $filter = 'Rented';
         return view('backend.property.all_property', compact('property', 'filter'));
     }
     public function SoldProperties()
     {
-        $property = Transaction::where('status', 'approved')->where('property_status', 'For Buy')->latest()->get();
+        $property = Transaction::where('status', 'approved')->where('status', 'Buy')->latest()->get();
         $filter = 'Sold';
         return view('backend.property.all_property', compact('property', 'filter'));
     }
