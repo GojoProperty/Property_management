@@ -75,17 +75,17 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="inner-box clearfix">
-                <figure class="footer-logo"><a href="index.html"><img
+                <figure class="footer-logo"><img
                             src="{{ asset('frontend/assets/images/gojo.png') }}" alt=""></a></figure>
                 <div class="copyright pull-left">
 
-                    <p><a href="index.html">Gojo property</a> &copy;{{ date('Y') }} All Right Reserved</p>
+                    <p>Gojo property</a> &copy;{{ date('Y') }} All Right Reserved</p>
 
 
                 </div>
                 <ul class="footer-nav pull-right clearfix">
                     <li><a href="{{ route('faq.page') }}">FAQ</a></li>
-                    <li><a href="index.html">Privacy Policy</a></li>
+                    <li>Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
