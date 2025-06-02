@@ -24,10 +24,15 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\Frontend\FrontendPropertyController;
 use App\Http\Controllers\DashboardrecomendController;
+use App\Http\Controllers\HomeController;
 
 
 
 Route::get('/', [UserController::class, 'Index'])->name('home');;
+Route::get('/faq', [HomeController::class, 'faq'])->name('faq.page');
+Route::get('/rent-properties', [HomeController::class, 'RentProperties'])->name('rent.properties');
+Route::get('/buy-properties', [HomeController::class, 'BuyProperties'])->name('buy.properties');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

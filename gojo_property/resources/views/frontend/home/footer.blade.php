@@ -84,7 +84,7 @@
 
                 </div>
                 <ul class="footer-nav pull-right clearfix">
-                    <li><a href="index.html">Terms of Service</a></li>
+                    <li><a href="{{ route('faq.page') }}">FAQ</a></li>
                     <li><a href="index.html">Privacy Policy</a></li>
                 </ul>
             </div>
