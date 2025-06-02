@@ -9,7 +9,7 @@
                 </ul>
             </div>
             <div class="right-column pull-right">
-             
+
                 <div> {{-- sign up based on autentication  --}}
                     @auth
                         <div class="sign-box">
@@ -90,7 +90,7 @@
                                 @elseif ($role === 'agent')
                                     <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
                                 @else
-                                    <a href="{{ route('customer.add.property') }}" class="theme-btn btn-one">User Add
+                                    <a href="{{ route('customer.add.property') }}" class="theme-btn btn-one">Add
                                         Listing</a>
                                 @endif
                             </div>
@@ -135,7 +135,7 @@
                                 @elseif ($role === 'agent')
                                     <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
                                 @else
-                                    <a href="{{ route('dashboard') }}" class="theme-btn btn-one">User Add Listing</a>
+                                    <a href="{{ route('dashboard') }}" class="theme-btn btn-one">Add Listing</a>
                                 @endif
                             </div>
                         @endauth

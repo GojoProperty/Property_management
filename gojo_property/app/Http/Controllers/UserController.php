@@ -115,6 +115,15 @@ class UserController extends Controller
         return view('frontend.message.schedule_request', compact('userData', 'srequest'));
     } // End Method 
 
+    public function UserTransactionRequest()
+    {
+
+        $id = Auth::user()->id;
+        $userData = User::find($id);
+
+        $trequest = Transaction::where('user_id', $id)->get();
+        return view('frontend.message.transaction_request', compact('userData', 'trequest'));
+    } // End Method 
 
     public function dashboard()
     {

@@ -13,7 +13,8 @@
 
         <li><a href="{{ route('user.schedule.request') }}"><i class="fa fa-credit-card" aria-hidden="true"></i>Your
                 Schedule Requests <span class="badge badge-info">( )</span></a></li>
-
+        <li><a href="{{ route('user.transaction.request') }}"><i class="fa fa-credit-card" aria-hidden="true"></i>Your
+                Transaction equests <span class="badge badge-info">( )</span></a></li>
         </li>
         <li><a href="{{ route('preferences.create') }}"><i class="fa fa-list-alt" aria-hidden="true"></i></i> Set your
                 preference

@@ -9,7 +9,7 @@
             {{-- Breadcrumb and Add Button --}}
             <ol class="breadcrumb d-flex justify-content-between">
                 <h6 class="mb-0"> {{ $filter ?? 'All' }}-Properties</h6>
-                <a href="{{ route('add.property') }}" class="btn btn-inverse-info">Add Property</a>
+
             </ol>
 
             <div class="row">
