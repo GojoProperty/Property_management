@@ -25,7 +25,8 @@
         <ul class="nav">
             <li class="nav-item nav-category">Gojo Property</li>
             <li class="nav-item">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                <a href="{{ route('admin.dashboard') }}"
+                    class="nav-link {{ Route::currentRouteName() === 'admin.dashboard' ? 'active' : '' }}">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Dashboard</span>
                 </a>
@@ -44,10 +45,14 @@
                     <div class="collapse" id="propertyType">
                         <ul class="nav sub-menu">
                             <li class="nav-item">
-                                <a href="{{ route('all.type') }}" class="nav-link">All Type</a>
+                                <a href="{{ route('all.type') }}"
+                                    class="nav-link {{ Route::currentRouteName() === 'all.type' ? 'active' : '' }}">All
+                                    Type</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('add.type') }}" class="nav-link">Add Type</a>
+                                <a href="{{ route('add.type') }}"
+                                    class="nav-link {{ Route::currentRouteName() === 'add.type' ? 'active' : '' }}">Add
+                                    Type</a>
                             </li>
                         </ul>
                     </div>
@@ -64,10 +69,14 @@
                     <div class="collapse" id="amenitieSection">
                         <ul class="nav sub-menu">
                             <li class="nav-item">
-                                <a href="{{ route('all.amenitie') }}" class="nav-link">All Amenitie</a>
+                                <a href="{{ route('all.amenitie') }}"
+                                    class="nav-link {{ Route::currentRouteName() === 'all.amenetie' ? 'active' : '' }}">All
+                                    Amenitie</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('add.amenitie') }}" class="nav-link">Add Amenitie</a>
+                                <a
+                                    href="{{ route('add.amenitie') }}"class="nav-link {{ Route::currentRouteName() === 'add.amenetie' ? 'active' : '' }}">Add
+                                    Amenitie</a>
                             </li>
                         </ul>
                     </div>
@@ -84,10 +93,14 @@
                     <div class="collapse" id="property">
                         <ul class="nav sub-menu">
                             <li class="nav-item">
-                                <a href="{{ route('all.property') }}" class="nav-link">All Property</a>
+                                <a
+                                    href="{{ route('all.property') }}"class="nav-link {{ Route::currentRouteName() === 'all.property' ? 'active' : '' }}">All
+                                    Property</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('add.property') }}" class="nav-link">Add Property</a>
+                                <a href="{{ route('add.property') }}"
+                                    class="nav-link {{ Route::currentRouteName() === 'add.property' ? 'active' : '' }}">Add
+                                    Property</a>
                             </li>
                         </ul>
                     </div>
@@ -103,7 +116,9 @@
                     <div class="collapse" id="advancedUI">
                         <ul class="nav sub-menu">
                             <li class="nav-item">
-                                <a href="{{ route('transaction.details') }}" class="nav-link">All Transactions</a>
+                                <a href="{{ route('transaction.details') }}"
+                                    class="nav-link {{ Route::currentRouteName() === 'transaction.details' ? 'active' : '' }}">All
+                                    Transactions</a>
                             </li>
                         </ul>
                     </div>
@@ -119,10 +134,14 @@
                     <div class="collapse" id="uiComponents">
                         <ul class="nav sub-menu">
                             <li class="nav-item">
-                                <a href="{{ route('all.agent') }}" class="nav-link">All Agent </a>
+                                <a href="{{ route('all.agent') }}"
+                                    class="nav-link {{ Route::currentRouteName() === 'all.agent' ? 'active' : '' }}">All
+                                    Agent </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('add.agent') }}" class="nav-link">Add Agent</a>
+                                <a href="{{ route('add.agent') }}"
+                                    class="nav-link {{ Route::currentRouteName() === 'add.agent' ? 'active' : '' }}">Add
+                                    Agent</a>
                             </li>
                         </ul>
                     </div>
@@ -130,7 +149,8 @@
                 <li class="nav-item nav-category">Package Management</li>
                 <!-- Package -->
                 <li class="nav-item">
-                    <a href="{{ route('admin.package.history') }}" class="nav-link">
+                    <a href="{{ route('admin.package.history') }}"
+                        class="nav-link {{ Route::currentRouteName() === 'admin.package.history' ? 'active' : '' }}">
                         <i class="link-icon" data-feather="calendar"></i>
                         <span class="link-title">Package History</span>
                     </a>
@@ -149,7 +169,9 @@
                     <div class="collapse" id="blogcategory">
                         <ul class="nav sub-menu">
                             <li class="nav-item">
-                                <a href="{{ route('all.blog.category') }}" class="nav-link">All Blog Category</a>
+                                <a href="{{ route('all.blog.category') }}"
+                                    class="nav-link {{ Route::currentRouteName() === 'all.blog.category' ? 'active' : '' }}">All
+                                    Blog Category</a>
                             </li>
                         </ul>
                     </div>
@@ -166,10 +188,14 @@
                     <div class="collapse" id="Post">
                         <ul class="nav sub-menu">
                             <li class="nav-item">
-                                <a href="{{ route('all.post') }}" class="nav-link">All Post</a>
+                                <a href="{{ route('all.post') }}"
+                                    class="nav-link {{ Route::currentRouteName() === 'all.post' ? 'active' : '' }}">All
+                                    Post</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('add.post') }}" class="nav-link">Add Post</a>
+                                <a href="{{ route('add.post') }}"
+                                    class="nav-link {{ Route::currentRouteName() === 'add.post' ? 'active' : '' }}">Add
+                                    Post</a>
                             </li>
                         </ul>
                     </div>
@@ -177,7 +203,8 @@
 
                 <!-- Blog Comment -->
                 <li class="nav-item">
-                    <a href="{{ route('admin.blog.comment') }}" class="nav-link">
+                    <a
+                        href="{{ route('admin.blog.comment') }}"class="nav-link {{ Route::currentRouteName() === 'admin.blog.comment' ? 'active' : '' }}">
                         <i class="link-icon" data-feather="calendar"></i>
                         <span class="link-title">Blog Comment</span>
                     </a>
