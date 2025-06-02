@@ -31,6 +31,12 @@
                     <div id="compare-summary" class="mb-3"></div>
 
                     <div id="compare-cards" class="d-flex flex-column gap-4"></div>
+
+                    {{-- Message if compare list is empty --}}
+                    <div id="no-compare-message" class="text-center my-5 d-none">
+                        <h5 class="text-muted">No compare item has been added yet.</h5>
+                        <a href="{{ route('all.properties') }}" class="btn btn-primary mt-3">View All Properties</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,4 +50,18 @@
             font-weight: 500;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const compareCards = document.getElementById('compare-cards');
+            const noCompareMessage = document.getElementById('no-compare-message');
+
+            // Wait a moment for any async compare items to load
+            setTimeout(() => {
+                const hasItems = compareCards.children.length > 0;
+                if (!hasItems) {
+                    noCompareMessage.classList.remove('d-none');
+                }
+            }, 200); // adjust timing if needed
+        });
+    </script>
 @endsection
