@@ -179,10 +179,11 @@
                 url: "/get-wishlist-property/",
                 success: function(response) {
                     $('#wishQty').text(response.wishQty);
+
                     var rows = ""
                     $.each(response.wishlist, function(key, value) {
                         rows +=
-                            `<div class="deals-block-one">
+                            `<div class="deals-block-one wishlist-item">
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><img src="/${value.property.property_thambnail}" alt=""></figure>
@@ -213,6 +214,7 @@
                         </div> `
                     });
                     $('#wishlist').html(rows);
+                    checkWishlistEmpty();
                 }
             })
         }

@@ -29,7 +29,12 @@
                     <div class="wrapper list">
                         <div class="deals-list-content list-item">
                             <div id="wishlist">
-
+                                <a href="{{ route('all.properties') }}" class="btn btn-primary mt-3">Browse Properties</a>
+                            </div>
+                            <!-- No Wishlist Message (hidden by default) -->
+                            <div id="no-wishlist-message" class="text-center my-5 d-none">
+                                <h5 class="text-muted">You haven’t added anything to your wishlist yet.</h5>
+                                <a href="{{ route('all.properties') }}" class="btn btn-primary mt-3">Browse Properties</a>
                             </div>
                         </div>
                     </div>
@@ -39,4 +44,27 @@
         </div>
     </section>
     <!-- property-page-section end -->
+    <script>
+        function checkWishlistEmpty() {
+            const wishlist = document.getElementById('wishlist');
+            const noWishlistMsg = document.getElementById('no-wishlist-message');
+
+            // Check if it has any visible items
+            const items = wishlist.querySelectorAll('.wishlist-item');
+
+            if (items.length === 0) {
+                noWishlistMsg.classList.remove('d-none');
+            } else {
+                noWishlistMsg.classList.add('d-none');
+            }
+        }
+
+        // If you load wishlist with AJAX or localStorage, call this after rendering
+        document.addEventListener('DOMContentLoaded', function() {
+            // If wishlist is loaded immediately (server-side), check right away
+            checkWishlistEmpty();
+
+            // OR if you load via AJAX, call checkWishlistEmpty() inside your success callback
+        });
+    </script>
 @endsection
