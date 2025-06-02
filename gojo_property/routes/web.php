@@ -25,6 +25,14 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\Frontend\FrontendPropertyController;
 use App\Http\Controllers\DashboardrecomendController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+
+// Authentication Routes
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 
 
 
