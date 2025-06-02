@@ -8,12 +8,11 @@
             <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
             </div>
         </div>
-
         <div class="auto-container">
             <div class="content-box clearfix">
                 <h1>Compare Properties</h1>
                 <ul class="bread-crumb clearfix">
-                    <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>Compare Properties</li>
                 </ul>
             </div>
@@ -22,7 +21,7 @@
     <!--End Page Title-->
 
     <!-- properties-section -->
-    <section class="property-page-section property-list">
+    <section class="properties-section centred">
         <div class="auto-container">
             <div class="row g-4">
 

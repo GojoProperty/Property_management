@@ -305,58 +305,65 @@
                 dataType: 'json',
                 url: "/get-compare-property/",
                 success: function(response) {
-                    let output = "";
-
-                    $.each(response.compare, function(key, value) {
-                        const p = value.property;
-
-                        const isLowestPrice = p.lowest_price == response.lowestPrice;
-                        const isLargestArea = p.property_size == response.largestArea;
-                        const isMostRooms = p.bedrooms == response.mostRooms;
-
-                        output += `
-                <div class="card shadow-sm p-3">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-md-4">
-                            <img src="/${p.property_thambnail}" alt="" class="img-fluid rounded">
-                        </div>
-                        <div class="col-md-8">
-                            <h5 class="fw-bold mb-1">${p.property_name}</h5>
-                            <p class="mb-1 text-primary fw-semibold">$${p.lowest_price}
-                                ${isLowestPrice ? '<span class="badge bg-success ms-2">Lowest Price</span>' : ''}
-                            </p>
-                            <p class="mb-1"><strong>Area:</strong> ${p.property_size} Sq Ft
-                                ${isLargestArea ? '<span class="badge bg-info text-dark ms-2">Largest Area</span>' : ''}
-                            </p>
-                            <p class="mb-1"><strong>Rooms:</strong> ${p.bedrooms}
-                                ${isMostRooms ? '<span class="badge bg-warning text-dark ms-2">Most Rooms</span>' : ''}
-                            </p>
-                            <p class="mb-1"><strong>Bathrooms:</strong> ${p.bathrooms}</p>
-                            <p class="mb-1"><strong>City:</strong> ${p.city}</p>
-                            <a type="submit" class="btn btn-sm btn-outline-danger mt-2" id="${value.id}" onclick="compareRemove(this.id)">
-                                <i class="fa fa-trash"></i> Remove
-                            </a>
-                        </div>
-                    </div>
-                </div>`;
+                    var rows = ""
+                    $.each(response, function(key, value) {
+                        rows +=
+                            ` <tr>
+                            <th>Property Info</th>
+                            <th>
+                                <figure class="image-box"><img src="/${value.property.property_thambnail}" alt=""></figure>
+                                <div class="title">${value.property.property_name}</div>
+                                <div class="price">$${value.property.lowest_price}</div>
+                            </th>
+                        </tr>    
+                        <tr>
+                            <td>
+                                <p>City</p>
+                            </td>
+                            <td>
+                                <p>${value.property.city}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Area</p>
+                            </td>
+                            <td>
+                                <p>${value.property.property_size} Sq Ft</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Rooms</p>
+                            </td>
+                            <td>
+                                <p>${value.property.bedrooms}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Bathrooms</p>
+                            </td>
+                            <td>
+                                <p>${value.property.bathrooms}</p>
+                            </td>                
+                        </tr> 
+                        <tr>
+                            <td>
+                                <p>Action</p>
+                            </td>
+                            <td>
+                                <a type="submit" class="text-body" id="${value.id}" onclick="compareRemove(this.id)" ><i class="fa fa-trash"></i></a>
+                            </td>                        
+                        </tr>  `
                     });
-                    let summary = `
-    <div class="alert alert-info">
-        Among the compared properties:
-        <strong>${response.lowestPriceName}</strong> has the <strong>lowest price</strong>,
-        <strong>${response.largestAreaName}</strong> has the <strong>largest area</strong>,
-        and <strong>${response.mostRoomsName}</strong> has the <strong>most rooms</strong>.
-    </div>
-`;
-                    $('#compare-summary').html(summary);
-
-                    $('#compare-cards').html(output);
+                    $('#compare').html(rows);
                 }
-            });
+            })
         }
-
         compare();
 
+        // remove properties from compare page 
         function compareRemove(id) {
             $.ajax({
                 type: "GET",
@@ -365,26 +372,29 @@
                 success: function(data) {
                     compare();
 
+                    // Start Message 
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
                         timer: 3000
-                    });
-
+                    })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
+                            type: 'success',
                             icon: 'success',
-                            title: data.success
-                        });
+                            title: data.success,
+                        })
                     } else {
                         Toast.fire({
+                            type: 'error',
                             icon: 'error',
-                            title: data.error
-                        });
+                            title: data.error,
+                        })
                     }
+                    // End Message  
                 }
-            });
+            })
         }
     </script>
 

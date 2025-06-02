@@ -9,13 +9,10 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('rules', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('property_id')->constrained()->onDelete('cascade');
-            $table->text('content'); // The rule text
-            $table->timestamps();
+        Schema::table('properties', function (Blueprint $table) {
+             $table->decimal('commission', 10, 2)->nullable();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rules');
+        Schema::table('properties', function (Blueprint $table) {
+            //
+        });
     }
 };

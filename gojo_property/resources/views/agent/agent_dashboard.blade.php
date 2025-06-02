@@ -151,44 +151,8 @@
     <script src="{{ asset('backend/assets/js/tinymce.js') }}"></script>
     <!-- tinymce -->
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var ctx = document.getElementById('newPropertiesChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['4 weeks ago', '3 weeks ago', '2 weeks ago', 'Last week'],
-                    datasets: [{
-                        label: 'New Properties',
-                        data: @json($weeklyData),
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.3,
-                        pointRadius: 3,
-                        pointHoverRadius: 5
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            stepSize: 1
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false,
-                }
-            });
-        });
-    </script>
+  
+  
 
 </body>
 

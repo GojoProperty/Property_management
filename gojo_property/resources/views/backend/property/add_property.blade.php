@@ -93,12 +93,12 @@
                                     <div class="col-sm-4">
                                         <div class="form-group mb-3">
                                             <label class="form-label">State</label>
-                                            <select name="state" class="form-select" id="exampleFormControlSelect1">
-                                                <option selected="" disabled="">Select State</option>
-                                                @foreach ($pstate as $state)
-                                                    <option value="{{ $state->id }}">{{ $state->state_name }}</option>
-                                                @endforeach
-                                            </select>
+                                         <select name="state" class="form-select" id="exampleFormControlSelect1">
+                <option selected="" disabled="">Select State</option>
+               @foreach($pstate as $state)
+                <option value="{{ $state->id }}">{{ $state->state_name }}</option>
+               @endforeach
+            </select>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -246,15 +246,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label for="rules">Terms & Rules (optional)</label>
-                                    <textarea name="rules[]" class="form-control" rows="3" placeholder="Write rule here..."></textarea>
-                                    <button type="button" class="btn btn-sm btn-success mt-2" id="addRule">+ Add
-                                        another rule</button>
-                                </div>
-
-                                <div id="moreRules"></div>
-                                <button type="submit" class="btn btn-primary w-auto mt-4">Save Changes </button>
+                                <button type="submit" class="btn btn-primary w-auto">Save Changes </button>
                             </form>
                         </div>
                     </div>
@@ -329,15 +321,6 @@
         });
     </script>
 
-
-    <script>
-        document.getElementById('addRule').addEventListener('click', function() {
-            const field = `
-            <textarea name="rules[]" class="form-control mt-2" rows="3" placeholder="Write rule here..."></textarea>
-        `;
-            document.getElementById('moreRules').insertAdjacentHTML('beforeend', field);
-        });
-    </script>
 
 
 

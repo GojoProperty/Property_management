@@ -8,6 +8,7 @@
     }
 @endphp
 
+
 <nav class="sidebar">
     <!-- Sidebar Header -->
     <div class="sidebar-header">
@@ -58,7 +59,6 @@
                     </div>
                 </li>
 
-                <!-- Amenitie Section -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#amenitieSection" role="button"
                         aria-expanded="false" aria-controls="amenitieSection">
@@ -82,7 +82,6 @@
                     </div>
                 </li>
 
-                <!-- Property Section -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#property" role="button" aria-expanded="false"
                         aria-controls="property">

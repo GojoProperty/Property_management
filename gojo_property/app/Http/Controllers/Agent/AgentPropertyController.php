@@ -77,7 +77,9 @@ class AgentPropertyController extends Controller
         } else {
             $save_url = null;
         }
-
+            $base_price = $request->max_price;  // base price entered by agent
+            $commission = $base_price * 0.10;
+            $final_price = $base_price + $commission;
         // **Create property and get the inserted model**
         $property = Property::create([
             'ptype_id' => $request->ptype_id,
@@ -87,7 +89,8 @@ class AgentPropertyController extends Controller
             'property_code' => $pcode,
             'property_status' => $request->property_status,
             'lowest_price' => $request->lowest_price,
-            'max_price' => $request->max_price,
+            'max_price' => $final_price, 
+            'commission' => $commission,
             'short_descp' => $request->short_descp,
             'long_descp' => $request->long_descp,
             'bedrooms' => $request->bedrooms,
@@ -103,7 +106,7 @@ class AgentPropertyController extends Controller
             'featured' => $request->featured,
             'hot' => $request->hot,
             'agent_id' => Auth::user()->id,
-            'status' => 1,
+            'status' => 2,
             'property_thambnail' => $save_url,
         ]);
 

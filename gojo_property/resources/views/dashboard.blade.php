@@ -7,8 +7,8 @@
             <div class="content-box clearfix">
                 <h1>User Profile </h1>
                 <ul class="bread-crumb clearfix">
-                    <li><a href="#">Home</a></li>
-
+                    <li><a href="index.html">Home</a></li>
+                    <li>User Profile </li>
                 </ul>
             </div>
         </div>
@@ -66,8 +66,8 @@
                                                     {{ $approved }}</h1>
                                                 <h5 class="card-text"style="color: white;"> Approved properties</h5>
 
-                                            </div>
-                                        </div>
+</div>
+</div>
 
                                         <div class="col-md-4">
                                             <div class="card-body" style="background-color: #ffc107;">
@@ -85,18 +85,23 @@
                                         </div>
                                     </div>
 
-                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="blog-details-content">
-                        <div class="news-block-one">
-                            <div class="inner-box">
+                    </div>     
+                </div>
+<div class="blog-details-content">
+                    <div class="news-block-one">
+                        <div class="inner-box">
+                            
+                            <div class="lower-content">
+                                <h3>Activity Logs</h3>
+                              <hr>
+                              
+  
 
-                                <div class="lower-content">
-                                    <h3>Activity Logs</h3>
-                                    <hr>
-                                </div>
+
+
+
                             </div>
                         </div>
                     </div>
