@@ -9,13 +9,7 @@
                 </ul>
             </div>
             <div class="right-column pull-right">
-                <ul class="social-links clearfix">
-                    <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-pinterest-p"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-google-plus-g"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-vimeo-v"></i></a></li>
-                </ul>
+             
                 <div> {{-- sign up based on autentication  --}}
                     @auth
                         <div class="sign-box">

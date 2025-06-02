@@ -33,10 +33,15 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('l
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
+use App\Http\Controllers\HomeController;
 
 
 
 Route::get('/', [UserController::class, 'Index'])->name('home');;
+Route::get('/faq', [HomeController::class, 'faq'])->name('faq.page');
+Route::get('/rent-properties', [HomeController::class, 'RentProperties'])->name('rent.properties');
+Route::get('/buy-properties', [HomeController::class, 'BuyProperties'])->name('buy.properties');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
