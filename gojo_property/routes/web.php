@@ -16,6 +16,7 @@ use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CompareController;
+use App\Http\Controllers\CustomerPropertyController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
@@ -307,3 +308,20 @@ Route::put('/transaction/update-status/{id}', [TransactionController::class, 'up
 // Delete transaction
 Route::get('/transaction/delete/{id}', [TransactionController::class, 'deleteTransaction'])->name('delete.transaction');
 Route::get('/agent/dashboard', [AgentController::class, 'Dashboard'])->name('agent.dashboard');
+
+//customer property
+Route::middleware(['auth'])->group(function () {
+    Route::get('/customer/add/property', [CustomerPropertyController::class, 'addProperty'])->name('customer.add.property');
+    Route::post('/customer/store/property', [CustomerPropertyController::class, 'CustomerStoreProperty'])->name('customer.store.property');
+    Route::get('/customer/all/property', [CustomerPropertyController::class, 'allProperty'])->name('customer.all.property');
+    Route::get('/customer/edit/property/{id}', [CustomerPropertyController::class, 'CustomerEditProperty'])->name('customer.edit.property');
+    Route::post('/customer/update/property', [CustomerPropertyController::class, 'CustomerUpdateProperty'])->name('customer.update.property');
+    Route::post('/customer/update/property/thumbnail', [CustomerPropertyController::class, 'CustomerUpdatePropertyThambnail'])->name('customer.update.property.thambnail');
+    Route::post('/customer/update/property/multiimage', [CustomerPropertyController::class, 'CustomerUpdatePropertyMultiimage'])->name('customer.update.property.multiimage');
+    Route::get('/customer/delete/property/multiimage/{id}', [CustomerPropertyController::class, 'CustomerPropertyMultiimgDelete'])->name('customer.delete.property.multiimage');
+    Route::post('/customer/store/new/property/multiimage', [CustomerPropertyController::class, 'CustomerStoreNewMultiimage'])->name('customer.store.new.multiimage');
+    Route::post('/customer/update/property/facilities', [CustomerPropertyController::class, 'CustomerUpdatePropertyFacilities'])->name('customer.update.property.facilities');
+    Route::get('/customer/delete/property/{id}', [CustomerPropertyController::class, 'CustomerDeleteProperty'])->name('customer.delete.property');
+    Route::get('/customer/dashboard', [CustomerPropertyController::class, 'CustomerDashboard'])->name('customer.dashboard');
+    Route::get('customer/details/property/{id}', [CustomerPropertyController::class, 'CustomerDetailsProperty'])->name('customer.details.property');
+});
