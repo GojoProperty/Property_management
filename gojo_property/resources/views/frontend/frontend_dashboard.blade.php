@@ -40,9 +40,10 @@
 
     <div class="boxed_wrapper">
 
-        <!-- main header -->
-        @include('frontend.home.header')
-        <!-- main-header end -->
+        @if (!isset($hideHeader))
+            @include('frontend.home.header')
+        @endif
+
 
         <!-- Mobile Menu  -->
         @include('frontend.home.mobile_menu')
@@ -50,9 +51,9 @@
 
         @yield('main')
 
-        <!-- main-footer -->
-        @include('frontend.home.footer')
-        <!-- main-footer end -->
+        @if (!isset($hideFooter))
+            @include('frontend.home.footer')
+        @endif
 
         <!--Scroll to top-->
         <button class="scroll-top scroll-to-target" data-target="html">
@@ -108,7 +109,10 @@
     <!-- main-js -->
     <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        feather.replace();
+    </script>
     <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"
@@ -128,6 +132,9 @@
             }
         @endif
     </script>
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script type="text/javascript">
         $.ajaxSetup({

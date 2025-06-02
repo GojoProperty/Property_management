@@ -1,7 +1,29 @@
-@extends('customer.customer_dashboard')
- @section('customer')
+@extends('frontend.frontend_dashboard')
+@section('main')
+    @php
+        $hideHeader = true;
+        $hideFooter = true;
+    @endphp
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <div class="page-content">
+    <section class="page-title-two bg-color-1 centred">
+        <div class="pattern-layer">
+            <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
+            </div>
+            <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
+            </div>
+        </div>
+
+        <div class="auto-container">
+            <div class="content-box clearfix">
+                <h1>Edit property</h1>
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li>Edit your property Property</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="page-content mt-4">
         <div class="row profile-body">
             <div class="col-md-12 col-xl-12 middle-wrapper">
                 <div class="row">
@@ -161,7 +183,7 @@
                                             </select>
                                         </div>
                                     </div><!-- Col -->
-                                    
+
                                 </div><!-- Row -->
                                 <div class="col-sm-12">
                                     <div class="mb-3">
@@ -210,8 +232,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Edit Main Thambnail Image </h6>
-                            <form method="post" action="{{ route('customer.update.property.thambnail') }}" id="myForm"
-                                enctype="multipart/form-data">
+                            <form method="post" action="{{ route('customer.update.property.thambnail') }}"
+                                id="myForm" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $property->id }}">
                                 <input type="hidden" name="old_img" value="{{ $property->property_thambnail }}">
@@ -247,8 +269,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Edit Multi Image </h6>
-                            <form method="post" action="{{ route('customer.update.property.multiimage') }}" id="myForm"
-                                enctype="multipart/form-data">
+                            <form method="post" action="{{ route('customer.update.property.multiimage') }}"
+                                id="myForm" enctype="multipart/form-data">
                                 @csrf
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -316,8 +338,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Edit Property Facility </h6>
-                            <form method="post" action="{{ route('customer.update.property.facilities') }}" id="myForm"
-                                enctype="multipart/form-data">
+                            <form method="post" action="{{ route('customer.update.property.facilities') }}"
+                                id="myForm" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $property->id }}">
                                 @foreach ($facilities as $item)

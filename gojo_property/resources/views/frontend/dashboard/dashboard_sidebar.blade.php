@@ -35,8 +35,11 @@
         <li><a href="{{ route('user.wishlist') }}"><i class="fa fa-indent" aria-hidden="true"></i> WishList </a></li>
         <li><a href="{{ route('user.change.password') }}"><i class="fa fa-key" aria-hidden="true"></i> Security</a>
         </li>
-        <li><a href="{{ route('customer.all.property') }}"><i class="fa fa-home" aria-hidden="true"></i> Your
-                Listings</a></li>
+        <li><a href="{{ route('customer.all.property') }}"><i class="fa fa-home" aria-hidden="true"></i> Your posted
+                Property</a></li>
+        <li><a href="{{ route('customer.add.property') }}"><i class="fa fa-home" aria-hidden="true"></i>
+                Add property</a></li>
+
         <li><a href="{{ route('user.logout') }}"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i> Logout</a>
         </li>
     </ul>

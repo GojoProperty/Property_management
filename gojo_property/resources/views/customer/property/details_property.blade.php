@@ -1,7 +1,29 @@
-@extends('customer.customer_dashboard')
-@section('customer')
+@extends('frontend.frontend_dashboard')
+@section('main')
+    @php
+        $hideHeader = true;
+        $hideFooter = true;
+    @endphp
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <div class="page-content">
+    <section class="page-title-two bg-color-1 centred">
+        <div class="pattern-layer">
+            <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
+            </div>
+            <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
+            </div>
+        </div>
+
+        <div class="auto-container">
+            <div class="content-box clearfix">
+                <h1>property Detail</h1>
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li>Your Property detail</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="page-content mt-4">
         <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
@@ -124,12 +146,12 @@
                                     <tr>
                                         <td>Customer </td>
                                         <!-- @if ($property->customer_id == null)
-                                            <td><code> Agent </code></td>
-                                        @elseif ($property['user'])
-                                            <td><code> {{ $property['user']['name'] }} </code></td>
-                                        @else
-                                            <td><code> Unknown </code></td>
-                                        @endif -->
+    <td><code> Agent </code></td>
+@elseif ($property['user'])
+    <td><code> {{ $property['user']['name'] }} </code></td>
+@else
+    <td><code> Unknown </code></td>
+    @endif -->
 
                                     </tr>
                                     <tr>

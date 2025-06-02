@@ -1,6 +1,28 @@
-@extends('customer.customer_dashboard')
-@section('customer')
-    <div class="page-content">
+@extends('frontend.frontend_dashboard')
+@section('main')
+    @php
+        $hideHeader = true;
+        $hideFooter = true;
+    @endphp
+    <section class="page-title-two bg-color-1 centred">
+        <div class="pattern-layer">
+            <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
+            </div>
+            <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
+            </div>
+        </div>
+
+        <div class="auto-container">
+            <div class="content-box clearfix">
+                <h1>Your property</h1>
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li>your Property</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="page-content mt-4">
 
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
@@ -48,9 +70,16 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('customer.details.property',$item->id) }}" class="btn btn-inverse-info" title="Details"> <i data-feather="eye"></i> </a>
-                                                <a href="{{ route('customer.edit.property',$item->id) }}" class="btn btn-inverse-warning" title="Edit"> <i data-feather="edit"></i> </a>
-                                                <a href="{{ route('customer.delete.property',$item->id) }}" class="btn btn-inverse-danger" id="delete" title="Delete"> <i data-feather="trash-2"></i>  </a>
+                                                <a href="{{ route('customer.details.property', $item->id) }}"
+                                                    class="btn btn-inverse-info text-dark" title="Details"> <i
+                                                        data-feather="eye" style="stroke:black;"></i>
+                                                </a>
+                                                <a href="{{ route('customer.edit.property', $item->id) }}"
+                                                    class="btn btn-inverse-warning text-dark" title="Edit"> <i
+                                                        data-feather="edit" style="stroke:black;"></i> </a>
+                                                <a href="{{ route('customer.delete.property', $item->id) }}"
+                                                    class="btn btn-inverse-danger text-dark" id="delete" title="Delete">
+                                                    <i data-feather="trash-2" style="stroke:black;"></i> </a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -12,6 +12,7 @@ class FrontendPropertyController extends Controller
     public function AllProperties(Request $request)
     {
         $query = Property::query();
+        $query->where('status', 1);
 
         if ($request->filled('city')) {
             $query->where('city', 'LIKE', '%' . $request->city . '%');
@@ -24,7 +25,6 @@ class FrontendPropertyController extends Controller
         if ($request->filled('type')) {
             $query->where('ptype_id', $request->type);
         }
-
         $properties = $query->latest()->paginate(10);
         $types = PropertyType::all(); // To populate dropdown
 

@@ -299,12 +299,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/rent-request', [TransactionController::class, 'rentRequest'])->name('rent.request');
 });
 
-
 Route::get('/transactions/details', [TransactionController::class, 'TransactionDetails'])->name('transaction.details');
-
 // Update status
 Route::put('/transaction/update-status/{id}', [TransactionController::class, 'updateStatus'])->name('update.transaction.status');
-
 // Delete transaction
 Route::get('/transaction/delete/{id}', [TransactionController::class, 'deleteTransaction'])->name('delete.transaction');
 Route::get('/agent/dashboard', [AgentController::class, 'Dashboard'])->name('agent.dashboard');

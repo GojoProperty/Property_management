@@ -26,7 +26,7 @@ class CustomerPropertyController extends Controller
 
         if ($user->role !== 'customer') {
             // Redirect back or show error if user is not a customer
-            return redirect()->route('dashboard')->with('error', 'Unauthorized access.');
+            return redirect()->route('/login')->with('error', 'Unauthorized access.');
         }
 
         $propertyCount = Property::where('customer_id', $user->id)->count();
@@ -133,7 +133,7 @@ class CustomerPropertyController extends Controller
 
     public function allProperty()
     {
-        $customer = auth()->user();
+        $customer = Auth::user();
         $properties = Property::where('customer_id', $customer->id)->latest()->get();
         return view('customer.property.all_property', compact('properties'));
     }
@@ -328,24 +328,24 @@ class CustomerPropertyController extends Controller
     public function CustomerDeleteProperty($id)
     {
         $property = Property::findOrFail($id);
-        
+
         // Check ownership
-        if ($property->customer_id != auth()->id()) {
+        if ($property->customer_id != Auth::id()) {
             abort(403);
         }
         // Mark it inactive instead of deleting
-        $property->status = 0; 
+        $property->status = 0;
         $property->save();
-        
+
         return redirect()->back()->with('success', 'Property has been marked as inactive.');
     }
 
-    
+
     public function CustomerDashboard()
     {
-        $customer = auth()->user();
+        $customer = Auth::user();
         $propertyCount = \App\Models\Property::where('customer_id', $customer->id)->count();
-        
+
         return view('customer.customer_dashboard', compact('propertyCount'));
     }
 
