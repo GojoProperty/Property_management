@@ -22,6 +22,7 @@ use App\Models\PackagePlan;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\state;
 use App\Models\schedule;
+use App\Models\PropertyMessage;
 
 
 
@@ -448,8 +449,6 @@ class AgentPropertyController extends Controller
             'credit' => DB::raw('10 + ' . $nid),
         ]);
 
-
-
         $notification = array(
             'message' => 'You have purchase Professional Package Successfully',
             'alert-type' => 'success'
@@ -512,5 +511,19 @@ class AgentPropertyController extends Controller
         return redirect()->route('agent.schedule.request')->with($notification);
     } // End Method 
 
+       public function AgentPropertyMessage(){
 
+        $id = Auth::user()->id;
+        $usermsg = PropertyMessage::where('agent_id',$id)->get();
+        return view('agent.message.all_message',compact('usermsg'));
+
+    }// End Method
+    public function AgentMessageDetails($id){
+
+        $uid = Auth::user()->id;
+        $usermsg = PropertyMessage::where('agent_id',$uid)->get();
+        $msgdetails = PropertyMessage::findOrFail($id);
+        return view('agent.message.message_details',compact('usermsg','msgdetails'));
+
+    }// End Method  
 }

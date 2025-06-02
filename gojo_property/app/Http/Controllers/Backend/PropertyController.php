@@ -22,6 +22,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\State;
 use App\Models\Preference;
 use App\Models\PreferenceNotification;
+use App\Models\PropertyMessage;
 
 
 
@@ -471,5 +472,12 @@ class PropertyController extends Controller
         ]);
         return $pdf->download('invoice.pdf');
     } // End Method
+
+    public function AdminPropertyMessage(){
+ 
+        $usermsg = PropertyMessage::latest()->get();
+        return view('backend.message.all_message',compact('usermsg'));
+
+    }// End Method   
 
 }

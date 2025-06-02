@@ -171,7 +171,9 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
         Route::post('/agent/update/property/facilities', 'AgentUpdatePropertyFacilities')->name('agent.update.property.facilities');
         Route::get('/agent/details/property/{id}', 'AgentDetailsProperty')->name('agent.details.property');
         Route::get('/agent/delete/property/{id}', 'AgentDeleteProperty')->name('agent.delete.property');
+        Route::get('/agent/property/message/', 'AgentPropertyMessage')->name('agent.property.message');  
         Route::get('/agent/message/details/{id}', 'AgentMessageDetails')->name('agent.message.details');
+
 
         // Schedule Request Route
         Route::get('/agent/schedule/request',  'AgentScheduleRequest')->name('agent.schedule.request');
@@ -186,6 +188,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
         Route::post('/store/professional/plan', 'StoreProfessionalPlan')->name('store.professional.plan');
         Route::get('/package/history', 'PackageHistory')->name('package.history');
         Route::get('/agent/package/invoice/{id}', 'AgentPackageInvoice')->name('agent.package.invoice');
+        Route::get('/admin/property/message/', 'AdminPropertyMessage')->name('admin.property.message');
     });
 });
 
