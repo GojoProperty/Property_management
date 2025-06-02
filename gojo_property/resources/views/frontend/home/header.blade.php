@@ -96,7 +96,8 @@
                                 @elseif ($role === 'agent')
                                     <a href="{{ route('agent.add.property') }}" class="theme-btn btn-one">Add Listing</a>
                                 @else
-                                    <a href="{{ route('dashboard') }}" class="theme-btn btn-one">User Add Listing</a>
+                                    <a href="{{ route('customer.add.property') }}" class="theme-btn btn-one">User Add
+                                        Listing</a>
                                 @endif
                             </div>
                         @endauth
