@@ -11,8 +11,7 @@
         <div class="sec-title centred">
             <h5>Top Places</h5>
             <h2>Most Popular Places</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing sed do eiusmod tempor incididunt <br />labore dolore
-                magna aliqua enim.</p>
+            <p>Discover the most viewed and in-demand places on Gojo Property.</p>
         </div>
 
         <div class="sortable-masonry">

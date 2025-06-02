@@ -8,11 +8,10 @@
                             <h3>About</h3>
                         </div>
                         <div class="text">
-                            <p>Gojo Property is your trusted digital bridge between property owners and seekers. Whether
-                                you're looking to buy, sell, or rent a home, Gojo Properties makes the process simple,
-                                secure, and efficient.</p>
-                            <p>Our mission is to make property transactions smarter and faster by putting everything you
-                                need in one place.</p>
+                            <p>Gojo Property connects property owners and seekers in a simple, secure, and efficient
+                                way.</p>
+                            <p> Whether buying, selling, or renting, we streamline the process in one smart platform.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -39,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
                 <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                     <div class="footer-widget contact-widget">
                         <div class="widget-title">
