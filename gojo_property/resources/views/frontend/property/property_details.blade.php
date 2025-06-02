@@ -12,10 +12,6 @@
         <div class="auto-container">
             <div class="content-box clearfix">
                 <h1>{{ $property->property_name }}</h1>
-                <ul class="bread-crumb clearfix">
-                    <li><a href="index.html">Home</a></li>
-                    <li>{{ $property->property_name }}</li>
-                </ul>
             </div>
         </div>
     </section>
@@ -55,17 +51,18 @@
                 <div class="right-column pull-right clearfix">
                     <div class="price-inner clearfix">
                         <ul class="category clearfix pull-left">
-                            <li><a href="property-details.html">{{ $property->type->type_name }}</a></li>
-                            <li><a href="property-details.html"> For{{ $property->property_status }}</a></li>
+                            <li>{{ $property->type->type_name }}</li>
+                            <li><a href="#Request_section">For {{ $property->property_status }}</a></li>
                         </ul>
                         <div class="price-box pull-right">
                             <h3> {{ $property->max_price }}ETB </h3>
                         </div>
                     </div>
                     <ul class="other-option pull-right clearfix">
-
-                        <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                        <li><a href="property-details.html"><i class="icon-13"></i></a></li>
+                        <li><a aria-label="Compare" class="action-btn" id="{{ $property->id }}"
+                                onclick="addToCompare(this.id)"><i class="icon-12"></i></a></li>
+                        <li><a aria-label="Add To Wishlist" class="action-btn" id="{{ $property->id }}"
+                                onclick="addToWishList(this.id)"><i class="icon-13"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -345,7 +342,7 @@
                         </div>
 
                         <!-- Property Request Section -->
-                        <div class="calculator-widget sidebar-widget">
+                        <div class="calculator-widget sidebar-widget" id="Request_section">
                             <div class="property-request-section" style="margin-top: 40px; margin-bottom: 60px;">
                                 <div class="calculate-inner">
                                     <div class="widget-title">

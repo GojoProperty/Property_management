@@ -47,11 +47,12 @@ class PropertyController extends Controller
     }
     public function ScheduledProperties()
     {
-        $scheduledPropertyIds = Schedule::pluck('property_id')->unique();
+        $scheduledPropertyIds = Schedule::where('status', 'approved')->pluck('property_id')->unique();
         $property = Property::whereIn('id', $scheduledPropertyIds)->latest()->get();
         $filter = 'Scheduled';
         return view('backend.property.all_property', compact('property', 'filter'));
     }
+
     public function RequestedProperties()
     {
         $requestedPropertyIds = Transaction::where('status', 'pending')->pluck('property_id')->unique();
@@ -73,13 +74,13 @@ class PropertyController extends Controller
     }
     public function RentedProperties()
     {
-        $property = Property::where('status', 0)->where('property_status', 'For Rent')->latest()->get();
+        $property = Transaction::where('status', 'approved')->where('property_status', 'For Rent')->latest()->get();
         $filter = 'Rented';
         return view('backend.property.all_property', compact('property', 'filter'));
     }
     public function SoldProperties()
     {
-        $property = Property::where('status', 0)->where('property_status', 'For Buy')->latest()->get();
+        $property = Transaction::where('status', 'approved')->where('property_status', 'For Buy')->latest()->get();
         $filter = 'Sold';
         return view('backend.property.all_property', compact('property', 'filter'));
     }

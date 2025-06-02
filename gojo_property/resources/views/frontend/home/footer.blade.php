@@ -8,8 +8,11 @@
                             <h3>About</h3>
                         </div>
                         <div class="text">
-                            <p>Gojo Property is your trusted digital bridge between property owners and seekers. Whether you're looking to buy, sell, or rent a home, Gojo Properties makes the process simple, secure, and efficient.</p>
-                            <p>Our mission is to make property transactions smarter and faster by putting everything you need in one place.</p>
+                            <p>Gojo Property is your trusted digital bridge between property owners and seekers. Whether
+                                you're looking to buy, sell, or rent a home, Gojo Properties makes the process simple,
+                                secure, and efficient.</p>
+                            <p>Our mission is to make property transactions smarter and faster by putting everything you
+                                need in one place.</p>
                         </div>
                     </div>
                 </div>
@@ -60,9 +63,10 @@
                         </div>
                         <div class="widget-content">
                             <ul class="info-list clearfix">
-                                <li><i class="fas fa-map-marker-alt"></i>Hawassa,Ethiopia        
-                            Admas Mall, 6th Floor, Office No. 604</li>
-                                <li><i class="fas fa-microphone"></i><a href="tel:23055873407">+251 462 12 68 80</a></li>
+                                <li><i class="fas fa-map-marker-alt"></i>Hawassa,Ethiopia
+                                    Admas Mall, 6th Floor, Office No. 604</li>
+                                <li><i class="fas fa-microphone"></i><a href="tel:23055873407">+251 462 12 68 80</a>
+                                </li>
                                 <li><i class="fas fa-envelope"></i><a
                                         href="mailto:info@example.com">gojoproperties@gmail.com</a></li>
                             </ul>
@@ -91,3 +95,9 @@
         </div>
     </div>
 </footer>
+<style>
+    .footer-top {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+</style>

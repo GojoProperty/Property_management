@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
     // Compare
     Route::controller(CompareController::class)->group(function () {
         Route::get('/user/compare', 'UserCompare')->name('user.compare');
+        Route::post('/add-to-compare/{property_id}', 'AddToCompare');
         Route::get('/get-compare-property', 'GetCompareProperty');
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
@@ -272,7 +273,6 @@ Route::controller(IndexController::class)->group(function () {
 });
 // ===================== Frontend Routes =====================
 Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails'])->name('property.details');
-Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
 Route::get('/all-properties', [FrontendPropertyController::class, 'AllProperties'])->name('all.properties');
 
 // Blog Details Route 
