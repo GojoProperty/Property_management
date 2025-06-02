@@ -51,11 +51,11 @@
                     <span class="link-title">Package History </span>
                 </a>
             </li>
-            
+
             <li class="nav-item">
                 <a href="{{ route('agent.schedule.request') }}" class="nav-link">
                     <i class="link-icon" data-feather="calendar"></i>
-                    <span class="link-title">Schedule Request  </span>
+                    <span class="link-title">Schedule Request </span>
                 </a>
             </li>
             <li class="nav-item nav-category">Components</li>
@@ -85,22 +85,8 @@
                     <span class="link-title">Advanced UI</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="advancedUI">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="pages/advanced-ui/cropper.html" class="nav-link">Cropper</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
-                        </li>
 
-                    </ul>
-                </div>
             </li>
-
-
-
-
 
             <li class="nav-item nav-category">Docs</li>
             <li class="nav-item">

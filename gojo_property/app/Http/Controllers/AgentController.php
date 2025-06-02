@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Config;
+use App\Models\Property;
+use Carbon\Carbon;
+
 
 class AgentController extends Controller
 {
@@ -143,4 +146,42 @@ class AgentController extends Controller
         return back()->with($notification);
     } // End Method 
 
+    public function Dashboard()
+    {
+        $now = Carbon::now();
+
+        // Define time periods
+        $lastMonth = $now->copy()->subMonth();
+        $twoMonthsAgo = $now->copy()->subMonths(2);
+
+        // Count new properties added in the last month
+        $newPropertiesCount = Property::where('created_at', '>=', $lastMonth)->count();
+
+        // Count properties added in the previous month (for comparison)
+        $previousPropertiesCount = Property::whereBetween('created_at', [$twoMonthsAgo, $lastMonth])->count();
+
+        // Calculate percentage change safely
+        if ($previousPropertiesCount > 0) {
+            $percentChange = (($newPropertiesCount - $previousPropertiesCount) / $previousPropertiesCount) * 100;
+        } else {
+            $percentChange = 100; // Default to 100% increase if no previous data
+        }
+
+        // Prepare weekly data for graph: count of new properties per week for last 4 weeks
+        $weeklyData = Property::selectRaw('YEARWEEK(created_at, 1) as yearweek, COUNT(*) as count')
+            ->where('created_at', '>=', $now->copy()->subWeeks(4))
+            ->groupBy('yearweek')
+            ->orderBy('yearweek')
+            ->get()
+            ->pluck('count')
+            ->toArray();
+
+        // Pad the weekly data array with zeros if less than 4 weeks
+        while (count($weeklyData) < 4) {
+            array_unshift($weeklyData, 0);
+        }
+
+        // Pass data to the dashboard view
+        return view('agent.index', compact('newPropertiesCount', 'percentChange', 'weeklyData'));
+    }
 }

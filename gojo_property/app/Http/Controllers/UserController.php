@@ -9,6 +9,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Schedule;
 use App\Models\PreferenceNotification;
+use Illuminate\Notifications\Notifiable;
+use App\Models\Transaction;
+
 
 class UserController extends Controller
 {
@@ -113,4 +116,17 @@ class UserController extends Controller
     } // End Method 
 
 
+    public function dashboard()
+    {
+        $userId = Auth::id(); // if you want user-specific stats
+
+        // If for a specific user:
+        $approved = Transaction::where('user_id', $userId)->where('status', 'approved')->count();
+        $pending = Transaction::where('user_id', $userId)->where('status', 'pending')->count();
+        $rejected = Transaction::where('user_id', $userId)->where('status', 'rejected')->count();
+
+        // If for ALL transactions (e.g., admin dashboard), remove ->where('user_id', $userId)
+
+        return view('dashboard', compact('approved', 'pending', 'rejected'));
+    }
 }

@@ -9,112 +9,119 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-
-
-
 class TransactionController extends Controller
 {
     public function purchaseRequest(Request $request)
-{
-    $request->validate([
-        'property_id' => 'required|exists:properties,id',
-    ]);
+    {
+        $request->validate([
+            'property_id' => 'required|exists:properties,id',
+        ]);
 
-    $property = Property::findOrFail($request->property_id);
+        $property = Property::findOrFail($request->property_id);
 
-    if ($property->status != 1 || $property->property_status != 'buy') {
-        return back()->with('error', 'Property not available for purchase.');
-    }
+        if ($property->status != 1 || $property->property_status != 'buy') {
+            return back()->with('error', 'Property not available for purchase.');
+        }
 
-    $exists = Transaction::where('user_id', Auth::id())
-                ->where('property_id', $property->id)
-                ->first();
+        $exists = Transaction::where('user_id', Auth::id())
+            ->where('property_id', $property->id)
+            ->first();
 
-    if ($exists) {
+        if ($exists) {
+            $notification = array(
+                'message' => 'You already requested to purchase this property.',
+                'alert-type' => 'warning'
+            );
+            return back()->with($notification);
+        }
+        $pendingTransaction = Transaction::where('user_id', Auth::id())
+            ->where('status', 'pending')
+            ->first();
+
+        if ($pendingTransaction) {
+            return back()->with([
+                'message' => 'You already have a pending request. Please wait until it is processed before making another request.',
+                'alert-type' => 'warning',
+            ]);
+        }
+
+        // ✅ Generate the reference code
+        $referenceCode = Str::upper(Str::random(10));
+
+        Transaction::create([
+            'user_id'        => Auth::id(),
+            'property_id'    => $property->id,
+            'agent_id'       => $property->agent_id,
+            'transaction_type' => 'buy',
+            'price'          => $property->max_price,
+            'reference_code' => $referenceCode,
+            'status'         => 'pending',
+            'request_date'   => now(),
+        ]);
+
+        // ✅ Now notify with that reference code
+        Auth::user()->notify(new TransactionReferenceNotification($referenceCode));
+
         $notification = array(
-            'message' => 'You already requested to purchase this property.',
-            'alert-type' => 'warning'
+            'message' => 'Purchase request submitted! Check your email for your reference code.',
+            'alert-type' => 'success'
         );
+
         return back()->with($notification);
     }
-
-    // ✅ Generate the reference code
-    $referenceCode = Str::upper(Str::random(10));
-
-    Transaction::create([
-        'user_id'        => Auth::id(),
-        'property_id'    => $property->id,
-        'agent_id'       => $property->agent_id,
-        'transaction_type' => 'buy',
-        'price'          => $property->max_price,
-        'reference_code' => $referenceCode,
-        'status'         => 'pending',
-        'request_date'   => now(),
-    ]);
-
-    // ✅ Now notify with that reference code
-    Auth::user()->notify(new TransactionReferenceNotification($referenceCode));
-
-    $notification = array(
-        'message' => 'Purchase request submitted! Check your email for your reference code.',
-        'alert-type' => 'success'
-    );
-
-    return back()->with($notification);
-}
 
 
     // Handle Rent Request
-  public function rentRequest(Request $request)
-{
-    $request->validate([
-        'property_id' => 'required|exists:properties,id',
-    ]);
+    public function rentRequest(Request $request)
+    {
+        $request->validate([
+            'property_id' => 'required|exists:properties,id',
+        ]);
 
-    $property = Property::findOrFail($request->property_id);
+        $property = Property::findOrFail($request->property_id);
 
-    if ($property->status != 1 || $property->property_status != 'rent') {
-        return back()->with('error', 'Property not available for rent.');
-    }
+        if ($property->status != 1 || $property->property_status != 'rent') {
+            return back()->with('error', 'Property not available for rent.');
+        }
 
-    $exists = Transaction::where('user_id', Auth::id())
-                ->where('property_id', $property->id)
-                ->first();
+        $exists = Transaction::where('user_id', Auth::id())
+            ->where('property_id', $property->id)
+            ->first();
 
-    if ($exists) {
+        if ($exists) {
+            $notification = array(
+                'message' => 'You already requested to rent this property.',
+                'alert-type' => 'warning'
+            );
+            return back()->with($notification);
+        }
+
+        // ✅ Generate reference code
+        $referenceCode = Str::upper(Str::random(10));
+
+        Transaction::create([
+            'user_id'        => Auth::id(),
+            'property_id'    => $property->id,
+            'agent_id'       => $property->agent_id,
+            'transaction_type' => 'rent',
+            'price'          => $property->max_price,
+            'reference_code' => $referenceCode,
+            'status'         => 'pending',
+            'request_date'   => now(),
+        ]);
+
+        // ✅ Now send notification
+        Auth::user()->notify(new TransactionReferenceNotification($referenceCode));
+
         $notification = array(
-            'message' => 'You already requested to rent this property.',
-            'alert-type' => 'warning'
+            'message' => 'Rent request submitted! Check your email for your reference code.',
+            'alert-type' => 'success'
         );
+
         return back()->with($notification);
     }
 
-    // ✅ Generate reference code
-    $referenceCode = Str::upper(Str::random(10));
-
-    Transaction::create([
-        'user_id'        => Auth::id(),
-        'property_id'    => $property->id,
-        'agent_id'       => $property->agent_id,
-        'transaction_type' => 'rent',
-        'price'          => $property->max_price,
-        'reference_code' => $referenceCode,
-        'status'         => 'pending',
-        'request_date'   => now(),
-    ]);
-
-    // ✅ Now send notification
-    Auth::user()->notify(new TransactionReferenceNotification($referenceCode));
-
-    $notification = array(
-        'message' => 'Rent request submitted! Check your email for your reference code.',
-        'alert-type' => 'success'
-    );
-
-    return back()->with($notification);
-}
-
-// Show all transaction details
+    // Show all transaction details
     public function TransactionDetails()
     {
         // Load transactions with related user, property, and agent info
@@ -141,5 +148,3 @@ class TransactionController extends Controller
         return redirect()->back()->with('success', 'Transaction deleted successfully.');
     }
 }
-
-
