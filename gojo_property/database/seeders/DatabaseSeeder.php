@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             PropertyTypeSeeder::class,
             AmenitiesSeeder::class,
             PropertySeeder::class,
+            StateSeeder::class,
+
         ]);
 
         \App\Models\User::factory(5)->create();

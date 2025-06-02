@@ -34,7 +34,7 @@
                                 <figure class="author-thumb"><img
                                         src="{{ !empty($property->user->photo) ? url('upload/agent_images/' . $property->user->photo) : url('upload/no_image.jpg') }}"
                                         alt=""></figure>
-                                <h6>{{ $property->user->name }}</h6>
+                                <h6>{{ $property->user->name ?? 'N/A' }}</h6>
                             @endif
                         </div>
                         <ul class="rating clearfix pull-left">
@@ -112,7 +112,7 @@
                             </div>
                             <ul class="info clearfix">
                                 <li><span>Address:</span> {{ $property->address }}</li>
-                                <li><span>State/county:</span> {{ $property['pstate']['state_name'] }}</li>
+                                <li><span>State/county:</span> {{ $property->pstate ? $property->pstate->state_name : 'N/A' }}</li>
                                 <li><span>Neighborhood:</span> {{ $property->neighborhood }}</li>
                                 <li><span>City:</span> {{ $property->city }}</li>
                             </ul>

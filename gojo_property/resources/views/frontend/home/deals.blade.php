@@ -41,7 +41,8 @@
                                             <figure class="author-thumb"><img
                                                     src="{{ !empty($item->user->photo) ? url('upload/agent_images/' . $item->user->photo) : url('upload/no_image.jpg') }}"
                                                     alt=""></figure>
-                                            <h6>{{ $item->user->name }}</h6>
+                                            <h6>{{ $item->user?->name ?? 'N/A' }}</h6>
+
                                         @endif
 
                                     </div>
