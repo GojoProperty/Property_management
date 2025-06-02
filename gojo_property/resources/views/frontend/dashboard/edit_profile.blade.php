@@ -1,18 +1,19 @@
 @extends('frontend.frontend_dashboard')    
 @section('main')
-       <!--Page Title-->
-        <section class="page-title centred" style="background-image: url({{asset('frontend/assets/images/background/page-title-5.jpg')}});">
-            <div class="auto-container">
-                <div class="content-box clearfix">
-                    <h1>User Profile </h1>
-                    <ul class="bread-crumb clearfix">
-                        <li><a href="index.html">Home</a></li>
-                        <li>User Profile </li>
-                    </ul>
-                </div>
+    <!--Page Title-->
+    <section class="page-title centred"
+        style="background-image: url({{ asset('frontend/assets/images/background/page-title-5.jpg') }});">
+        <div class="auto-container">
+            <div class="content-box clearfix">
+                <h1>User Profile </h1>
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li>User Profile </li>
+                </ul>
             </div>
-        </section>
-        <!--End Page Title-->
+        </div>
+    </section>
+    <!--End Page Title-->
 
 
         <!-- sidebar-page-container -->

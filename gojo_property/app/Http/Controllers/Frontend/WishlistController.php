@@ -19,6 +19,10 @@ class WishlistController extends Controller
     public function AddToWishList(Request $request, $property_id)
     {
         if (Auth::check()) {
+
+            if (Auth::user()->role !== 'customer') {
+                return response()->json(['error' => 'Only customers can add properties to the wishlist']);
+            }
             $exists = Wishlist::where('user_id', Auth::id())->where('property_id', $property_id)->first();
             if (!$exists) {
                 Wishlist::insert([

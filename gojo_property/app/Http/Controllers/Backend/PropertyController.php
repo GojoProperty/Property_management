@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Property;
 use App\Models\MultiImage;
 use App\Models\Facility;
+use App\Models\Schedule;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\Amenities;
 use App\Models\PropertyType;
@@ -18,7 +20,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\PackagePlan;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\State;
-
 use App\Models\Preference;
 use App\Models\PreferenceNotification;
 
@@ -29,9 +30,60 @@ class PropertyController extends Controller
     public function getAllProperty()
     {
         $property = Property::latest()->get();
-        return view('backend.property.all_property', compact('property'));
+        $filter = 'All';
+        return view('backend.property.all_property', compact('property', 'filter'));
+    }
+    public function ForRentProperties()
+    {
+        $property = Property::where('property_status', 'Rent')->latest()->get();
+        $filter = 'For Rent';
+        return view('backend.property.all_property', compact('property', 'filter'));
+    }
+    public function ForSaleProperties()
+    {
+        $property = Property::where('property_status', 'Buy')->latest()->get();
+        $filter = 'For Sale';
+        return view('backend.property.all_property', compact('property', 'filter'));
+    }
+    public function ScheduledProperties()
+    {
+        $scheduledPropertyIds = Schedule::where('status', 'approved')->pluck('property_id')->unique();
+        $property = Property::whereIn('id', $scheduledPropertyIds)->latest()->get();
+        $filter = 'Scheduled';
+        return view('backend.property.all_property', compact('property', 'filter'));
     }
 
+    public function RequestedProperties()
+    {
+        $requestedPropertyIds = Transaction::where('status', 'pending')->pluck('property_id')->unique();
+        $property = Property::whereIn('id', $requestedPropertyIds)->latest()->get();
+        $filter = 'Requested';
+        return view('backend.property.all_property', compact('property', 'filter'));
+    }
+    public function ActiveProperties()
+    {
+        $property = Property::where('status', 1)->latest()->get();
+        $filter = 'Active';
+        return view('backend.property.all_property', compact('property', 'filter'));
+    }
+    public function InactiveProperties()
+    {
+        $property = Property::where('status', 0)->latest()->get();
+        $filter = 'Inactive';
+        return view('backend.property.all_property', compact('property', 'filter'));
+    }
+    public function RentedProperties()
+    {
+        $property = Transaction::where('status', 'approved')->where('property_status', 'For Rent')->latest()->get();
+        $filter = 'Rented';
+        return view('backend.property.all_property', compact('property', 'filter'));
+    }
+    public function SoldProperties()
+    {
+        $property = Transaction::where('status', 'approved')->where('property_status', 'For Buy')->latest()->get();
+        $filter = 'Sold';
+        return view('backend.property.all_property', compact('property', 'filter'));
+    }
     public function addProperty()
     {
         $propertytype = PropertyType::latest()->get();
@@ -366,6 +418,14 @@ class PropertyController extends Controller
 
         return view('backend.property.details_property', compact('property', 'propertytype', 'amenities', 'activeAgent', 'property_amin', 'multiImage', 'facilities'));
     } // End Method 
+    public function toggleHot(Request $request)
+    {
+        $property = Property::findOrFail($request->id);
+        $property->hot = $request->hot;
+        $property->save();
+
+        return response()->json(['success' => true]);
+    }
 
     public function inactiveProperty(Request $request)
     {

@@ -46,9 +46,6 @@
                                             <div class="custom-file-wrapper">
                                                 <input type="file" name="property_thambnail" id="property_thambnail"
                                                     class="custom-file-input" onchange="mainThamUrl(this)">
-                                                <label for="property_thambnail" class="custom-file-label">Choose
-                                                    File</label>
-                                                <span id="file-name">No file chosen</span>
                                             </div>
                                             <img src="" id="mainThmb">
                                         </div>
@@ -59,8 +56,7 @@
                                             <div class="custom-file-wrapper">
                                                 <input type="file" name="multi_img[]" id="multiImg"
                                                     class="custom-file-input" multiple>
-                                                <label for="multiImg" class="custom-file-label">Choose Files</label>
-                                                <span id="multi-file-names">No files chosen</span>
+
                                             </div>
                                             <div class="row" id="preview_img"></div>
                                         </div>
@@ -200,7 +196,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="form-group mb-3">
+                                    {{-- <div class="form-group mb-3">
                                         <div class="form-check form-check-inline">
                                             <input type="checkbox" name="featured" value="1"
                                                 class="form-check-input" id="checkInline1">
@@ -215,7 +211,7 @@
                                                 Hot Property
                                             </label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row add_item">
                                         <div class="col-md-4">
                                             <div class="mb-3">
