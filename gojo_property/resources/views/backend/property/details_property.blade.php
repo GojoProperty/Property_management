@@ -133,19 +133,9 @@
                                         <td>
                                             @if ($property->status == 1)
                                                 @if ($property->property_status == 'buy')
-                                                    <form method="post" action="{{ route('purchase.request') }}">
-                                                        @csrf
-                                                        <input type="hidden" name="property_id"
-                                                            value="{{ $property->id }}">
-                                                        <button type="submit" class="btn btn-success">Buy Now</button>
-                                                    </form>
-                                                @elseif($property->property_status == 'rent')
-                                                    <form method="post" action="{{ route('rent.request') }}">
-                                                        @csrf
-                                                        <input type="hidden" name="property_id"
-                                                            value="{{ $property->id }}">
-                                                        <button type="submit" class="btn btn-info">Rent Now</button>
-                                                    </form>
+                                                    <span class="badge bg-success">Available for Purchase</span>
+                                                @elseif ($property->property_status == 'rent')
+                                                    <span class="badge bg-info">Available for Rent</span>
                                                 @else
                                                     <span class="badge bg-secondary">Not Available</span>
                                                 @endif

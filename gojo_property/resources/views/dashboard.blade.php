@@ -62,7 +62,8 @@
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="card-body" style="background-color: #1baf65;">
-                                                <h1 class="card-title" style="color: white; font-weight: bold;">0</h1>
+                                                <h1 class="card-title" style="color: white; font-weight: bold;">
+                                                    {{ $approved }}</h1>
                                                 <h5 class="card-text"style="color: white;"> Approved properties</h5>
 
                                             </div>
@@ -70,13 +71,15 @@
 
                                         <div class="col-md-4">
                                             <div class="card-body" style="background-color: #ffc107;">
-                                                <h1 class="card-title" style="color: white; font-weight: bold; ">0</h1>
+                                                <h1 class="card-title" style="color: white; font-weight: bold; ">
+                                                    {{ $pending }}</h1>
                                                 <h5 class="card-text"style="color: white;"> Pending approve properties</h5>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="card-body" style="background-color: #002758;">
-                                                <h1 class="card-title" style="color: white; font-weight: bold;">0</h1>
+                                                <h1 class="card-title" style="color: white; font-weight: bold;">
+                                                    {{ $rejected }}</h1>
                                                 <h5 class="card-text"style="color: white; "> Rejected properties</h5>
                                             </div>
                                         </div>

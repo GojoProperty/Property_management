@@ -33,6 +33,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/dashboard', [UserController::class, 'dashboard'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
 // Authenticated User Routes
 Route::middleware('auth')->group(function () {
     // Profile
@@ -305,3 +309,4 @@ Route::put('/transaction/update-status/{id}', [TransactionController::class, 'up
 
 // Delete transaction
 Route::get('/transaction/delete/{id}', [TransactionController::class, 'deleteTransaction'])->name('delete.transaction');
+Route::get('/agent/dashboard', [AgentController::class, 'Dashboard'])->name('agent.dashboard');
