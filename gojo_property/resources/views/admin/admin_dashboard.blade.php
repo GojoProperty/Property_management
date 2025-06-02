@@ -12,7 +12,7 @@
         content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
     <title>Admin Panel - Gojo properties </title>
-
+    <link rel="icon" type="image/png" href="{{ asset('/gojo.png') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@
 
     <!-- <link rel="stylesheet" href="{{ asset('backend/assets/css/custom.css') }}"> -->
 
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/logo.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('backend/assets/images/gojo.png') }}" />
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     @stack('styles')

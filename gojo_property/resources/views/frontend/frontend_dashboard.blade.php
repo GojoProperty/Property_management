@@ -9,7 +9,7 @@
     <title>Easy - Gojo Property </title>
 
     <!-- Fav Icon -->
-    <link rel="icon" href="{{ asset('frontend/assets/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('gojo.png') }}" type="image/x-icon">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Google Fonts -->
     <link
