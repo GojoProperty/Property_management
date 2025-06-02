@@ -1,83 +1,69 @@
-@extends('admin.admin_dashboard')
- @section('admin')
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
- 
- <div class="page-content">
- 
-        
-         <div class="row profile-body">
-           <!-- left wrapper start -->
-           
-           <!-- left wrapper end -->
-           <!-- middle wrapper start -->
-           <div class="col-md-8 col-xl-8 middle-wrapper">
-             <div class="row">
-              <div class="card">
-               <div class="card-body">
- 
- 			<h6 class="card-title">Add Testimonial   </h6>
- 
- 			<form method="POST" action="{{ route('store.testimonials') }}" class="forms-sample" enctype="multipart/form-data">
- 				@csrf
-  
- 
- 				<div class="mb-3">
-  <label for="exampleInputEmail1" class="form-label"> Name   </label>
- 					 <input type="text" name="name" class="form-control " > 
- 				</div>
- 
-         <div class="mb-3">
-  <label for="exampleInputEmail1" class="form-label"> Position   </label>
-            <input type="text" name="position" class="form-control " > 
-         </div>
- 
-         <div class="mb-3">
-  <label for="exampleInputEmail1" class="form-label"> Message   </label>
-              <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-         </div>
- 
- 			 	<div class="mb-3">
-  <label for="exampleInputEmail1" class="form-label">Tentimonial Photo   </label>
-    <input class="form-control"  name="image" type="file" id="image">
-         </div>
- 
-   <div class="mb-3">
-  <label for="exampleInputEmail1" class="form-label">    </label>
-   <img id="showImage" class="wd-80 rounded-circle" src="{{ url('upload/no_image.jpg') }}" alt="profile">
-         </div>
- 				 
- 	 <button type="submit" class="btn btn-primary me-2">Save Changes </button>
- 			 
- 			</form>
- 
-               </div>
-             </div>
- 
- 
- 
- 
-             </div>
-           </div>
-           <!-- middle wrapper end -->
-           <!-- right wrapper start -->
-          
-           <!-- right wrapper end -->
-         </div>
- 
- 			</div>
-  
- <script type="text/javascript">
-   $(document).ready(function(){
-     $('#image').change(function(e){
-       var reader = new FileReader();
-       reader.onload = function(e){
-         $('#showImage').attr('src',e.target.result);
-       }
-       reader.readAsDataURL(e.target.files['0']);
-     });
-   });
- 
- 
- </script>
- 
- @endsection
+@extends('frontend.frontend_dashboard')
+@section('main')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <div class="page-content">
+        <div class="container py-5"> {{-- Add padding around the page --}}
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+
+                    {{-- ✅ Card Start --}}
+                    <div class="card shadow">
+                        <div class="card-header text-center bg-primary text-white">
+                            <h5 class="mb-0">Add Testimonial</h5>
+                        </div>
+
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('store.testimonials') }}" enctype="multipart/form-data">
+                                @csrf
+
+                                <div class="mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" name="name" class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Position</label>
+                                    <input type="text" name="position" class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Message</label>
+                                    <textarea name="message" class="form-control" rows="3" required></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Testimonial Photo</label>
+                                    <input class="form-control" name="image" type="file" id="image">
+                                </div>
+
+                                <div class="mb-3 text-center">
+                                    <img id="showImage" class="rounded-circle" style="width: 80px; height: 80px;"
+                                        src="{{ url('upload/no_image.jpg') }}" alt="Preview">
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Submit Testimonial</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {{-- ✅ Card End --}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#image').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            });
+        });
+    </script>
+@endsection

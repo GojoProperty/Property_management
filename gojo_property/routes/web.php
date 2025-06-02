@@ -66,6 +66,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/preferences', 'create')->name('preferences.create');
         Route::post('/user/preferences', 'store')->name('preferences.store');
     });
+    // Testimonials  All Route 
+    Route::controller(TestimonialController::class)->group(function () {
+
+        Route::get('/all/testimonials', 'AllTestimonials')->name('all.testimonials');
+        Route::get('/add/testimonials', 'AddTestimonials')->name('add.testimonials');
+        Route::post('/store/testimonials', 'StoreTestimonials')->name('store.testimonials');
+        Route::get('/edit/testimonials/{id}', 'EditTestimonials')->name('edit.testimonials');
+        Route::post('/update/testimonials', 'UpdateTestimonials')->name('update.testimonials');
+        Route::get('/delete/testimonials/{id}', 'DeleteTestimonials')->name('delete.testimonials');
+    });
 });
 
 //login and register route
@@ -210,16 +220,6 @@ Route::controller(\App\Http\Controllers\Backend\StateController::class)->group(f
     Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
 });
 
-// Testimonials  All Route 
-Route::controller(TestimonialController::class)->group(function () {
-
-    Route::get('/all/testimonials', 'AllTestimonials')->name('all.testimonials');
-    Route::get('/add/testimonials', 'AddTestimonials')->name('add.testimonials');
-    Route::post('/store/testimonials', 'StoreTestimonials')->name('store.testimonials');
-    Route::get('/edit/testimonials/{id}', 'EditTestimonials')->name('edit.testimonials');
-    Route::post('/update/testimonials', 'UpdateTestimonials')->name('update.testimonials');
-    Route::get('/delete/testimonials/{id}', 'DeleteTestimonials')->name('delete.testimonials');
-});
 
 
 // Blog Cateory All Route 
