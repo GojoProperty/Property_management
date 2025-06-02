@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                </div>--}}
+                </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                     <div class="footer-widget contact-widget">
                         <div class="widget-title">
@@ -62,8 +62,8 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="inner-box clearfix">
-                <figure class="footer-logo"><img
-                            src="{{ asset('frontend/assets/images/gojo.png') }}" alt=""></a></figure>
+                <figure class="footer-logo"><img src="{{ asset('frontend/assets/images/gojo.png') }}"
+                        alt=""></a></figure>
                 <div class="copyright pull-left">
 
                     <p>Gojo property</a> &copy;{{ date('Y') }} All Right Reserved</p>
