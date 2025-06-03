@@ -298,14 +298,28 @@
     </script>
 
     <!-- // start load Compare Data  -->
-    <script type="text/javascript">
+    <script>
         function compare() {
             $.ajax({
                 type: "GET",
                 dataType: 'json',
                 url: "/get-compare-property/",
                 success: function(response) {
+                    const compareCards = $('#compare-cards');
+                    const compareSummary = $('#compare-summary');
+                    const noCompareMessage = $('#no-compare-message');
+
                     let output = "";
+
+                    if (response.compare.length === 0) {
+                        compareCards.empty();
+                        compareSummary.empty();
+                        noCompareMessage.removeClass('d-none');
+                        return;
+                    }
+
+                    // Hide "no compare" message if we have data
+                    noCompareMessage.addClass('d-none');
 
                     $.each(response.compare, function(key, value) {
                         const p = value.property;
@@ -315,47 +329,58 @@
                         const isMostRooms = p.bedrooms == response.mostRooms;
 
                         output += `
-                <div class="card shadow-sm p-3">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-md-4">
-                            <img src="/${p.property_thambnail}" alt="" class="img-fluid rounded">
-                        </div>
-                        <div class="col-md-8">
-                            <h5 class="fw-bold mb-1">${p.property_name}</h5>
-                            <p class="mb-1 text-primary fw-semibold">$${p.lowest_price}
-                                ${isLowestPrice ? '<span class="badge bg-success ms-2">Lowest Price</span>' : ''}
-                            </p>
-                            <p class="mb-1"><strong>Area:</strong> ${p.property_size} Sq Ft
-                                ${isLargestArea ? '<span class="badge bg-info text-dark ms-2">Largest Area</span>' : ''}
-                            </p>
-                            <p class="mb-1"><strong>Rooms:</strong> ${p.bedrooms}
-                                ${isMostRooms ? '<span class="badge bg-warning text-dark ms-2">Most Rooms</span>' : ''}
-                            </p>
-                            <p class="mb-1"><strong>Bathrooms:</strong> ${p.bathrooms}</p>
-                            <p class="mb-1"><strong>City:</strong> ${p.city}</p>
-                            <a type="submit" class="btn btn-sm btn-outline-danger mt-2" id="${value.id}" onclick="compareRemove(this.id)">
-                                <i class="fa fa-trash"></i> Remove
-                            </a>
-                        </div>
-                    </div>
-                </div>`;
+                        <div class="card shadow-sm p-3">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-md-4">
+                                    <img src="/${p.property_thambnail}" alt="" class="img-fluid rounded">
+                                </div>
+                                <div class="col-md-8">
+                                    <h5 class="fw-bold mb-1">${p.property_name}</h5>
+                                    <p class="mb-1 text-primary fw-semibold">${p.lowest_price} ETB
+                                        ${isLowestPrice ? '<span class="badge bg-success ms-2">Lowest Price</span>' : ''}
+                                    </p>
+                                    <p class="mb-1"><strong>Area:</strong> ${p.property_size} Sq Ft
+                                        ${isLargestArea ? '<span class="badge bg-info text-dark ms-2">Largest Area</span>' : ''}
+                                    </p>
+                                    <p class="mb-1"><strong>Rooms:</strong> ${p.bedrooms}
+                                        ${isMostRooms ? '<span class="badge bg-warning text-dark ms-2">Most Rooms</span>' : ''}
+                                    </p>
+                                    <p class="mb-1"><strong>Bathrooms:</strong> ${p.bathrooms}</p>
+                                    <p class="mb-1"><strong>City:</strong> ${p.city}</p>
+                                    <a class="btn btn-sm btn-outline-danger mt-2" id="${value.id}" onclick="compareRemove(this.id)">
+                                        <i class="fa fa-trash"></i> Remove
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`;
                     });
-                    let summary = `
-                        <div class="alert alert-info">
-                            Among the compared properties:
-                            <strong>${response.lowestPriceName}</strong> has the <strong>lowest price</strong>,
-                            <strong>${response.largestAreaName}</strong> has the <strong>largest area</strong>,
-                            and <strong>${response.mostRoomsName}</strong> has the <strong>most rooms</strong>.
-                        </div>
-                    `;
-                    $('#compare-summary').html(summary);
 
-                    $('#compare-cards').html(output);
+                    const summary = `
+                    <div class="alert alert-info">
+                        Among the compared properties:
+                        <strong>${response.lowestPriceName}</strong> has the <strong>lowest price</strong>,
+                        <strong>${response.largestAreaName}</strong> has the <strong>largest area</strong>,
+                        and <strong>${response.mostRoomsName}</strong> has the <strong>most rooms</strong>.
+                    </div>
+                `;
+
+                    compareCards.html(output);
+                    compareSummary.html(summary);
+                },
+                error: function() {
+                    $('#compare-cards').html(`
+                    <div class="alert alert-danger">Unable to load compared properties. Check your connection.</div>
+                `);
+                    $('#compare-summary').empty();
+                    $('#no-compare-message').addClass('d-none');
                 }
             });
         }
 
-        compare();
+        $(document).ready(function() {
+            compare();
+        });
+
 
         function compareRemove(id) {
             $.ajax({
