@@ -8,6 +8,9 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Exception;
 
 class TransactionController extends Controller
 {
@@ -59,10 +62,20 @@ class TransactionController extends Controller
             'request_date'   => now(),
         ]);
 
-        // ✅ Now notify with that reference code
-        /** @var \App\Models\User $user */
-        $user = Auth::user();
-        $user->notify(new TransactionReferenceNotification($referenceCode));
+        try {
+            /** @var \App\Models\User $user */
+            $user = Auth::user();
+            $user->notify(new TransactionReferenceNotification($referenceCode));
+        } catch (Exception $e) {
+            // Log the error for developers
+            Log::error('Mail Sending Failed: ' . $e->getMessage());
+
+            // Show a user-friendly message
+            return back()->with([
+                'message' => 'Request submitted! However, we couldn’t send the confirmation email due to poor internet connection.',
+                'alert-type' => 'warning'
+            ]);
+        }
 
         $notification = array(
             'message' => 'Purchase request submitted! Check your email for your reference code.',
@@ -114,9 +127,20 @@ class TransactionController extends Controller
             'request_date'   => now(),
         ]);
 
-        /** @var \App\Models\User $user */
-        $user = Auth::user();
-        $user->notify(new TransactionReferenceNotification($referenceCode));
+        try {
+            /** @var \App\Models\User $user */
+            $user = Auth::user();
+            $user->notify(new TransactionReferenceNotification($referenceCode));
+        } catch (Exception $e) {
+            // Log the error for developers
+            Log::error('Mail Sending Failed: ' . $e->getMessage());
+
+            // Show a user-friendly message
+            return back()->with([
+                'message' => 'Request submitted! However, we couldn’t send the confirmation email due to poor internet connection.',
+                'alert-type' => 'warning'
+            ]);
+        }
 
 
         $notification = array(

@@ -37,13 +37,13 @@
                                 <h6>{{ $property->user->name }}</h6>
                             @endif
                         </div>
-                        <ul class="rating clearfix pull-left">
+                        {{-- <ul class="rating clearfix pull-left">
                             <li><i class="icon-39"></i></li>
                             <li><i class="icon-39"></i></li>
                             <li><i class="icon-39"></i></li>
                             <li><i class="icon-39"></i></li>
                             <li><i class="icon-40"></i></li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
 
@@ -257,7 +257,7 @@
                                             <li><i class="fas fa-phone"></i><a href="tel:03030571965">+251-946948447</a>
                                             </li>
                                         </ul>
-                                        <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
+                                        {{-- <div class="btn-box"><a href="agents-details.html">View Listing</a></div> --}}
                                     </div>
                                 @else
                                     <figure class="author-thumb"><img
