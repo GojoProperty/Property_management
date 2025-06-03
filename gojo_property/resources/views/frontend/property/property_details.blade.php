@@ -364,9 +364,9 @@
                                                 </div>
 
                                                 <div class="form-group message-btn">
-                                                    @if ($property->property_status == ' buy')
+                                                    @if ($property->property_status == 'buy')
                                                         <button type="submit" class="btn btn-success w-100">Buy Now</button>
-                                                    @elseif ($property->property_status == ' Rent')
+                                                    @elseif ($property->property_status == 'rent')
                                                         <button type="submit" class="btn btn-info w-100">Rent Now</button>
                                                     @endif
                                                 </div>

@@ -60,7 +60,9 @@ class TransactionController extends Controller
         ]);
 
         // ✅ Now notify with that reference code
-        Auth::user()->notify(new TransactionReferenceNotification($referenceCode));
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $user->notify(new TransactionReferenceNotification($referenceCode));
 
         $notification = array(
             'message' => 'Purchase request submitted! Check your email for your reference code.',
@@ -74,6 +76,8 @@ class TransactionController extends Controller
     // Handle Rent Request
     public function rentRequest(Request $request)
     {
+
+
         $request->validate([
             'property_id' => 'required|exists:properties,id',
         ]);
@@ -110,8 +114,10 @@ class TransactionController extends Controller
             'request_date'   => now(),
         ]);
 
-        // ✅ Now send notification
-        Auth::user()->notify(new TransactionReferenceNotification($referenceCode));
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $user->notify(new TransactionReferenceNotification($referenceCode));
+
 
         $notification = array(
             'message' => 'Rent request submitted! Check your email for your reference code.',
@@ -120,6 +126,7 @@ class TransactionController extends Controller
 
         return back()->with($notification);
     }
+
 
     // Show all transaction details
     public function TransactionDetails()
