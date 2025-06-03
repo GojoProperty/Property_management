@@ -1,9 +1,5 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
-    <!-- banner-section -->
-    @include('frontend.home.banner')
-    <!-- banner-section end -->
-
     <div id="category-section">
         <!-- category-section -->
         @include('frontend.home.category')
