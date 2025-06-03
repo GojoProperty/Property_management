@@ -307,7 +307,7 @@ Route::get('/rent/property', [IndexController::class, 'RentProperty'])->name('re
 Route::get('/buy/property', [IndexController::class, 'BuyProperty'])->name('buy.property');
 // Get All Property Type Data 
 Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');
-// Transaction Requests
+
 Route::middleware(['auth'])->group(function () {
     Route::post('/purchase-request', [TransactionController::class, 'purchaseRequest'])->name('purchase.request');
     Route::post('/rent-request', [TransactionController::class, 'rentRequest'])->name('rent.request');
