@@ -7,255 +7,335 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <strong>Property not added. Please fix the following errors:</strong>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <h6 class="card-title">Add Property </h6>
                             <form method="post" action="{{ route('store.property') }}" id="myForm"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Property Name </label>
-                                            <input type="text" name="property_name" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Property Status</label>
-                                            <select name="property_status" class="form-select" id="propStatus">
-                                                <option selected="" disabled="">Select Status</option>
-                                                <option value="rent">For Rent</option>
-                                                <option value="buy">For Buy</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Lowest Price </label>
-                                            <input type="text" name="lowest_price" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Max Price </label>
-                                            <input type="text" name="max_price" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Main Thumbnail</label>
-                                            <div class="custom-file-wrapper">
-                                                <input type="file" name="property_thambnail" id="property_thambnail"
-                                                    class="custom-file-input" onchange="mainThamUrl(this)">
+                                    <div class="row">
+                                        <!-- Property Name -->
+                                        <div class="col-sm-6">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Property Name</label>
+                                                <input type="text" name="property_name"
+                                                    class="form-control @error('property_name') is-invalid @enderror"
+                                                    value="{{ old('property_name') }}">
+                                                @error('property_name')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
-                                            <img src="" id="mainThmb">
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Multiple Images</label>
-                                            <div class="custom-file-wrapper">
-                                                <input type="file" name="multi_img[]" id="multiImg"
-                                                    class="custom-file-input" multiple>
 
+                                        <!-- Property Status -->
+                                        <div class="col-sm-6">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Property Status</label>
+                                                <select name="property_status"
+                                                    class="form-select @error('property_status') is-invalid @enderror">
+                                                    <option selected disabled>Select Status</option>
+                                                    <option value="rent"
+                                                        {{ old('property_status') == 'rent' ? 'selected' : '' }}>For Rent
+                                                    </option>
+                                                    <option value="buy"
+                                                        {{ old('property_status') == 'buy' ? 'selected' : '' }}>For Buy
+                                                    </option>
+                                                </select>
+                                                @error('property_status')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
-                                            <div class="row" id="preview_img"></div>
+                                        </div>
+
+                                        <!-- Price -->
+                                        <div class="col-sm-6">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Price</label>
+                                                <input type="text" name="max_price"
+                                                    class="form-control @error('max_price') is-invalid @enderror"
+                                                    value="{{ old('max_price') }}" placeholder="e.g. 1,000.00">
+                                                @error('max_price')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <!-- Main Thumbnail -->
+                                        <div class="col-sm-6">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Main Thumbnail</label>
+                                                <input type="file" name="property_thambnail"
+                                                    class="form-control @error('property_thambnail') is-invalid @enderror">
+                                                @error('property_thambnail')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <!-- Multiple Images -->
+                                        <div class="col-sm-6">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Multiple Images</label>
+                                                <input type="file" name="multi_img[]"
+                                                    class="form-control @error('multi_img') is-invalid @enderror" multiple>
+                                                @error('multi_img')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Bedrooms -->
+                                    <div class="col-sm-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Bedrooms</label>
+                                            <input type="text" name="bedrooms"
+                                                class="form-control @error('bedrooms') is-invalid @enderror"
+                                                value="{{ old('bedrooms') }}">
+                                            @error('bedrooms')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
 
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">BedRooms</label>
-                                            <input type="text" name="bedrooms" class="form-control">
-                                        </div>
-                                    </div>
+                                    <!-- Bathrooms -->
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Bathrooms</label>
-                                            <input type="text" name="bathrooms" class="form-control">
+                                            <input type="text" name="bathrooms"
+                                                class="form-control @error('bathrooms') is-invalid @enderror"
+                                                value="{{ old('bathrooms') }}">
+                                            @error('bathrooms')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
+
+                                    <!-- Address -->
                                     <div class="col-sm-4">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Address</label>
-                                            <input type="text" name="address" class="form-control">
+                                            <input type="text" name="address"
+                                                class="form-control @error('address') is-invalid @enderror"
+                                                value="{{ old('address') }}">
+                                            @error('address')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+
+                                    <!-- City -->
                                     <div class="col-sm-4">
                                         <div class="form-group mb-3">
                                             <label class="form-label">City</label>
-                                            <input type="text" name="city" class="form-control">
+                                            <input type="text" name="city"
+                                                class="form-control @error('city') is-invalid @enderror"
+                                                value="{{ old('city') }}">
+                                            @error('city')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+
+                                    <!-- State -->
                                     <div class="col-sm-4">
                                         <div class="form-group mb-3">
                                             <label class="form-label">State</label>
-                                            <select name="state" class="form-select" id="exampleFormControlSelect1">
-                                                <option selected="" disabled="">Select State</option>
+                                            <select name="state" class="form-select @error('state') is-invalid @enderror">
+                                                <option selected disabled>Select State</option>
                                                 @foreach ($pstate as $state)
-                                                    <option value="{{ $state->id }}">{{ $state->state_name }}</option>
+                                                    <option value="{{ $state->id }}"
+                                                        {{ old('state') == $state->id ? 'selected' : '' }}>
+                                                        {{ $state->state_name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('state')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Property Size</label>
-                                                <input type="text" name="property_size" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Property Video</label>
-                                                <input type="text" name="property_video" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Neighborhood</label>
-                                                <input type="text" name="neighborhood" class="form-control">
-                                            </div>
+
+                                    <!-- Property Size -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Property Size</label>
+                                            <input type="text" name="property_size"
+                                                class="form-control @error('property_size') is-invalid @enderror"
+                                                value="{{ old('property_size') }}">
+                                            @error('property_size')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Latitude</label>
-                                                <input type="text" name="latitude" class="form-control">
-                                                <a href="https://www.latlong.net/convert-address-to-lat-long.html"
-                                                    target="_blank">Go here to get Latitude from address</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Longitude</label>
-                                                <input type="text" name="longitude" class="form-control">
-                                                <a href="https://www.latlong.net/convert-address-to-lat-long.html"
-                                                    target="_blank">Go here to get Longitude from address</a>
-                                            </div>
+
+                                    <!-- Property Video -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Property Video</label>
+                                            <input type="text" name="property_video"
+                                                class="form-control @error('property_video') is-invalid @enderror"
+                                                value="{{ old('property_video') }}"
+                                                placeholder="https://example.com/video">
+                                            @error('property_video')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="mb-3">
-                                                <label class="form-label">Property Type </label>
-                                                <select name="ptype_id" class="form-select"
-                                                    id="exampleFormControlSelect1">
-                                                    <option selected="" disabled="">Select Type</option>
-                                                    @foreach ($propertytype as $ptype)
-                                                        <option value="{{ $ptype->id }}">{{ $ptype->type_name }}
-                                                        </option>
+
+                                    <!-- Neighborhood -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Neighborhood</label>
+                                            <input type="text" name="neighborhood" class="form-control"
+                                                value="{{ old('neighborhood') }}">
+                                        </div>
+                                    </div>
+
+                                    <!-- Latitude -->
+                                    <div class="col-sm-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Latitude</label>
+                                            <input type="text" name="latitude"
+                                                class="form-control @error('latitude') is-invalid @enderror"
+                                                value="{{ old('latitude') }}">
+                                            @error('latitude')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <!-- Longitude -->
+                                    <div class="col-sm-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Longitude</label>
+                                            <input type="text" name="longitude"
+                                                class="form-control @error('longitude') is-invalid @enderror"
+                                                value="{{ old('longitude') }}">
+                                            @error('longitude')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <!-- Property Type -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Property Type</label>
+                                            <select name="ptype_id"
+                                                class="form-select @error('ptype_id') is-invalid @enderror">
+                                                <option selected disabled>Select Type</option>
+                                                @foreach ($propertytype as $ptype)
+                                                    <option value="{{ $ptype->id }}"
+                                                        {{ old('ptype_id') == $ptype->id ? 'selected' : '' }}>
+                                                        {{ $ptype->type_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('ptype_id')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <!-- Amenities -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-3">
+                                            <div class="mb-3" data-select2-id="25">
+                                                <label class="form-label" for="amenities_id">Property
+                                                    Amenities</label>
+                                                <select id="amenities_id" name="amenities_id[]"
+                                                    class="js-example-basic-multiple form-select select2-hidden-accessible"
+                                                    multiple="" data-width="100%" tabindex="-1" aria-hidden="true">
+                                                    @foreach ($amenities as $ameni)
+                                                        <option value="{{ $ameni->amenities_name }}">
+                                                            {{ $ameni->amenities_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group mb-3">
-                                                <div class="mb-3" data-select2-id="25">
-                                                    <label class="form-label" for="amenities_id">Property
-                                                        Amenities</label>
-                                                    <select id="amenities_id" name="amenities_id[]"
-                                                        class="js-example-basic-multiple form-select select2-hidden-accessible"
-                                                        multiple="" data-width="100%" tabindex="-1"
-                                                        aria-hidden="true">
-                                                        @foreach ($amenities as $ameni)
-                                                            <option value="{{ $ameni->amenities_name }}">
-                                                                {{ $ameni->amenities_name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label"> Agent </label>
-                                                <select name="agent_id" class="form-select" id="agent_id">
-                                                    <option selected="" disabled="">Select Agent</option>
-                                                    @foreach ($activeAgent as $agent)
-                                                        <option value="{{ $agent->id }}">{{ $agent->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                    </div>
+
+                                    <!-- Agent -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Agent</label>
+                                            <select name="agent_id"
+                                                class="form-select @error('agent_id') is-invalid @enderror">
+                                                <option selected disabled>Select Agent</option>
+                                                @foreach ($activeAgent as $agent)
+                                                    <option value="{{ $agent->id }}"
+                                                        {{ old('agent_id') == $agent->id ? 'selected' : '' }}>
+                                                        {{ $agent->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('agent_id')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+
+                                    <!-- Short Description -->
                                     <div class="col-sm-12">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Short Description</label>
-                                            <textarea class="form-control" name="short_descp" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea name="short_descp" class="form-control @error('short_descp') is-invalid @enderror">{{ old('short_descp') }}</textarea>
+                                            @error('short_descp')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+
+                                    <!-- Long Description -->
                                     <div class="col-sm-12">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Long Description</label>
-                                            <textarea class="form-control" name="long_descp" {{-- id="tinymceExample" --}} name="tinymce" rows="10"></textarea>
+                                            <textarea name="long_descp" class="form-control @error('long_descp') is-invalid @enderror" rows="10">{{ old('long_descp') }}</textarea>
+                                            @error('long_descp')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <hr>
-                                    {{-- <div class="form-group mb-3">
-                                        <div class="form-check form-check-inline">
-                                            <input type="checkbox" name="featured" value="1"
-                                                class="form-check-input" id="checkInline1">
-                                            <label class="form-check-label" for="checkInline1">
-                                                Features Property
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input type="checkbox" name="hot" value="1"
-                                                class="form-check-input" id="checkInline">
-                                            <label class="form-check-label" for="checkInline">
-                                                Hot Property
-                                            </label>
-                                        </div>
-                                    </div> --}}
+
+                                    <!-- Facilities (Dynamic) -->
                                     <div class="row add_item">
                                         <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label for="facility_name" class="form-label">Facilities </label>
-                                                <select name="facility_name[]" id="facility_name" class="form-control">
-                                                    <option value="">Select Facility</option>
-                                                    <option value="Hospital">Hospital</option>
-                                                    <option value="SuperMarket">Super Market</option>
-                                                    <option value="School">School</option>
-                                                    <option value="Entertainment">Entertainment</option>
-                                                    <option value="Pharmacy">Pharmacy</option>
-                                                    <option value="Airport">Airport</option>
-                                                    <option value="Railways">Railways</option>
-                                                    <option value="Bus Stop">Bus Stop</option>
-                                                    <option value="Beach">Beach</option>
-                                                    <option value="Mall">Mall</option>
-                                                    <option value="Bank">Bank</option>
-                                                </select>
-                                            </div>
+                                            <label class="form-label">Facility</label>
+                                            <select name="facility_name[]" class="form-control">
+                                                <option value="">Select Facility</option>
+                                                <option value="Hospital">Hospital</option>
+                                                <option value="School">School</option>
+                                                <option value="SuperMarket">Super Market</option>
+                                                <option value="Mall">Mall</option>
+                                                <!-- Add more if needed -->
+                                            </select>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label for="distance" class="form-label"> Distance </label>
-                                                <input type="text" name="distance[]" id="distance"
-                                                    class="form-control" placeholder="Distance (Km)">
-                                            </div>
+                                            <label class="form-label">Distance</label>
+                                            <input type="text" name="distance[]" class="form-control"
+                                                placeholder="Distance (Km)">
                                         </div>
-                                        <div class="form-group col-md-4" style="padding-top: 30px;">
-                                            <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i>
-                                                Add
-                                                More..</a>
+                                        <div class="col-md-4" style="padding-top: 30px;">
+                                            <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add
+                                                More</a>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="rules">Terms & Rules (optional)</label>
-                                    <textarea name="rules[]" class="form-control" rows="3" placeholder="Write rule here..."></textarea>
-                                    <button type="button" class="btn btn-sm btn-success mt-2" id="addRule">+ Add
-                                        another rule</button>
-                                </div>
 
-                                <div id="moreRules"></div>
-                                <button type="submit" class="btn btn-primary w-auto mt-4">Save Changes </button>
+                                    <!-- Submit Button -->
+                                    <div class="col-sm-12 mt-3">
+                                        <button type="submit" class="btn btn-primary">Save Property</button>
+                                    </div>
+                                </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -329,15 +409,6 @@
         });
     </script>
 
-
-    <script>
-        document.getElementById('addRule').addEventListener('click', function() {
-            const field = `
-            <textarea name="rules[]" class="form-control mt-2" rows="3" placeholder="Write rule here..."></textarea>
-        `;
-            document.getElementById('moreRules').insertAdjacentHTML('beforeend', field);
-        });
-    </script>
 
 
 

@@ -59,6 +59,43 @@ class AgentPropertyController extends Controller
         $uid = User::findOrFail($id);
         $nid = $uid->credit;
 
+        // ✅ Validate all inputs
+        $validated = $request->validate([
+            'property_name'     => 'required|string|max:255',
+            'property_status'   => 'required|in:rent,buy',
+            'max_price'         => ['required', 'regex:/^\d{1,3}(,\d{3})*(\.\d{1,2})?$/'], // e.g., 1,000 or 1,000.00
+            'property_thambnail' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'multi_img.*'       => 'image|mimes:jpeg,png,jpg|max:2048',
+            'bedrooms'          => 'required|integer|min:0',
+            'bathrooms'         => 'required|integer|min:0',
+            'address'           => 'required|string|max:255',
+            'city'              => 'required|string|max:255',
+            'state'             => 'required|exists:states,id',
+            'property_size'     => 'required|string|max:50',
+            'property_video'    => 'nullable|string|max:255',
+            'latitude'          => 'nullable|regex:/^-?\d{1,3}\.\d+$/',
+            'longitude'         => 'nullable|regex:/^-?\d{1,3}\.\d+$/',
+            'ptype_id'          => 'required|exists:property_types,id',
+            'agent_id'          => 'required|exists:users,id',
+            'short_descp'       => 'required|string|max:500',
+            'long_descp'        => 'required|string|max:5000',
+            'amenities_id'      => 'nullable|array',
+            'amenities_id.*'    => 'string',
+            'facility_name.*'   => 'nullable|string',
+            'distance.*'        => 'nullable|string',
+        ], [
+            'max_price.numeric' => 'Price must be a number.',
+            'bedrooms.numeric' => 'Bedrooms must be a number.',
+            'bathrooms.numeric' => 'Bathrooms must be a number.',
+            'property_thambnail.required' => 'Main thumbnail is required.',
+            'short_descp.required' => 'Short description is required.',
+            'long_descp.required' => 'Long description is required.',
+        ]);
+
+        // Clean and convert price to float (e.g., 1,000.00 => 1000.00)
+        $validated['max_price'] = floatval(str_replace(',', '', $validated['max_price']));
+
+        // ✅ Get current user and prepare variables
 
         $amenities = implode(",", $request->amenities_id ?? []);
         $pcode = IdGenerator::generate([
