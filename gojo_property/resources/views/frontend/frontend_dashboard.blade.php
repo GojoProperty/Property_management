@@ -341,13 +341,13 @@
                 </div>`;
                     });
                     let summary = `
-    <div class="alert alert-info">
-        Among the compared properties:
-        <strong>${response.lowestPriceName}</strong> has the <strong>lowest price</strong>,
-        <strong>${response.largestAreaName}</strong> has the <strong>largest area</strong>,
-        and <strong>${response.mostRoomsName}</strong> has the <strong>most rooms</strong>.
-    </div>
-`;
+                        <div class="alert alert-info">
+                            Among the compared properties:
+                            <strong>${response.lowestPriceName}</strong> has the <strong>lowest price</strong>,
+                            <strong>${response.largestAreaName}</strong> has the <strong>largest area</strong>,
+                            and <strong>${response.mostRoomsName}</strong> has the <strong>most rooms</strong>.
+                        </div>
+                    `;
                     $('#compare-summary').html(summary);
 
                     $('#compare-cards').html(output);
