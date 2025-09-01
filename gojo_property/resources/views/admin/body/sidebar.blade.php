@@ -1,3 +1,9 @@
+@php
+ $id = Auth::user()->id;
+ $agentId = App\Models\User::find($id);
+ $status = $agentId->status;
+ @endphp
+
 <nav class="sidebar">
     <div class="sidebar-header">
         <a href="#" class="sidebar-brand">
@@ -18,65 +24,106 @@
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item nav-category">web apps</li>
+
+            @if($status === 'active')
+
+            <li class="nav-item nav-category">Gojo Property</li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
                     aria-controls="emails">
                     <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">Email</span>
+                    <span class="link-title">Property Type</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="emails">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="pages/email/inbox.html" class="nav-link">Inbox</a>
+                            <a href="{{ route('all.type') }}" class="nav-link">All Type</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/email/read.html" class="nav-link">Read</a>
+                            <a href="pages/email/read.html" class="nav-link">Add Type</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#amenitie" role="button" aria-expanded="false"
+                    aria-controls="emails">
+                    <i class="link-icon" data-feather="mail"></i>
+                    <span class="link-title">Amenitie </span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="amenitie">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('all.amenitie') }}" class="nav-link">All Amenitie</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/email/compose.html" class="nav-link">Compose</a>
+                            <a href="pages/email/read.html" class="nav-link">Add Amenitie</a>
                         </li>
+
+                    </ul>
+                </div>
+            </li>
+            <!-- property ui in the admin dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#property" role="button" aria-expanded="false"
+                    aria-controls="emails">
+                    <i class="link-icon" data-feather="mail"></i>
+                    <span class="link-title">Property </span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="property">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('all.property') }}" class="nav-link">All Property</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('add.property') }}" class="nav-link">Add Property</a>
+                        </li>
+
                     </ul>
                 </div>
             </li>
 
             <li class="nav-item">
-                <a href="pages/apps/calendar.html" class="nav-link">
+                <a href="{{ route('admin.package.history') }}" class="nav-link">
                     <i class="link-icon" data-feather="calendar"></i>
-                    <span class="link-title">Calendar</span>
+                    <span class="link-title">Package History</span>
                 </a>
             </li>
-            <li class="nav-item nav-category">Components</li>
+            <li class="nav-item nav-category">User All Function</li>
+
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
                     aria-controls="uiComponents">
                     <i class="link-icon" data-feather="feather"></i>
-                    <span class="link-title">UI Kit</span>
+                    <span class="link-title">Manage Agent</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="uiComponents">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="pages/ui-components/accordion.html" class="nav-link">Accordion</a>
+                            <a href="{{ route('all.agent') }}" class="nav-link">All Agent </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/ui-components/alerts.html" class="nav-link">Alerts</a>
+                            <a href="{{ route('add.agent') }}"  class="nav-link">Add Agent</a>
                         </li>
                     </ul>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false"
-                    aria-controls="advancedUI">
+                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button"
+                    aria-expanded="false" aria-controls="advancedUI">
                     <i class="link-icon" data-feather="anchor"></i>
-                    <span class="link-title">Advanced UI</span>
+                    <span class="link-title">Transaction</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="advancedUI">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="pages/advanced-ui/cropper.html" class="nav-link">Cropper</a>
+                            <a href="{{ route('transaction.details') }}" class="nav-link">All Transactions</a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
@@ -85,6 +132,9 @@
                     </ul>
                 </div>
             </li>
+               @else
+ 
+               @endif
 
             <li class="nav-item nav-category">Docs</li>
             <li class="nav-item">

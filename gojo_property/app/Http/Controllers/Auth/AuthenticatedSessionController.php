@@ -27,30 +27,28 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        $id = Auth::user()->id;
+        $adminData = User::find($id);
+        $username = $adminData->name;
+
         $request->session()->regenerate();
 
-        $user = Auth::user();
-
+        $notification = array(
+            'message' => 'User ' . $username . ' Login Successfully',
+            'alert-type' => 'info'
+        );
         session()->forget('url.intended');
-      
-        if ($user->role === 'admin'){
-            return redirect()->route('admin.dashboard');
-         }elseif ($user->role === 'agent'){
-            return redirect()->route('agent.dashboard');
-         }else{
-            return redirect()->route('dashboard');
-         }
-            
-          /* $url = '';
-        if ($request->user()->role === 'admin'){
-            $url = 'admin.dashboard';
-        }elseif ($request->user()->role === 'agent'){
-            $url = 'agent.dashboard';
-        }else {
+        $url = '';
+
+        if ($request->user()->role === 'admin') {
+            $url = route('admin.dashboard');
+        } elseif ($request->user()->role === 'agent') {
+            $url = route('agent.dashboard');
+        } else {
             $url = '/dashboard';
         }
-        return redirect()->intended($url); */
-        
+
+        return redirect()->intended($url)->with($notification);
     }
 
     /*
